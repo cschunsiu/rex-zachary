@@ -6,7 +6,11 @@
 
 package zombiehunting;
 
+import byui.cit260.zombiesHunting.model.Game;
+import byui.cit260.zombiesHunting.model.HealthItem;
+import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.Player;
+import byui.cit260.zombiesHunting.model.WeaponItem;
 
 /**
  *
@@ -19,12 +23,46 @@ public class ZombieHunting {
      */
     public static void main(String[] args) {
         Player playerOne = new Player();
+        Game gameOne = new Game();
+        WeaponItem weaponItemOne = new WeaponItem();
+        HealthItem healthItemOne = new HealthItem();
+        Map mapOne = new Map();
+        
+        mapOne.setDestination("Mall");
+        mapOne.setCompass("North,East,South,West");
+        mapOne.setTotalZombies(100);
+        mapOne.setTotalColumns(200);
+        mapOne.setTotalRows(100);
+        
+        healthItemOne.setItemType("potion");
+        healthItemOne.setHealthRestore(100);
+        healthItemOne.setDescription("Use to restore health");
+        healthItemOne.setName("Ibuprofen");
         
         playerOne.setName("Bill");
         playerOne.setHealth(10.00);
         
+        gameOne.setBestTime("1:00");
+        gameOne.setBestZombieKill(200);
+        
+        weaponItemOne.setWeaponType("shotgun");
+        weaponItemOne.setDamage(100);
+        weaponItemOne.setReloadSpeed(0.5);
+        weaponItemOne.setDescription("APK200");
+        
+        String mapInfo = mapOne.toString();
+        System.out.println(mapInfo);
+        
+        String healthItemInfo = healthItemOne.toString();
+        System.out.println(healthItemInfo);
+        
+        String weaponItemInfo = weaponItemOne.toString();
+        System.out.println(weaponItemInfo);
+        
+        String gameInfo = gameOne.toString();
+        System.out.println(gameInfo);
+        
         String playerInfo = playerOne.toString();
         System.out.println(playerInfo);
     }
-    
 }
