@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Computer
+ * @author Zach
  */
 public class RoomType {
     private int numZombies;
