@@ -11,7 +11,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Computer
+ * @author Zach
  */
 public class Location implements Serializable{
     private String requiredItems;
