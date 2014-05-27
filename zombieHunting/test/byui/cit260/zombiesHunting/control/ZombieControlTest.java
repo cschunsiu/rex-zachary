@@ -14,9 +14,6 @@ import static org.junit.Assert.*;
  */
 public class ZombieControlTest {
 
-    public ZombieControlTest() {
-    }
-
     /**
      * Test of calcMovementSpeed method, of class ZombieControl.
      */
@@ -127,6 +124,93 @@ public class ZombieControlTest {
 
         assertEquals(expResult, result, 0.0001);
         // TODO review the generated test code and remove the default call to fail.
+    }
+
+    /**
+     * Test of calcDamage method, of class ZombieControl.
+     */
+     @Test
+    public void testCalcDamage() {
+        /******************************
+        * For Test cases #1, #2, #7 their
+        * result will depend on whether the
+        * zombie hits or misses. If the zombie 
+        * misses, the function will return zero
+        * for their damage dealt.
+        *******************************/
+        
+        /*****************************
+        * Test case #1 & #2
+        * Test case # 1 = Zombie hits
+        * Test case #2 = Zombie miss
+        * If the Zombie's attack misses Then the function
+        * should return 0.
+        ******************************/
+        System.out.println("\ncalcDamage");
+        System.out.println("\tTest case #1 & #2");
+        double attackPt = 10.0;
+        double health = 90.0;
+        ZombieControl instance = new ZombieControl();
+        double expResult = 9.0;
+        double otherResult = 0.0;
+        double result = instance.calcDamage(attackPt, health);
+        assert(result == otherResult || result == expResult);
+        
+        /**************
+        * Test case #3
+        ***************/
+        System.out.println("\tTest case #3");
+        attackPt = -1.0;
+        health = 90.0;
+        instance = new ZombieControl();
+        expResult = -1;
+        result = instance.calcDamage(attackPt, health);
+        assertEquals(expResult, result, 0.0);
+        
+        /**************
+        * Test case #4
+        ***************/
+        System.out.println("\tTest case #4");
+        attackPt = 10;
+        health = -1;
+        instance = new ZombieControl();
+        expResult = -1;
+        result = instance.calcDamage(attackPt, health);
+        assertEquals(expResult, result, 0.0);
+        
+        /**************
+        * Test case #5
+        ***************/
+        System.out.println("\tTest case #5");
+        attackPt = 10;
+        health = 0;
+        instance = new ZombieControl();
+        expResult = 0;
+        result = instance.calcDamage(attackPt, health);
+        assertEquals(expResult, result, 0.0);
+        
+        /**************
+        * Test case #6
+        ***************/
+        System.out.println("\tTest case #6");
+        attackPt = 0;
+        health = 90;
+        instance = new ZombieControl();
+        expResult = 0;
+        result = instance.calcDamage(attackPt, health);
+        assertEquals(expResult, result, 0.0);
+
+        /**************
+        * Test case #7
+        ***************/
+        System.out.println("\tTest case #7");
+        attackPt = 10;
+        health = 100;
+        instance = new ZombieControl();
+        expResult = 10;
+        otherResult = 0;
+        result = instance.calcDamage(attackPt, health);
+        assert(result == expResult || result == otherResult);
     }
 
 }
