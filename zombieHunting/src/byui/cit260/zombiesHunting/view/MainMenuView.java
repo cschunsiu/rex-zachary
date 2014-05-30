@@ -20,8 +20,8 @@ public class MainMenuView {
         + "\n-------------------------------------------"
         + "\nG - Start Game"
         + "\nH - Help"
-        + "\nS - Save game"
-        + "\nE - Exit"
+        + "\nS - Save Game"
+        + "\nE - Exit Game"
         + "\n-------------------------------------------";
     
     public void displayMenu() {

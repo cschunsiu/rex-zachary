@@ -23,11 +23,31 @@ import byui.cit260.zombiesHunting.view.StartProgramView;
  */
 public class ZombieHunting {
 
+    private static Game currentGame = null;
+    private static Player player = null;
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        ZombieHunting.currentGame = currentGame;
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        ZombieHunting.player = player;
+    }
+   
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
  
+
         //Testing for the view layer
         StartProgramView startProgramView = new StartProgramView();
         startProgramView.startProgram();

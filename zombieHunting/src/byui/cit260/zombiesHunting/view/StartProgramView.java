@@ -51,7 +51,7 @@ public class StartProgramView {
                         + "\n*                Good luck                    *"
                         + "\n*                                             *");
         
-        System.out.println("************************************************");
+        System.out.println("***********************************************");
     }
     
     public String getPlayersName(){

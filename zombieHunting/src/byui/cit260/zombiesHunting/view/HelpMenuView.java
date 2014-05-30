@@ -6,7 +6,6 @@
 
 package byui.cit260.zombiesHunting.view;
 
-import byui.cit260.zombiesHunting.control.ProgramControl;
 import java.util.Scanner;
 
 /**
@@ -27,7 +26,7 @@ public class HelpMenuView {
     
     public void displayMenu() {
             
-        char selection = ' ';
+        char selection;
         do {
             System.out.println(MENU); //display help menu
             
@@ -65,7 +64,7 @@ public class HelpMenuView {
                     break;
                 default:
                     System.out.println("Invalid input - please select one of the"
-                                     + "options from the menu in uppercase form");
+                                     + " options from the menu in uppercase form");
                     System.out.println(MENU); //display main menu
                     break;
             }//end switch statement

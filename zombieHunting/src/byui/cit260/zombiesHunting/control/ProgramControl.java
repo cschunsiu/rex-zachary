@@ -7,6 +7,7 @@
 package byui.cit260.zombiesHunting.control;
 
 import byui.cit260.zombiesHunting.model.Player;
+import zombiehunting.ZombieHunting;
 
 /**
  *
@@ -18,6 +19,9 @@ public class ProgramControl {
         System.out.println("\n**** CreatePlayer function called ****");
         Player player = new Player();
         player.setName(playersName);
+        
+        ZombieHunting.setPlayer(player);
+        
         return player;
     }
 
