@@ -12,15 +12,19 @@ import java.util.Scanner;
  *
  * @author Computer
  */
-public class PlayerMenuView {
+public class LocationMenuView {
     private static final String MENU = "\n"
         + "\n-------------------------------------------"
-        + "\n Player Menu                                |"
+        + "\n Location Menu                                |"
         + "\n-------------------------------------------"
-        + "\nM - Move to new location"
-        + "\nS - Search"
-        + "\nI - Access inventory"
-        + "\nE - Exit"    
+        + "\nN - Next Location"
+        + "\nX - Stay Here"
+        + "\nC - Construction Site"
+        + "\nA - Airport"
+        + "\nU - SuperMarket"
+        + "\nS - School"
+        + "\nM - Mall"
+        + "\nL - Laboratory"
         + "\n-------------------------------------------";
     
     public void displayMenu() {
@@ -34,7 +38,7 @@ public class PlayerMenuView {
             
             this.doAction(selection);
             
-        }while (selection != 'E');
+        }while (selection != 'X');
            
     }
     
@@ -55,16 +59,20 @@ public class PlayerMenuView {
             
             selection = input.charAt(0);
             switch(selection){
-                case 'M': //These are the choices on the menu
-                case 'I':
+                case 'N': //These are the choices on the menu
+                case 'X':
+                case 'C':
+                case 'A':
+                case 'U':
                 case 'S':
-                case 'E':        
+                case 'M':
+                case 'L':
                     validInput = true;
                     break;
                 default:
                     System.out.println("Invalid input - please select one of the"
                                      + "options from the menu in uppercase form");
-                    System.out.println(MENU); //display main menu
+                    System.out.println(MENU); //display location menu
                     break;
             }//end switch statement
         } //end while loop
@@ -75,15 +83,28 @@ public class PlayerMenuView {
     public void doAction(char choice){
         
         switch (choice) {
-            case 'M': //move to a new location
-                LocationMenuView locationMenu = new LocationMenuView();
-                locationMenu.displayMenu();
+            case 'N': //Next Location
+                System.out.println("\n*** You have chosen to move to new location***");
                 break;
-            case 'S': //Search
+            case 'C': //Construction Site
+                System.out.println("\n*** You have moved to the Construction Site ***");
                 break;
-            case 'I': //Access inventory
+            case 'A': //Airport
+                System.out.println("\n*** You have moved to the Airport ***");
                 break;
-            case 'E': //Exit the program
+            case 'U': //SuperMarket
+                System.out.println("\n*** You have moved to the SuperMarket ***");
+                break;
+            case 'S': //School
+                System.out.println("\n*** You have moved to the School ***");
+                break;
+            case 'M': //Mall
+                System.out.println("\n*** You have moved to the Mall ***");
+                break;
+            case 'L': //Laboratory
+                System.out.println("\n*** You have moved to the Laboratory ***");
+                break;
+            case 'X': //Stay Here
                 return;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");
