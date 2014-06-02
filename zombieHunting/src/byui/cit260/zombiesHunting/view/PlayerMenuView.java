@@ -6,22 +6,21 @@
 
 package byui.cit260.zombiesHunting.view;
 
-import byui.cit260.zombiesHunting.control.ProgramControl;
 import java.util.Scanner;
 
 /**
  *
  * @author Computer
  */
-public class MainMenuView {
+public class PlayerMenuView {
     private static final String MENU = "\n"
         + "\n-------------------------------------------"
-        + "\n Main Menu                                |"
+        + "\n Player Menu                                |"
         + "\n-------------------------------------------"
-        + "\nG - Start Game"
-        + "\nH - Help"
-        + "\nS - Save Game"
-        + "\nE - Exit Game"
+        + "\nM - Move to new location"
+        + "\nS - Search"
+        + "\nI - Access inventory"
+        + "\nE - Exit"    
         + "\n-------------------------------------------";
     
     public void displayMenu() {
@@ -56,10 +55,10 @@ public class MainMenuView {
             
             selection = input.charAt(0);
             switch(selection){
-                case 'E': //These are the choices on the menu
-                case 'H':
+                case 'M': //These are the choices on the menu
+                case 'I':
                 case 'S':
-                case 'G':        
+                case 'E':        
                     validInput = true;
                     break;
                 default:
@@ -76,16 +75,11 @@ public class MainMenuView {
     public void doAction(char choice){
         
         switch (choice) {
-            case 'G': //display the game menu
-                PlayerMenuView playerMenu = new PlayerMenuView();
-                playerMenu.displayMenu();
+            case 'M': //move to a new location
                 break;
-            case 'H': //display the help menu
-                HelpMenuView helpMenu = new HelpMenuView();
-                helpMenu.displayMenu();
+            case 'S': //Search
                 break;
-            case 'S': //save the current game to disk
-                ProgramControl.saveGame();
+            case 'I': //Access inventory
                 break;
             case 'E': //Exit the program
                 return;
