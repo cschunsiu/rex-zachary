@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class LocationMenuView {
     private static final String MENU = "\n"
         + "\n-------------------------------------------"
-        + "\n Location Menu                                |"
+        + "\n Location Menu                             |"
         + "\n-------------------------------------------"
         + "\nN - Next Location"
         + "\nX - Stay Here"
@@ -58,23 +58,22 @@ public class LocationMenuView {
             input = input.trim();
             
             selection = input.charAt(0);
-            switch(selection){
-                case 'N': //These are the choices on the menu
-                case 'X':
-                case 'C':
-                case 'A':
-                case 'U':
-                case 'S':
-                case 'M':
-                case 'L':
-                    validInput = true;
-                    break;
-                default:
-                    System.out.println("Invalid input - please select one of the"
-                                     + "options from the menu in uppercase form");
-                    System.out.println(MENU); //display location menu
-                    break;
-            }//end switch statement
+            
+            if (selection == 'N' || 
+                selection == 'X' || 
+                selection == 'C' || 
+                selection == 'A' || 
+                selection == 'U' || 
+                selection == 'S' || 
+                selection == 'M' || 
+                selection == 'L') {
+                validInput = true;
+            }
+            else {
+                System.out.println("Invalid input - please select one of the"
+                                + "options from the menu in uppercase form");
+                System.out.println(MENU); //display location menu
+            }
         } //end while loop
         
         return input;

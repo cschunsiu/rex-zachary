@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class PlayerMenuView {
     private static final String MENU = "\n"
         + "\n-------------------------------------------"
-        + "\n Player Menu                                |"
+        + "\n Player Menu                               |"
         + "\n-------------------------------------------"
         + "\nM - Move to new location"
         + "\nS - Search"
