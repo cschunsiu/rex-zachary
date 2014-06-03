@@ -54,21 +54,15 @@ public class PlayerMenuView {
             input = input.trim();
             
             selection = input.charAt(0);
-            switch(selection){
-                case 'M': //These are the choices on the menu
-                case 'I':
-                case 'S':
-                case 'E':        
-                    validInput = true;
-                    break;
-                default:
+            if (selection == 'M' || selection == 'S' || selection == 'I' || selection == 'E'){
+                validInput = true;               
+            }  
+                else{ 
                     System.out.println("Invalid input - please select one of the"
                                      + "options from the menu in uppercase form");
                     System.out.println(MENU); //display main menu
-                    break;
             }//end switch statement
-        } //end while loop
-        
+        } //end while loop     
         return input;
     }//end getInput function
     
