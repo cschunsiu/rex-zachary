@@ -17,6 +17,51 @@ public class Game implements Serializable{
     
     private String bestTime;
     private double bestZombieKill;
+    private WeaponItem[] inventoryWeapons;
+    private Zombie[] zombies;
+    private HealthItem[] healthItems;
+    private Map gameMap;
+    private Player player;
+
+    public Map getGameMap() {
+        return gameMap;
+    }
+
+    public void setGameMap(Map gameMap) {
+        this.gameMap = gameMap;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public WeaponItem[] getInventoryWeapons() {
+        return inventoryWeapons;
+    }
+
+    public void setInventoryWeapons(WeaponItem[] inventoryWeapons) {
+        this.inventoryWeapons = inventoryWeapons;
+    }
+
+    public Zombie[] getZombies() {
+        return zombies;
+    }
+
+    public void setZombies(Zombie[] zombies) {
+        this.zombies = zombies;
+    }
+
+    public HealthItem[] getHealthItems() {
+        return healthItems;
+    }
+
+    public void setHealthItems(HealthItem[] healthItems) {
+        this.healthItems = healthItems;
+    }
 
     public Game() {
     }
@@ -66,6 +111,5 @@ public class Game implements Serializable{
             return false;
         }
         return true;
-    }  
+    }
 }
-   
