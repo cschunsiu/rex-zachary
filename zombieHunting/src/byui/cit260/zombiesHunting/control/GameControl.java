@@ -10,6 +10,9 @@ import byui.cit260.zombiesHunting.model.Constants;
 import static byui.cit260.zombiesHunting.model.Constants.RIFLE;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.HealthItem;
+import byui.cit260.zombiesHunting.model.InventoryItems;
+import byui.cit260.zombiesHunting.model.Location;
+import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.WeaponItem;
 import zombiehunting.ZombieHunting;
 
@@ -49,16 +52,13 @@ public class GameControl {
         
        System.out.println("*** calling stub function createInventoryList ***");
        
-       WeaponItem[] weapons =
-               new WeaponItem[Constants.NUMBER_OF_WEAPON_ITEMS];
+       InventoryItems inventoryList[] = new InventoryItems[Constants.NUM_INVENTORY_ITEMS]; 
        
-       weapons[RIFLE].setWeaponType ("Rifle");
-       HealthItem[] healthItems = 
-               new HealthItem[Constants.NUMBER_OF_HEALTH_ITEMS];
-       
+       for (int i = 0; i < Constants.NUM_INVENTORY_ITEMS; i++){
+           
+       }
     }
 
-    
     private static void createActorList() {
        System.out.println("*** Calling createActorList stub function ***");
     }
@@ -68,6 +68,9 @@ public class GameControl {
     }
 
     private static void createMap() {
+
+       Map map = new Map(20,20);
+       
        System.out.println("*** Calling createMap stub function ***");
     }
 }

@@ -14,7 +14,6 @@ import java.io.Serializable;
  */
 public class Map implements Serializable{
     
-    private String destination;
     private String compass;
     private double totalZombies;
     private double totalColumns;
@@ -22,17 +21,25 @@ public class Map implements Serializable{
 
     public Map() {
     }
-
-    @Override
-    public String toString() {
-        return "Map{" + "destination=" + destination + ", compass=" + compass + ", totalZombies=" + totalZombies + ", totalColumns=" + totalColumns + ", totalRows=" + totalRows + '}';
-    }
-    public String getDestination() {
-        return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
+    
+    public Map(int numRows, int numColumns){
+        if (numRows < 1 || numColumns < 1){
+            System.out.println("The number of rows and columns must be > zero");
+            return;
+        }
+        this.totalRows = numRows;
+        this.totalColumns = numColumns;
+        
+        Location locations[][] = new Location[numRows][numColumns];
+        
+        for (int row = 0; row < Constants.MAP_ROW_COUNT; row++){
+           for (int column = 0; column < Constants.MAP_COLUMN_COUNT; column++){
+               Location location = new Location();
+               location.setColumn(column);
+               location.setRow(row);
+               locations[row][column] = location;
+           }
+        }
     }
 
     public String getCompass() {
