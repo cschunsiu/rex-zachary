@@ -14,6 +14,9 @@ public class InventoryItems {
     private String description;
     private int quantity;
 
+   public InventoryItems(){
+   } 
+    
     public String getDescription() {
         return description;
     }
