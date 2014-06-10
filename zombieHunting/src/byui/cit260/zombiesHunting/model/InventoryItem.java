@@ -10,11 +10,11 @@ package byui.cit260.zombiesHunting.model;
  *
  * @author Computer
  */
-public class InventoryItems {
+public class InventoryItem {
     private String description;
     private int quantity;
 
-   public InventoryItems(){
+   public InventoryItem(){
    } 
     
     public String getDescription() {

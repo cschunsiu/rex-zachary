@@ -11,7 +11,7 @@ import byui.cit260.zombiesHunting.model.HealthItem;
 import byui.cit260.zombiesHunting.model.Location;
 import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.Player;
-import byui.cit260.zombiesHunting.model.RoomLocation;
+import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.RoomType;
 import byui.cit260.zombiesHunting.model.WeaponItem;
 import byui.cit260.zombiesHunting.model.Zombie;

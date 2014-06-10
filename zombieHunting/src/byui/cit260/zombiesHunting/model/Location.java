@@ -17,6 +17,7 @@ public class Location implements Serializable{
     //private int coordinates;
     private int row;
     private int column;
+    private Scene scene;
     
     public int getRow() {
         return row;
@@ -44,5 +45,13 @@ public class Location implements Serializable{
     public void setRequiredItems(String requiredItems) {
         this.requiredItems = requiredItems;
     }
-     
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
+
 }

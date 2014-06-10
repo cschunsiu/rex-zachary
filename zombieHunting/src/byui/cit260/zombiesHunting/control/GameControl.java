@@ -9,9 +9,10 @@ package byui.cit260.zombiesHunting.control;
 import byui.cit260.zombiesHunting.model.Constants;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.HealthItem;
-import byui.cit260.zombiesHunting.model.InventoryItems;
+import byui.cit260.zombiesHunting.model.InventoryItem;
 import byui.cit260.zombiesHunting.model.Location;
 import byui.cit260.zombiesHunting.model.Map;
+import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.WeaponItem;
 import zombiehunting.ZombieHunting;
 
@@ -47,34 +48,32 @@ public class GameControl {
         MapControl.moveActorsToStartingLocation(0,0);
     }
 
-    private static InventoryItems[] createInventoryList() {
-        
-       //System.out.println("*** calling stub function createInventoryList ***");
+    private static InventoryItem[] createInventoryList() {
         
        //There are 5 different inventory items as of now.
-       InventoryItems inventoryList[] = new InventoryItems[Constants.NUM_INVENTORY_ITEMS]; 
+       InventoryItem inventoryList[] = new InventoryItem[Constants.NUM_INVENTORY_ITEMS]; 
        
-       InventoryItems rifle = new InventoryItems();
+       InventoryItem rifle = new InventoryItem();
        rifle.setDescription("Rifle");
        rifle.setQuantity(Constants.NUMRIFLE);
        inventoryList[Constants.RIFLE]= rifle;
        
-       InventoryItems assaultRifle = new InventoryItems();
+       InventoryItem assaultRifle = new InventoryItem();
        assaultRifle.setDescription("Assault Rifle");
        assaultRifle.setQuantity(Constants.NUMASSAULT_RIFLE);
        inventoryList[Constants.ASSAULT_RIFLE]= assaultRifle;
        
-       InventoryItems rocketLauncher = new InventoryItems();
+       InventoryItem rocketLauncher = new InventoryItem();
        rocketLauncher.setDescription("Rocket Launcher");
        rocketLauncher.setQuantity(Constants.NUMLAUNCHER);
        inventoryList[Constants.ROCKET_LAUNCHER]= rocketLauncher;
        
-       InventoryItems firstAidKit = new InventoryItems();
+       InventoryItem firstAidKit = new InventoryItem();
        firstAidKit.setDescription("First Aid Kit");
        firstAidKit.setQuantity(Constants.NUMFIRST_AID);
        inventoryList[Constants.FIRST_AID_KIT]= firstAidKit;
        
-       InventoryItems bandage = new InventoryItems();
+       InventoryItem bandage = new InventoryItem();
        bandage.setDescription("Bandage");
        bandage.setQuantity(Constants.NUMBANDAGE);
        inventoryList[Constants.BANDAGE]= bandage;
@@ -82,8 +81,8 @@ public class GameControl {
        return inventoryList;
     }
        
-    public static void sortStringExchange(InventoryItems inventoryList[]){
-        InventoryItems temp;
+    public static void sortStringExchange(InventoryItem inventoryList[]){
+        InventoryItem temp;
 
         for (int i = 0; i < inventoryList.length - 1; i++){
             for (int j = i + 1; j < inventoryList.length; j++){  
@@ -104,14 +103,59 @@ public class GameControl {
        System.out.println("*** Calling createZombies stub function ***");
     }
 
-    private static void createMap() {
+    private static Map createMap() {
 
-       Map map = new Map(20,20);
+       Map map = new Map(20,10);
        
-       System.out.println("*** Calling createMap stub function ***");
+       InventoryItem[] itemList = createInventoryList();
+       Scene[] scenes = createScenes(itemList); //create scenes in game
+       
+       //assign Scenes to Location
+       GameControl.assignScenesToLocations(map, scenes);
+       //System.out.println("*** Calling createMap stub function ***");
+       return map;
     }
 
-    private static InventoryItems InventoryItems() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static void assignScenesToLocations(Map map, Scene[] scenes)
+    {
+        Location[][] locations = map.getLocations();
+        
+        locations[0][0].setScene(scenes[Constants.CONSTRUCTION_SITE1]);
+        locations[0][1].setScene(scenes[Constants.CONSTRUCTION_SITE2]);
+                
+        
+        //locations[0][0].setRoomLocation(scenes[Constants.CLIFF_SCENE]);
+    }
+    /*
+    private static Map map, Scene[] scenes) {
+       Location[][] locations = map.getLocations();
+       
+       for (Scene scene : scenes) {           
+       }
+       
+       location[0][0].setScene(scenes[Constants.CLIFF_SCENE]);
+       location[0][1] = scenes[]
+    }
+    */
+
+    private static Scene[] createScenes(InventoryItem[] itemList) {
+        
+    Scene[] scenes = new Scene[2];
+    
+    Scene ConstructionSite1 = new Scene(true, "Construction Site #1");
+    InventoryItem[] roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.CONSTRUCTION_SITE1] = ConstructionSite1;
+ 
+    Scene ConstructionSite2 = new Scene(true, "Construction Site #2");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.CONSTRUCTION_SITE2] = ConstructionSite2;
+    
+    return scenes;
     }
 }

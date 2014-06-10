@@ -111,4 +111,9 @@ public class LocationMenuView {
         }
     }
 
+    public void startNewGame(){
+        System.out.println("\n*** called startNewGame function ***");
+        
+        //GameControl.createNewGame(ZombieHunting.getPlayer())
+    }
 }

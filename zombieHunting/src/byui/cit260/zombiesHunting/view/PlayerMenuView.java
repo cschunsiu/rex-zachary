@@ -6,6 +6,8 @@
 
 package byui.cit260.zombiesHunting.view;
 
+import byui.cit260.zombiesHunting.control.GameControl;
+import byui.cit260.zombiesHunting.model.InventoryItem;
 import java.util.Scanner;
 
 /**
@@ -76,6 +78,8 @@ public class PlayerMenuView {
             case 'S': //Search
                 break;
             case 'I': //Access inventory
+                //display sorted list of inventory items
+                this.viewInventory();
                 break;
             case 'E': //Exit the program
                 return;
@@ -83,6 +87,29 @@ public class PlayerMenuView {
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;            
         }
+    }
+
+    private void viewInventory() {
+        //get sorted list of inventory items
+        //InventoryItem[] inventory = GameControl.getSortedInventoryList();
+        //Display Title
+        System.out.println("\nList of Inventory Items");
+        
+        //Display description
+        System.out.println("Description" + "\t" +
+                           "Required" + "\t" +
+                           "In Stock");
+                           
+        //for each inventory Item
+        /*
+        for (InventoryItems InventoryItem : inventory){
+            System.out.println(inventoryItems.getDescription() + "\t   " +
+                               inventoryItems.getQuantityInStock() );
+        }
+        */
+           //Display description
+           //Display number in stock
+        System.out.println("\n***Called veiwInventory stub function"); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

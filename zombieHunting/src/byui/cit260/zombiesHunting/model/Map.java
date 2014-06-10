@@ -14,15 +14,27 @@ import java.io.Serializable;
  */
 public class Map implements Serializable{
     
-    private String compass;
-    private double totalZombies;
+    //private String compass;
+    //private double totalZombies;
     private double totalColumns;
     private double totalRows;
+    private Location[][] locations;
+
+    public Location[][] getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Location[][] locations) {
+        this.locations = locations;
+    }
 
     public Map() {
     }
     
     public Map(int numRows, int numColumns){
+        
+        
+        
         if (numRows < 1 || numColumns < 1){
             System.out.println("The number of rows and columns must be > zero");
             return;
@@ -30,32 +42,21 @@ public class Map implements Serializable{
         this.totalRows = numRows;
         this.totalColumns = numColumns;
         
-        Location locations[][] = new Location[numRows][numColumns];
+        this.locations = new Location[numRows][numColumns];
+        //this.locations = new Location;
         
         for (int row = 0; row < Constants.MAP_ROW_COUNT; row++){
            for (int column = 0; column < Constants.MAP_COLUMN_COUNT; column++){
+               
+               //create and initialize new Location object instance
                Location location = new Location();
                location.setColumn(column);
                location.setRow(row);
+               
+               //assign the Location object to the current position in array
                locations[row][column] = location;
            }
         }
-    }
-
-    public String getCompass() {
-        return compass;
-    }
-
-    public void setCompass(String compass) {
-        this.compass = compass;
-    }
-
-    public double getTotalZombies() {
-        return totalZombies;
-    }
-
-    public void setTotalZombies(double totalZombies) {
-        this.totalZombies = totalZombies;
     }
 
     public double getTotalColumns() {

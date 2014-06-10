@@ -35,6 +35,10 @@ public class Constants {
     public static int MAP_ROW_COUNT = 20;
     public static int MAP_COLUMN_COUNT = 20;
     
+    //room assignments
+    public static int CONSTRUCTION_SITE1 = 0;
+    public static int CONSTRUCTION_SITE2 = 1;
+    
  
     
    
