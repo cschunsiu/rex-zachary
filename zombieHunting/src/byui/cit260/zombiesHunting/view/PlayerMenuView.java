@@ -26,8 +26,8 @@ public class PlayerMenuView {
         + "\nS - Search"
         + "\nI - View inventory"
         + "\nV - View Map"
-        + "\nH - Help"
         + "\nZ - View Zombie"
+        + "\nH - Help"
         + "\nE - Exit"    
         + "\n-------------------------------------------";
     
@@ -68,7 +68,8 @@ public class PlayerMenuView {
                 selection == 'I' || 
                 selection == 'E' ||
                 selection == 'H' ||
-                selection == 'V'){
+                selection == 'V' ||
+                selection == 'Z'){
 
                 validInput = true;               
             }  

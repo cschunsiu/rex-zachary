@@ -145,7 +145,7 @@ public class GameControl {
        return ZombieList;
     }
     
-    private static void SortedZombie(zombie ZombieList[]){
+    private static void SortedZombie(Zombie ZombieList[]){
         Zombie temp;
 
         for (int i = 0; i < ZombieList.length - 1; i++){
