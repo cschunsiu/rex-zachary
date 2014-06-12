@@ -9,6 +9,7 @@ package byui.cit260.zombiesHunting.view;
 import byui.cit260.zombiesHunting.control.GameControl;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.InventoryItem;
+import byui.cit260.zombiesHunting.model.Zombie;
 import java.util.Scanner;
 import zombiehunting.ZombieHunting;
 
@@ -26,6 +27,7 @@ public class PlayerMenuView {
         + "\nI - View inventory"
         + "\nV - View Map"
         + "\nH - Help"
+        + "\nZ - View Zombie"
         + "\nE - Exit"    
         + "\n-------------------------------------------";
     
@@ -60,12 +62,14 @@ public class PlayerMenuView {
             input = input.trim();
             
             selection = input.charAt(0);
+
             if (selection == 'M' || 
                 selection == 'S' || 
                 selection == 'I' || 
                 selection == 'E' ||
                 selection == 'H' ||
                 selection == 'V'){
+
                 validInput = true;               
             }  
                 else{ 
@@ -98,6 +102,9 @@ public class PlayerMenuView {
                 HelpMenuView helpMenu = new HelpMenuView();
                 helpMenu.displayMenu();
                 break;
+            case 'Z': //View Zombie
+                //display sorted list of inventory items
+                this.viewZombie();
             case 'E': //Exit the program
                 return;
             default:
@@ -125,6 +132,25 @@ public class PlayerMenuView {
         }
     }
     
+     public void viewZombie() {
+        //get sorted list of inventory items
+        //InventoryItem[] inventory = GameControl.getInventoryList();
+        Game game = ZombieHunting.getCurrentGame();
+        Zombie[] zombie = game.getZombies();
+        //Display Title
+        System.out.println("\nList of Zombie");
+        
+        //Display description
+        System.out.println("Description" + "\t" +
+                           "Number" + "\t");
+                           
+        //for each inventory Item
+        for (Zombie Zombie : zombie){
+            System.out.println(Zombie.getDescription() + "\t   " +
+                               Zombie.getNumber() );
+        }
+    }
+     
     private void displayMap() {
         System.out.println("****Stub for display map in PlayerMenuView Class****");
     }

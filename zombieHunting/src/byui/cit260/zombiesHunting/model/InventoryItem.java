@@ -6,11 +6,13 @@
 
 package byui.cit260.zombiesHunting.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Computer
  */
-public class InventoryItem {
+public class InventoryItem implements Serializable{
     private String description;
     private int quantity;
 

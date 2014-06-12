@@ -13,6 +13,7 @@ package byui.cit260.zombiesHunting.model;
 public class Constants {
     
     public final static int NUM_INVENTORY_ITEMS = 5;
+    public final static int NUM_ZOMBIE = 3;
     
     //number of different items in game
     public final static int NUMBER_OF_WEAPON_ITEMS = 3;
@@ -39,10 +40,17 @@ public class Constants {
     public static int CONSTRUCTION_SITE1 = 0;
     public static int CONSTRUCTION_SITE2 = 1;
     
- 
+    //Zombies position in the game
+     public final static int ZOMBIE = 0;
+     public final static int BOOMER = 1;
+     public final static int TINY = 2;
+     
+    //Number of Zombies in the game
+    public final static int NUMZOMBIE = 20;
+    public final static int NUMBOOMER = 10;
+    public final static int NUMTINY = 2;
+
     
    
-    
-    
-    
+  
 }

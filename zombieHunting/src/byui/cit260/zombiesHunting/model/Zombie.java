@@ -15,6 +15,24 @@ import java.util.Objects;
  */
 public class Zombie implements Serializable {
     private String zombieType;
+    private String description;
+    private int number;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
     private int attackPt;
     private int speed;
 
