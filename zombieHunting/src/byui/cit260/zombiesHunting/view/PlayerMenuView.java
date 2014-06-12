@@ -7,8 +7,10 @@
 package byui.cit260.zombiesHunting.view;
 
 import byui.cit260.zombiesHunting.control.GameControl;
+import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.InventoryItem;
 import java.util.Scanner;
+import zombiehunting.ZombieHunting;
 
 /**
  *
@@ -21,7 +23,8 @@ public class PlayerMenuView {
         + "\n-------------------------------------------"
         + "\nM - Move to new location"
         + "\nS - Search"
-        + "\nI - Access inventory"
+        + "\nI - View inventory"
+        + "\nV - View Map"
         + "\nE - Exit"    
         + "\n-------------------------------------------";
     
@@ -77,9 +80,12 @@ public class PlayerMenuView {
                 break;
             case 'S': //Search
                 break;
-            case 'I': //Access inventory
+            case 'I': //View inventory
                 //display sorted list of inventory items
                 this.viewInventory();
+                break;
+            case 'V': //view the map
+                this.displayMap();
                 break;
             case 'E': //Exit the program
                 return;
@@ -89,9 +95,11 @@ public class PlayerMenuView {
         }
     }
 
-    private void viewInventory() {
+    public void viewInventory() {
         //get sorted list of inventory items
-        //InventoryItem[] inventory = GameControl.getSortedInventoryList();
+        //InventoryItem[] inventory = GameControl.getInventoryList();
+        Game game = ZombieHunting.getCurrentGame();
+        InventoryItem[] inventory = game.getInventory();
         //Display Title
         System.out.println("\nList of Inventory Items");
         
@@ -101,15 +109,14 @@ public class PlayerMenuView {
                            "In Stock");
                            
         //for each inventory Item
-        /*
-        for (InventoryItems InventoryItem : inventory){
-            System.out.println(inventoryItems.getDescription() + "\t   " +
-                               inventoryItems.getQuantityInStock() );
+        for (InventoryItem InventoryItem : inventory){
+            System.out.println(InventoryItem.getDescription() + "\t   " +
+                               InventoryItem.getQuantity() );
         }
-        */
-           //Display description
-           //Display number in stock
-        System.out.println("\n***Called veiwInventory stub function"); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    private void displayMap() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

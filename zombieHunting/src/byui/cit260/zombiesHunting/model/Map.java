@@ -45,8 +45,8 @@ public class Map implements Serializable{
         this.locations = new Location[numRows][numColumns];
         //this.locations = new Location;
         
-        for (int row = 0; row < Constants.MAP_ROW_COUNT; row++){
-           for (int column = 0; column < Constants.MAP_COLUMN_COUNT; column++){
+        for (int row = 0; row < numRows; row++){
+           for (int column = 0; column < numColumns; column++){
                
                //create and initialize new Location object instance
                Location location = new Location();

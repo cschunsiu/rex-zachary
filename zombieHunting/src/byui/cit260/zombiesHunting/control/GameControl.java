@@ -23,6 +23,15 @@ import zombiehunting.ZombieHunting;
 public class GameControl {
     
     private static Game game;
+    private static InventoryItem  inventoryList[];
+
+    public static InventoryItem[] getInventoryList() {
+        return inventoryList;
+    }
+
+    public static void setInventoryList(InventoryItem[] inventoryList) {
+        GameControl.inventoryList = inventoryList;
+    }
     
     public static Game getGame() {
         return game;
@@ -39,19 +48,20 @@ public class GameControl {
         //save player in game
         GameControl.game.setPlayer(ZombieHunting.getPlayer());
         
-        GameControl.createInventoryList();
+        InventoryItem[] inventoryList = GameControl.createInventoryList();
         GameControl.createActorList();
         GameControl.createZombies();
         GameControl.createMap();
         
+        game.setInventory(inventoryList);
         //move player to starting position
         MapControl.moveActorsToStartingLocation(0,0);
     }
 
-    private static InventoryItem[] createInventoryList() {
+    public static InventoryItem[] createInventoryList() {
         
        //There are 5 different inventory items as of now.
-       InventoryItem inventoryList[] = new InventoryItem[Constants.NUM_INVENTORY_ITEMS]; 
+       inventoryList = new InventoryItem[Constants.NUM_INVENTORY_ITEMS]; 
        
        InventoryItem rifle = new InventoryItem();
        rifle.setDescription("Rifle");
@@ -78,10 +88,12 @@ public class GameControl {
        bandage.setQuantity(Constants.NUMBANDAGE);
        inventoryList[Constants.BANDAGE]= bandage;
        
+       SortedInventory(inventoryList);
+       
        return inventoryList;
     }
        
-    public static void sortStringExchange(InventoryItem inventoryList[]){
+    private static void SortedInventory(InventoryItem inventoryList[]){
         InventoryItem temp;
 
         for (int i = 0; i < inventoryList.length - 1; i++){
@@ -94,6 +106,10 @@ public class GameControl {
             } 
         } 
     } 
+
+    public static void setGame(Game game) {
+        GameControl.game = game;
+    }
     
     private static void createActorList() {
        System.out.println("*** Calling createActorList stub function ***");
@@ -126,17 +142,6 @@ public class GameControl {
         
         //locations[0][0].setRoomLocation(scenes[Constants.CLIFF_SCENE]);
     }
-    /*
-    private static Map map, Scene[] scenes) {
-       Location[][] locations = map.getLocations();
-       
-       for (Scene scene : scenes) {           
-       }
-       
-       location[0][0].setScene(scenes[Constants.CLIFF_SCENE]);
-       location[0][1] = scenes[]
-    }
-    */
 
     private static Scene[] createScenes(InventoryItem[] itemList) {
         

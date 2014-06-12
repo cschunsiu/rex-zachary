@@ -6,6 +6,7 @@
 
 package byui.cit260.zombiesHunting.view;
 
+import byui.cit260.zombiesHunting.control.GameControl;
 import byui.cit260.zombiesHunting.control.ProgramControl;
 import java.util.Scanner;
 
@@ -14,6 +15,7 @@ import java.util.Scanner;
  * @author Computer
  */
 public class MainMenuView {
+    
     private static final String MENU = "\n"
         + "\n-------------------------------------------"
         + "\n Main Menu                                |"
@@ -77,6 +79,7 @@ public class MainMenuView {
         
         switch (choice) {
             case 'G': //display the game menu
+                GameControl.startNewGame();
                 PlayerMenuView playerMenu = new PlayerMenuView();
                 playerMenu.displayMenu();
                 break;

@@ -22,6 +22,7 @@ public class Game implements Serializable{
     private HealthItem[] healthItems;
     private Map gameMap;
     private Player player;
+    private InventoryItem[] inventory;
 
     public Map getGameMap() {
         return gameMap;
@@ -82,6 +83,15 @@ public class Game implements Serializable{
         this.bestZombieKill = bestZombieKill;
     }
 
+    public InventoryItem[] getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(InventoryItem[] inventory) {
+        this.inventory = inventory;
+    }
+
+    
     @Override
     public String toString() {
         return "Game{" + "bestTime=" + bestTime + ", bestZombieKill=" + bestZombieKill + '}';
