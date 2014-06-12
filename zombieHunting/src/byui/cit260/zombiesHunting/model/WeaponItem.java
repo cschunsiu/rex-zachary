@@ -15,10 +15,14 @@ import java.util.Objects;
  */
 public class WeaponItem implements Serializable {
     
-    private String weaponType;
-    private double damage;
-    private double reloadSpeed;
-    private String description;
+    private String weaponType;  //weapon
+    private String description; //weapon name/description
+    
+    private int damage;         //damage per bullet   
+    private int reloadSpeed;    //rounds needed to reload
+    private int ammo;           //amount of ammo
+    private int clipSize;       //amount of ammo before reload
+    private int shootingSpeed;  //number of bullets expended per round
 
     public WeaponItem() {
     }
@@ -31,19 +35,19 @@ public class WeaponItem implements Serializable {
         this.weaponType = weaponType;
     }
 
-    public double getDamage() {
+    public int getDamage() {
         return damage;
     }
 
-    public void setDamage(double damage) {
+    public void setDamage(int damage) {
         this.damage = damage;
     }
 
-    public double getReloadSpeed() {
+    public int getReloadSpeed() {
         return reloadSpeed;
     }
 
-    public void setReloadSpeed(double reloadSpeed) {
+    public void setReloadSpeed(int reloadSpeed) {
         this.reloadSpeed = reloadSpeed;
     }
 
@@ -55,42 +59,28 @@ public class WeaponItem implements Serializable {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "WeaponItem{" + "weaponType=" + weaponType + ", damage=" + damage + ", reloadSpeed=" + reloadSpeed + ", description=" + description + '}';
+    public int getAmmo() {
+        return ammo;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.weaponType);
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.damage) ^ (Double.doubleToLongBits(this.damage) >>> 32));
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.reloadSpeed) ^ (Double.doubleToLongBits(this.reloadSpeed) >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.description);
-        return hash;
+    public void setAmmo(int ammo) {
+        this.ammo = ammo;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final WeaponItem other = (WeaponItem) obj;
-        if (!Objects.equals(this.weaponType, other.weaponType)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.damage) != Double.doubleToLongBits(other.damage)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.reloadSpeed) != Double.doubleToLongBits(other.reloadSpeed)) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        return true;
-    }   
+    public int getClipSize() {
+        return clipSize;
+    }
+
+    public void setClipSize(int clipSize) {
+        this.clipSize = clipSize;
+    }
+
+    public int getShootingSpeed() {
+        return shootingSpeed;
+    }
+
+    public void setShootingSpeed(int shootingSpeed) {
+        this.shootingSpeed = shootingSpeed;
+    }
+
 }

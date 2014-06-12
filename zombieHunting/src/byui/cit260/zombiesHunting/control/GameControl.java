@@ -49,6 +49,7 @@ public class GameControl {
         GameControl.game.setPlayer(ZombieHunting.getPlayer());
         
         InventoryItem[] inventoryList = GameControl.createInventoryList();
+        
         GameControl.createActorList();
         GameControl.createZombies();
         GameControl.createMap();
@@ -64,7 +65,7 @@ public class GameControl {
        inventoryList = new InventoryItem[Constants.NUM_INVENTORY_ITEMS]; 
        
        InventoryItem rifle = new InventoryItem();
-       rifle.setDescription("Rifle");
+       rifle.setDescription("Rifle     ");
        rifle.setQuantity(Constants.NUMRIFLE);
        inventoryList[Constants.RIFLE]= rifle;
        
@@ -84,7 +85,7 @@ public class GameControl {
        inventoryList[Constants.FIRST_AID_KIT]= firstAidKit;
        
        InventoryItem bandage = new InventoryItem();
-       bandage.setDescription("Bandage");
+       bandage.setDescription("Bandage     ");
        bandage.setQuantity(Constants.NUMBANDAGE);
        inventoryList[Constants.BANDAGE]= bandage;
        

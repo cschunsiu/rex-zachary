@@ -80,7 +80,7 @@ public class HelpMenuView {
                 System.out.println("\n*** HelpMenu option G chosen ***");
                 break;
             case 'M': //instructions on how to move
-                System.out.println("\n*** HelpMenu option M chosen ***");
+                this.moveHelp();
                 break;
             case 'I': //Inventory Instructions
                 System.out.println("\n*** HelpMenu option I chosen ***");
@@ -93,6 +93,12 @@ public class HelpMenuView {
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;            
         }
+    }
+
+    private void moveHelp() {
+        System.out.println("To move select the direction you want to move. " +
+                           "You can either select the arrow keys or the " +
+                           "ASWD keys.");
     }
     
 }

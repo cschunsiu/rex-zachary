@@ -24,6 +24,9 @@ public class Game implements Serializable{
     private Player player;
     private InventoryItem[] inventory;
 
+    public Game() {
+    }
+    
     public Map getGameMap() {
         return gameMap;
     }
@@ -63,46 +66,13 @@ public class Game implements Serializable{
     public void setHealthItems(HealthItem[] healthItems) {
         this.healthItems = healthItems;
     }
-
-    public Game() {
-    }
-
-    public String getBestTime() {
-        return bestTime;
-    }
-
-    public void setBestTime(String bestTime) {
-        this.bestTime = bestTime;
-    }
-
-    public double getBestZombieKill() {
-        return bestZombieKill;
-    }
-
-    public void setBestZombieKill(double bestZombieKill) {
-        this.bestZombieKill = bestZombieKill;
-    }
-
+    
     public InventoryItem[] getInventory() {
         return inventory;
     }
 
     public void setInventory(InventoryItem[] inventory) {
         this.inventory = inventory;
-    }
-
-    
-    @Override
-    public String toString() {
-        return "Game{" + "bestTime=" + bestTime + ", bestZombieKill=" + bestZombieKill + '}';
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.bestTime);
-        hash = 17 * hash + (int) (Double.doubleToLongBits(this.bestZombieKill) ^ (Double.doubleToLongBits(this.bestZombieKill) >>> 32));
-        return hash;
     }
 
     @Override

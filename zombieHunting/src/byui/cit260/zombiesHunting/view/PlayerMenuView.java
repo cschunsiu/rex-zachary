@@ -25,6 +25,7 @@ public class PlayerMenuView {
         + "\nS - Search"
         + "\nI - View inventory"
         + "\nV - View Map"
+        + "\nH - Help"
         + "\nE - Exit"    
         + "\n-------------------------------------------";
     
@@ -59,7 +60,12 @@ public class PlayerMenuView {
             input = input.trim();
             
             selection = input.charAt(0);
-            if (selection == 'M' || selection == 'S' || selection == 'I' || selection == 'E'){
+            if (selection == 'M' || 
+                selection == 'S' || 
+                selection == 'I' || 
+                selection == 'E' ||
+                selection == 'H' ||
+                selection == 'V'){
                 validInput = true;               
             }  
                 else{ 
@@ -79,6 +85,7 @@ public class PlayerMenuView {
                 locationMenu.displayMenu();
                 break;
             case 'S': //Search
+                System.out.println("\n*** Called Search ***");
                 break;
             case 'I': //View inventory
                 //display sorted list of inventory items
@@ -86,6 +93,10 @@ public class PlayerMenuView {
                 break;
             case 'V': //view the map
                 this.displayMap();
+                break;
+            case 'H':
+                HelpMenuView helpMenu = new HelpMenuView();
+                helpMenu.displayMenu();
                 break;
             case 'E': //Exit the program
                 return;
@@ -101,11 +112,10 @@ public class PlayerMenuView {
         Game game = ZombieHunting.getCurrentGame();
         InventoryItem[] inventory = game.getInventory();
         //Display Title
-        System.out.println("\nList of Inventory Items");
+        System.out.println("\nList of Inventory Items\n");
         
         //Display description
         System.out.println("Description" + "\t" +
-                           "Required" + "\t" +
                            "In Stock");
                            
         //for each inventory Item
@@ -116,7 +126,7 @@ public class PlayerMenuView {
     }
     
     private void displayMap() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("****Stub for display map in PlayerMenuView Class****");
     }
 
 }
