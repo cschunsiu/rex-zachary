@@ -9,6 +9,7 @@ package byui.cit260.zombiesHunting.view;
 import byui.cit260.zombiesHunting.control.GameControl;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.InventoryItem;
+import byui.cit260.zombiesHunting.model.WeaponItem;
 import byui.cit260.zombiesHunting.model.Zombie;
 import java.util.Scanner;
 import zombiehunting.ZombieHunting;
@@ -25,6 +26,7 @@ public class PlayerMenuView {
         + "\nM - Move to new location"
         + "\nS - Search"
         + "\nI - View inventory"
+        + "\nC - Check Weapons"
         + "\nV - View Map"
         + "\nZ - View Zombie"
         + "\nH - Help"
@@ -69,7 +71,8 @@ public class PlayerMenuView {
                 selection == 'E' ||
                 selection == 'H' ||
                 selection == 'V' ||
-                selection == 'Z'){
+                selection == 'Z' ||
+                selection == 'C'){
 
                 validInput = true;               
             }  
@@ -95,6 +98,9 @@ public class PlayerMenuView {
             case 'I': //View inventory
                 //display sorted list of inventory items
                 this.viewInventory();
+                break;
+            case 'C':
+                this.checkWeapons();
                 break;
             case 'V': //view the map
                 this.displayMap();
@@ -154,6 +160,30 @@ public class PlayerMenuView {
      
     private void displayMap() {
         System.out.println("****Stub for display map in PlayerMenuView Class****");
+    }
+
+    private void checkWeapons() {
+        Game game = ZombieHunting.getCurrentGame();
+        WeaponItem[] weapon = game.getInventoryWeapons();
+ 
+        for (WeaponItem weapons : weapon){
+            if (weapons.getAmmo() == 0)
+            {
+                System.out.println("WARNING: The " + weapons.getDescription() +
+                                   " Is out of ammo.");
+            }
+            else if (weapons.getAmmo() < 10)
+            {
+                System.out.println("WARNING: The " + weapons.getDescription() +
+                                   " Is running low on ammo." +
+                                   " Only " + weapons.getAmmo() + " bullets left.");
+            }
+            else
+            {
+                System.out.println("The " + weapons.getDescription() + 
+                                   " is looking good on ammo and is ready to go");
+            }
+        }
     }
 
 }

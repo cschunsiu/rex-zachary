@@ -24,9 +24,19 @@ import zombiehunting.ZombieHunting;
 public class GameControl {
     
     private static Game game;
-    private static InventoryItem  inventoryList[];
+    private static InventoryItem[] inventoryList;
     private static Zombie[] ZombieList;
-    
+    private static WeaponItem[] weapons;
+
+    public static WeaponItem[] getWeapons() {
+        return weapons;
+    }
+
+    public static void setWeapons(WeaponItem[] weapons) {
+        GameControl.weapons = weapons;
+    }
+
+
     public static Zombie[] getZombieList() {
         return ZombieList;
     }
@@ -63,10 +73,14 @@ public class GameControl {
         
         GameControl.createActorList();
         Zombie[] zombieList = GameControl.createZombieList();
+        WeaponItem[] weapons = GameControl.createWeaponList();
+        
         GameControl.createMap();
         
         game.setInventory(inventoryList);
         game.setZombies(zombieList);
+        game.setInventoryWeapons(weapons);
+        
         //move player to starting position
         MapControl.moveActorsToStartingLocation(0,0);
     }
@@ -191,6 +205,7 @@ public class GameControl {
         //locations[0][0].setRoomLocation(scenes[Constants.CLIFF_SCENE]);
     }
 
+    //List of inventory to be found in each scene
     private static Scene[] createScenes(InventoryItem[] itemList) {
         
     Scene[] scenes = new Scene[2];
@@ -210,5 +225,37 @@ public class GameControl {
     scenes[Constants.CONSTRUCTION_SITE2] = ConstructionSite2;
     
     return scenes;
+    }
+
+    //WeaponItem[] weapons
+    //Creates the players List of weapons
+    private static WeaponItem[] createWeaponList() {
+       weapons = new WeaponItem[Constants.NUMBER_OF_WEAPON_ITEMS]; 
+       
+       //rifle
+       WeaponItem rifle  = new WeaponItem();
+       rifle.setDescription("Rifle");
+       rifle.setAmmo(Constants.STANDARD_RIFLE_AMMO);
+       rifle.setClipSize(Constants.RIFLE_CLIP);
+       rifle.setDamage(Constants.RIFLE_DAMAGE);
+       weapons[Constants.RIFLE]= rifle;
+       
+       //ROCKET_LAUNCHER
+       WeaponItem rocketLauncher  = new WeaponItem();
+       rocketLauncher.setDescription("Rocket Launcher");
+       rocketLauncher.setAmmo(Constants.STANDARD_ROCKET_LAUNCHER_AMMO);
+       rocketLauncher.setClipSize(Constants.ROCKET_LAUNCHER_CLIP);
+       rocketLauncher.setDamage(Constants.ROCKET_LAUNCHER_DAMAGE);
+       weapons[Constants.ROCKET_LAUNCHER]= rocketLauncher;
+       
+       //Assault rifle
+       WeaponItem assaultRifle  = new WeaponItem();
+       assaultRifle.setDescription("Assault Rifle");
+       assaultRifle.setAmmo(Constants.STANDARD_ASSAULT_RIFLE_AMMO);
+       assaultRifle.setClipSize(Constants.ASSAULT_RIFLE_CLIP);
+       assaultRifle.setDamage(Constants.ASSAULT_RIFLE_DAMAGE);
+       weapons[Constants.ASSAULT_RIFLE]= assaultRifle;
+       
+       return weapons;
     }
 }
