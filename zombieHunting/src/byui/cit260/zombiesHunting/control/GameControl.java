@@ -131,16 +131,16 @@ public class GameControl {
        ZombieList[Constants.ZOMBIE]= zombie;
 
        Zombie boomer = new Zombie();
-       zombie.setDescription("BOOmerrrrr");
-       zombie.setNumber(Constants.NUMBOOMER);
+       boomer.setDescription("BOOmerrrrr");
+       boomer.setNumber(Constants.NUMBOOMER);
        ZombieList[Constants.BOOMER]= boomer;
        
        Zombie tiny = new Zombie();
-       zombie.setDescription("Tinyyyyyyyyyyyy");
-       zombie.setNumber(Constants.NUMTINY);
+       tiny.setDescription("Tinyyyyyyyyyyyy");
+       tiny.setNumber(Constants.NUMTINY);
        ZombieList[Constants.TINY]= tiny;
        
-       //SortedZombie(ZombieList);
+       SortedZombie(ZombieList);
        
        return ZombieList;
     }
