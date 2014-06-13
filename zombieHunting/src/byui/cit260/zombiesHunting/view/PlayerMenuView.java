@@ -9,6 +9,7 @@ package byui.cit260.zombiesHunting.view;
 import byui.cit260.zombiesHunting.control.GameControl;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.InventoryItem;
+import byui.cit260.zombiesHunting.model.Zombie;
 import java.util.Scanner;
 import zombiehunting.ZombieHunting;
 
@@ -25,6 +26,7 @@ public class PlayerMenuView {
         + "\nS - Search"
         + "\nI - View inventory"
         + "\nV - View Map"
+        + "\nZ - View Zombie"
         + "\nE - Exit"    
         + "\n-------------------------------------------";
     
@@ -59,7 +61,7 @@ public class PlayerMenuView {
             input = input.trim();
             
             selection = input.charAt(0);
-            if (selection == 'M' || selection == 'S' || selection == 'I' || selection == 'E'){
+            if (selection == 'M' || selection == 'S' || selection == 'I' || selection == 'E' || selection =='Z'){
                 validInput = true;               
             }  
                 else{ 
@@ -87,6 +89,9 @@ public class PlayerMenuView {
             case 'V': //view the map
                 this.displayMap();
                 break;
+            case 'Z': //View Zombie
+                //display sorted list of inventory items
+                this.viewZombie();
             case 'E': //Exit the program
                 return;
             default:
@@ -115,6 +120,25 @@ public class PlayerMenuView {
         }
     }
     
+     public void viewZombie() {
+        //get sorted list of inventory items
+        //InventoryItem[] inventory = GameControl.getInventoryList();
+        Game game = ZombieHunting.getCurrentGame();
+        Zombie[] zombie = game.getZombies();
+        //Display Title
+        System.out.println("\nList of Zombie");
+        
+        //Display description
+        System.out.println("Description" + "\t" +
+                           "Number" + "\t");
+                           
+        //for each inventory Item
+        for (Zombie Zombie : zombie){
+            System.out.println(Zombie.getDescription() + "\t   " +
+                               Zombie.getNumber() );
+        }
+    }
+     
     private void displayMap() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

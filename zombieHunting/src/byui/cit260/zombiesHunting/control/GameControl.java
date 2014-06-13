@@ -14,6 +14,7 @@ import byui.cit260.zombiesHunting.model.Location;
 import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.WeaponItem;
+import byui.cit260.zombiesHunting.model.Zombie;
 import zombiehunting.ZombieHunting;
 
 /**
@@ -24,6 +25,16 @@ public class GameControl {
     
     private static Game game;
     private static InventoryItem  inventoryList[];
+    private static Zombie[] ZombieList;
+    
+    public static Zombie[] getZombieList() {
+        return ZombieList;
+    }
+
+    public static void setZombieList(Zombie[] ZombieList) {
+        GameControl.ZombieList = ZombieList;
+    }
+ 
 
     public static InventoryItem[] getInventoryList() {
         return inventoryList;
@@ -50,10 +61,11 @@ public class GameControl {
         
         InventoryItem[] inventoryList = GameControl.createInventoryList();
         GameControl.createActorList();
-        GameControl.createZombies();
+        Zombie[] zombieList = GameControl.createZombieList();
         GameControl.createMap();
         
         game.setInventory(inventoryList);
+        game.setZombies(zombieList);
         //move player to starting position
         MapControl.moveActorsToStartingLocation(0,0);
     }
@@ -107,16 +119,51 @@ public class GameControl {
         } 
     } 
 
+    public static Zombie[] createZombieList() {
+        
+       //There are 3 different Zombie.
+       ZombieList = new Zombie[Constants.NUM_ZOMBIE]; 
+       
+       Zombie zombie = new Zombie();
+       zombie.setDescription("Zombieeeeee");
+       zombie.setNumber(Constants.NUMZOMBIE);
+       ZombieList[Constants.ZOMBIE]= zombie;
+
+       Zombie boomer = new Zombie();
+       zombie.setDescription("BOOmerrrrr");
+       zombie.setNumber(Constants.NUMBOOMER);
+       ZombieList[Constants.BOOMER]= boomer;
+       
+       Zombie tiny = new Zombie();
+       zombie.setDescription("Tinyyyyyyyyyyyy");
+       zombie.setNumber(Constants.NUMTINY);
+       ZombieList[Constants.TINY]= tiny;
+       
+       //SortedZombie(ZombieList);
+       
+       return ZombieList;
+    }
+    
+    private static void SortedZombie(zombie ZombieList[]){
+        Zombie temp;
+
+        for (int i = 0; i < ZombieList.length - 1; i++){
+            for (int j = i + 1; j < ZombieList.length; j++){  
+                if (ZombieList[i].getDescription().compareToIgnoreCase(ZombieList[j].getDescription()) > 0){                                             // ascending sort
+                    temp = ZombieList[i];
+                    ZombieList[i] = ZombieList[j];    // swapping
+                    ZombieList[j] = temp; 
+                } 
+            } 
+        } 
+    } 
+    
     public static void setGame(Game game) {
         GameControl.game = game;
     }
     
     private static void createActorList() {
        System.out.println("*** Calling createActorList stub function ***");
-    }
-
-    private static void createZombies() {
-       System.out.println("*** Calling createZombies stub function ***");
     }
 
     private static Map createMap() {
