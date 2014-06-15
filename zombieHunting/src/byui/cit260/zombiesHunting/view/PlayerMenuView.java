@@ -166,6 +166,7 @@ public class PlayerMenuView {
         Game game = ZombieHunting.getCurrentGame();
         WeaponItem[] weapon = game.getInventoryWeapons();
         WeaponItem lowestAmmo = weapon[0];
+        WeaponItem highestAmmo = weapon[0];
  
         for (WeaponItem weapons : weapon){
             if (weapons.getAmmo() == 0)
@@ -188,12 +189,18 @@ public class PlayerMenuView {
             if (lowestAmmo.getAmmo() > weapons.getAmmo()){
                 lowestAmmo = weapons;
             }
+            else if (highestAmmo.getAmmo() < weapons.getAmmo()){
+                highestAmmo = weapons;
+            }
             
         }//end of for loop
         
+        if (lowestAmmo.getAmmo() != highestAmmo.getAmmo()){
+            
         System.out.println("The " + lowestAmmo.getDescription() +
                            " has the lowest ammo with only " + lowestAmmo.getAmmo() +
                            ". ");
+        }
     }
 
 }
