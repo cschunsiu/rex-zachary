@@ -200,30 +200,49 @@ public class GameControl {
         
         locations[0][0].setScene(scenes[Constants.CONSTRUCTION_SITE1]);
         locations[0][1].setScene(scenes[Constants.CONSTRUCTION_SITE2]);
+        /*
+        locations[1][0].setScene(scenes[Constants.AIRPORT1]);
+        locations[1][1].setScene(scenes[Constants.AIRPORT2]);
+        */
                 
         
-        //locations[0][0].setRoomLocation(scenes[Constants.CLIFF_SCENE]);
     }
 
     //List of inventory to be found in each scene
     private static Scene[] createScenes(InventoryItem[] itemList) {
         
-    Scene[] scenes = new Scene[2];
+    Scene[] scenes = new Scene[Constants.NUM_SCENES];
     
     Scene ConstructionSite1 = new Scene(true, "Construction Site #1");
     InventoryItem[] roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    ConstructionSite1.setItems(roomItemList);
     scenes[Constants.CONSTRUCTION_SITE1] = ConstructionSite1;
  
     Scene ConstructionSite2 = new Scene(true, "Construction Site #2");
-    roomItemList = new InventoryItem[3];
+    //roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
     scenes[Constants.CONSTRUCTION_SITE2] = ConstructionSite2;
+
+    /*
+    Scene Airport1 = new Scene(true, "Airport #1");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.AIRPORT1] = Airport1;
     
+    Scene Airport2 = new Scene(true, "Airport #2");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.AIRPORT2] = Airport2;
+    */
     return scenes;
     }
 

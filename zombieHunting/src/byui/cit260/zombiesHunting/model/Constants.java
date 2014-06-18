@@ -14,6 +14,7 @@ public class Constants {
     
     public final static int NUM_INVENTORY_ITEMS = 5;
     public final static int NUM_ZOMBIE = 3;
+    public final static int NUM_SCENES = 2;
     
     //number of different items in game
     public final static int NUMBER_OF_WEAPON_ITEMS = 3;
@@ -37,8 +38,18 @@ public class Constants {
     public static int MAP_COLUMN_COUNT = 20;
     
     //room assignments
+    public static int TOTAL_SCENES = 11;
     public static int CONSTRUCTION_SITE1 = 0;
     public static int CONSTRUCTION_SITE2 = 1;
+    public static int AIRPORT1 = 2;
+    public static int AIRPORT2 = 3;
+    public static int SUPER_MARKET1 = 4;
+    public static int SUPER_MARKET2 = 5;
+    public static int SCHOOL1 = 6;
+    public static int SCHOOL2 = 7;
+    public static int MALL1 = 8;
+    public static int MALL2 = 9;
+    public static int LABORATORY = 10;
     
     //Zombies position in the game
      public final static int ZOMBIE = 0;
@@ -64,6 +75,8 @@ public class Constants {
     public static int ASSAULT_RIFLE_CLIP = 50;
     public static int ASSAULT_RIFLE_DAMAGE = 25;
     public static int STANDARD_ASSAULT_RIFLE_AMMO = 4;
+
+
 
     
 
