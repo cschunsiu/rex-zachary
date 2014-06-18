@@ -28,26 +28,25 @@ public class MainMenuView extends MenuView{
         + "\nE - Exit Game"
         + "\n-------------------------------------------");
   }
-    public MainMenuView(String MENU) {
-        super(MENU);
-    }
 
-    public void doAction(char choice){
+
+    @Override
+    public void doAction(String choice){
         
         switch (choice) {
-            case 'G': //display the game menu
+            case "G": //display the game menu
                 GameControl.startNewGame();
                 PlayerMenuView playerMenu = new PlayerMenuView();
                 playerMenu.displayMenu();
                 break;
-            case 'H': //display the help menu
+            case "H": //display the help menu
                 HelpMenuView helpMenu = new HelpMenuView();
                 helpMenu.displayMenu();
                 break;
-            case 'S': //save the current game to disk
+            case "S": //save the current game to disk
                 ProgramControl.saveGame();
                 break;
-            case 'E': //Exit the program
+            case "E": //Exit the program
                 return;
             default:
                 System.out.println("\n*** Invalid selection *** Try again");

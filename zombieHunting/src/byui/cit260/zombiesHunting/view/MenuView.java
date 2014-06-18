@@ -23,16 +23,15 @@ public abstract class MenuView implements ViewInterface{
     @Override
         public void display() {
     
-        char selection;
+        String selection = null;
         do {
             System.out.println(MENU); //display main menu
             
-            String input = this.getInput(); //users selection
-            selection = input.charAt(0);    //first character
+            selection = this.getInput(); //users selection
             
             this.doAction(selection);
             
-        }while (selection != 'E');
+        }while (!selection.equals("E"));
            
     }
    
@@ -52,9 +51,9 @@ public abstract class MenuView implements ViewInterface{
             input = keyboard.nextLine();
             input = input.trim();
             
-            selection = input.charAt(0);
-            
-        
+            if (input.length() > 0){ 
+                validInput = true;
+            }
         } //end while loop
         
         return input;

@@ -13,5 +13,5 @@ package byui.cit260.zombiesHunting.view;
 public interface ViewInterface {
     public void display();
     public String getInput();
-    public void doAction(char choice);
+    public void doAction(String choice);
 }
