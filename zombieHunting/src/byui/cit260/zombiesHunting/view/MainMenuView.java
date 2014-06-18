@@ -14,9 +14,11 @@ import java.util.Scanner;
  *
  * @author Computer
  */
-public class MainMenuView {
+public class MainMenuView extends MenuView{
     
-    private static final String MENU = "\n"
+        
+    public MainMenuView(){
+        super("\n"
         + "\n-------------------------------------------"
         + "\n Main Menu                                |"
         + "\n-------------------------------------------"
@@ -24,57 +26,12 @@ public class MainMenuView {
         + "\nH - Help"
         + "\nS - Save Game"
         + "\nE - Exit Game"
-        + "\n-------------------------------------------";
-    
-    public void displayMenu() {
-    
-        char selection;
-        do {
-            System.out.println(MENU); //display main menu
-            
-            String input = this.getInput(); //users selection
-            selection = input.charAt(0);    //first character
-            
-            this.doAction(selection);
-            
-        }while (selection != 'E');
-           
+        + "\n-------------------------------------------");
+  }
+    public MainMenuView(String MENU) {
+        super(MENU);
     }
-    
-    public String getInput(){
-        boolean validInput = false;
-        String input = null;
-        Scanner keyboard = new Scanner(System.in);
-        char selection;
-        
-        while(!validInput)
-        {
-            //prompt user for name
-            System.out.println("Choose option:");
-            
-            //get name from keyboard
-            input = keyboard.nextLine();
-            input = input.trim();
-            
-            selection = input.charAt(0);
-            switch(selection){
-                case 'E': //These are the choices on the menu
-                case 'H':
-                case 'S':
-                case 'G':        
-                    validInput = true;
-                    break;
-                default:
-                    System.out.println("Invalid input - please select one of the"
-                                     + "options from the menu in uppercase form");
-                    System.out.println(MENU); //display main menu
-                    break;
-            }//end switch statement
-        } //end while loop
-        
-        return input;
-    }//end getInput function
-    
+
     public void doAction(char choice){
         
         switch (choice) {
@@ -97,5 +54,4 @@ public class MainMenuView {
                 break;            
         }
     }
-
 }
