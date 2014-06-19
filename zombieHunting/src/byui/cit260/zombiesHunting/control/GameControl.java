@@ -200,10 +200,26 @@ public class GameControl {
         
         locations[0][0].setScene(scenes[Constants.CONSTRUCTION_SITE1]);
         locations[0][1].setScene(scenes[Constants.CONSTRUCTION_SITE2]);
-        /*
+    
+    /*adding*/
+    /*
         locations[1][0].setScene(scenes[Constants.AIRPORT1]);
         locations[1][1].setScene(scenes[Constants.AIRPORT2]);
-        */
+        
+        locations[2][0].setScene(scenes[Constants.SUPER_MARKET1]);
+        locations[2][1].setScene(scenes[Constants.SUPER_MARKET2]);
+        
+        locations[3][0].setScene(scenes[Constants.SCHOOL1]);
+        locations[3][1].setScene(scenes[Constants.SCHOOL2]);
+        
+        locations[4][0].setScene(scenes[Constants.MALL1]);
+        locations[4][1].setScene(scenes[Constants.MALL2]);
+        
+        locations[4][0].setScene(scenes[Constants.LABORATORY]);
+    */
+        
+        
+        
                 
         
     }

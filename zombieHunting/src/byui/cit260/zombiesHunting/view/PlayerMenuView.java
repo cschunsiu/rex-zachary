@@ -90,7 +90,7 @@ public class PlayerMenuView {
         switch (choice) {
             case 'M': //move to a new location
                 LocationMenuView locationMenu = new LocationMenuView();
-                locationMenu.displayMenu();
+                locationMenu.display();
                 break;
             case 'S': //Search
                 System.out.println("\n*** Called Search ***");
