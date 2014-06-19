@@ -45,7 +45,6 @@ public class GameControl {
         GameControl.ZombieList = ZombieList;
     }
  
-
     public static InventoryItem[] getInventoryList() {
         return inventoryList;
     }

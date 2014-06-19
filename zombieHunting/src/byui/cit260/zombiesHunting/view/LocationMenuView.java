@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author Computer
  */
-public class LocationMenuView extends MenuView{
+public class LocationMenuView extends View{
     
     public LocationMenuView(){
         super("\n"

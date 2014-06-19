@@ -14,7 +14,7 @@ import java.util.Scanner;
  *
  * @author Computer
  */
-public class MainMenuView extends MenuView{
+public class MainMenuView extends View{
     
         
     public MainMenuView(){

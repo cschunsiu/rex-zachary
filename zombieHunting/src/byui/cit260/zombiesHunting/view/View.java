@@ -12,11 +12,11 @@ import java.util.Scanner;
  *
  * @author ChunShing
  */
-public abstract class MenuView implements ViewInterface{
+public abstract class View implements ViewInterface{
     
     private String MENU;
     
-    public MenuView(String MENU){
+    public View(String MENU){
         this.MENU = MENU;
     }
     
