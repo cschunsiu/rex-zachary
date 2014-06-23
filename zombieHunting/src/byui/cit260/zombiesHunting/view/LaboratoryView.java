@@ -10,9 +10,9 @@ package byui.cit260.zombiesHunting.view;
  *
  * @author ChunShing
  */
-public class Construction extends View{
+public class LaboratoryView extends View{
     
-    public Construction(){
+    public LaboratoryView(){
         super("\n"
         + "\n-------------------------------------------"
         + "\n Move                                      |"
