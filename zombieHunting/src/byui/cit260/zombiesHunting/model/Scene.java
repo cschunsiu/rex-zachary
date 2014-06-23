@@ -13,38 +13,35 @@ import java.util.Objects;
  * @author Zach
  */
 public class Scene {
-    private boolean wall; //can player pass through?
-    private InventoryItem[] items; 
+    private boolean blocked; //can player pass through?
+    private InventoryItem item;
+    //private InventoryItem[] items; 
     private String description;
     
-    //private String itemList;
-    //private int itemLocation;
-    //private String roomMap;
-
-    //create overloaded constructor 
+   
     public Scene() {
     }
-
-    public Scene(boolean wall, String description) {
-        this.wall = wall;
+    
+    //create overloaded constructor
+    public Scene(boolean blocked, String description) {
+        this.blocked = blocked;
         this.description = description;
     }
 
-    
-    public boolean isWall() {
-        return wall;
+    public boolean isBlocked() {
+        return blocked;
     }
 
-    public void setWall(boolean wall) {
-        this.wall = wall;
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
     }
 
-    public InventoryItem[] getItems() {
-        return items;
+    public InventoryItem getItem() {
+        return item;
     }
 
-    public void setItems(InventoryItem[] items) {
-        this.items = items;
+    public void setItem(InventoryItem item) {
+        this.item = item;
     }
 
     public String getDescription() {

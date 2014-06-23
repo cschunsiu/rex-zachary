@@ -27,6 +27,7 @@ public class GameControl {
     private static InventoryItem[] inventoryList;
     private static Zombie[] ZombieList;
     private static WeaponItem[] weapons;
+    private static Map[] rooms; //Contains the map for each room
 
     public static WeaponItem[] getWeapons() {
         return weapons;
@@ -35,7 +36,6 @@ public class GameControl {
     public static void setWeapons(WeaponItem[] weapons) {
         GameControl.weapons = weapons;
     }
-
 
     public static Zombie[] getZombieList() {
         return ZombieList;
@@ -55,6 +55,14 @@ public class GameControl {
     
     public static Game getGame() {
         return game;
+    }
+
+    public static Map[] getRooms() {
+        return rooms;
+    }
+
+    public static void setRooms(Map[] rooms) {
+        GameControl.rooms = rooms;
     }
     
     public static void startNewGame(){
@@ -183,25 +191,41 @@ public class GameControl {
     private static Map createMap() {
 
        Map map = new Map(20,10);
+       Map[] maps = new Map[Constants.NUM_SCENES];
        
        InventoryItem[] itemList = createInventoryList();
-       Scene[] scenes = createScenes(itemList); //create scenes in game
+       Scene[] scenes = new Scene[Constants.NUM_SCENES];
+       createScenes(maps, itemList, scenes); //create scenes in game
        
+       //set the sizes for each map object
+       GameControl.setMapSizes(maps);
+
        //assign Scenes to Location
+       //This function needs editing to utilize the maps array
        GameControl.assignScenesToLocations(map, scenes);
        //System.out.println("*** Calling createMap stub function ***");
        return map;
+       //return rooms;
     }
 
     private static void assignScenesToLocations(Map map, Scene[] scenes)
     {
+        /**********************************************************************
+         * The standard map sizes are:
+         * Columns = 20  Rows = 15
+         * For every room each Scene needs to be assigned a location within the 
+         * map. Only locations with an item, wall, or any other special object
+         * need to be assigned a scene.
+         * There are 11 different rooms in the game that each need to be assigned
+         * Scenes.
+         * To adjust or check to see what types of scenes need to be assigned to 
+         * each location check the createScenes function below.
+         **********************************************************************/
         Location[][] locations = map.getLocations();
         
         locations[0][0].setScene(scenes[Constants.CONSTRUCTION_SITE1]);
         locations[0][1].setScene(scenes[Constants.CONSTRUCTION_SITE2]);
     
-    /*adding*/
-    /*
         locations[1][0].setScene(scenes[Constants.AIRPORT1]);
         locations[1][1].setScene(scenes[Constants.AIRPORT2]);
         
@@ -214,36 +238,31 @@ public class GameControl {
         locations[4][0].setScene(scenes[Constants.MALL1]);
         locations[4][1].setScene(scenes[Constants.MALL2]);
         
-        locations[4][0].setScene(scenes[Constants.LABORATORY]);
-    */
-        
-        
-        
-                
-        
+        locations[5][0].setScene(scenes[Constants.LABORATORY]);
+
     }
 
     //List of inventory to be found in each scene
-    private static Scene[] createScenes(InventoryItem[] itemList) {
+    private static Scene[] createScenes(Map[] maps, InventoryItem[] itemList, Scene[] scenes) {
         
-    Scene[] scenes = new Scene[Constants.NUM_SCENES];
+    //Scene[] scenes = new Scene[Constants.NUM_SCENES];
     
     Scene ConstructionSite1 = new Scene(true, "Construction Site #1");
     InventoryItem[] roomItemList = new InventoryItem[3];
+    //create list of items in the room
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
-    ConstructionSite1.setItems(roomItemList);
+    //ConstructionSite1.setItems(roomItemList);
     scenes[Constants.CONSTRUCTION_SITE1] = ConstructionSite1;
  
     Scene ConstructionSite2 = new Scene(true, "Construction Site #2");
-    //roomItemList = new InventoryItem[3];
+    roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
     scenes[Constants.CONSTRUCTION_SITE2] = ConstructionSite2;
-
-    /*
+  
     Scene Airport1 = new Scene(true, "Airport #1");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
@@ -257,7 +276,56 @@ public class GameControl {
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
     scenes[Constants.AIRPORT2] = Airport2;
-    */
+    
+    Scene SuperMarket1 = new Scene(true, "Super Market #1");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.SUPER_MARKET1] = SuperMarket1;
+    
+    Scene SuperMarket2 = new Scene(true, "Super Market #2");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.AIRPORT2] = SuperMarket2;
+    
+    Scene School1 = new Scene(true, "School #1");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.SCHOOL1] = School1;
+    
+    Scene School2 = new Scene(true, "School #2");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.SCHOOL2] = School2;
+    
+    Scene Mall1 = new Scene(true, "Mall #1");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.MALL1] = Mall1;
+    
+    Scene Mall2 = new Scene(true, "Mall #2");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.MALL2] = Mall2;
+    
+    Scene Laboratory = new Scene(true, "Laboratory");
+    roomItemList = new InventoryItem[3];
+    roomItemList[0] = itemList[Constants.RIFLE];
+    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
+    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+    scenes[Constants.LABORATORY] = Laboratory;
+    
     return scenes;
     }
 
@@ -291,5 +359,18 @@ public class GameControl {
        weapons[Constants.ASSAULT_RIFLE]= assaultRifle;
        
        return weapons;
+    }
+
+    private static void setMapSizes(Map[] rooms) {
+        
+        //for now this sets every room in the game to a set size. The code
+        //will need to be adjusted if we want rooms of variable lengths.
+        for (int i = 0; i < Constants.TOTAL_ROOMS; i++){
+            Map temp = new Map(Constants.STANDARD_COLUMNS, Constants.STANDARD_ROWS);
+            temp.setTotalColumns(Constants.STANDARD_COLUMNS);
+            temp.setTotalRows(Constants.STANDARD_ROWS);
+            
+            rooms[i] = temp;
+        }
     }
 }

@@ -20,19 +20,19 @@ public class Game implements Serializable{
     private WeaponItem[] inventoryWeapons;
     private Zombie[] zombies;
     private HealthItem[] healthItems;
-    private Map gameMap;
+    private Map[] gameMaps; //need a map for every scene
     private Player player;
     private InventoryItem[] inventory;
 
     public Game() {
     }
-    
-    public Map getGameMap() {
-        return gameMap;
+
+    public Map[] getGameMaps() {
+        return gameMaps;
     }
 
-    public void setGameMap(Map gameMap) {
-        this.gameMap = gameMap;
+    public void setGameMaps(Map[] gameMaps) {
+        this.gameMaps = gameMaps;
     }
 
     public Player getPlayer() {
@@ -75,21 +75,5 @@ public class Game implements Serializable{
         this.inventory = inventory;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Game other = (Game) obj;
-        if (!Objects.equals(this.bestTime, other.bestTime)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.bestZombieKill) != Double.doubleToLongBits(other.bestZombieKill)) {
-            return false;
-        }
-        return true;
-    }
+
 }

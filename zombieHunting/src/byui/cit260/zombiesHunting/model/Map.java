@@ -14,11 +14,12 @@ import java.io.Serializable;
  */
 public class Map implements Serializable{
     
-    //private String compass;
     //private double totalZombies;
-    private double totalColumns;
-    private double totalRows;
-    private Location[][] locations;
+    private int totalColumns;
+    private int totalRows;
+    private int numScenes = 0;
+    private Scene[] scenes;
+    private Location[][] locations; //one for every square on the map.
 
     public Location[][] getLocations() {
         return locations;
@@ -32,9 +33,7 @@ public class Map implements Serializable{
     }
     
     public Map(int numRows, int numColumns){
-        
-        
-        
+         
         if (numRows < 1 || numColumns < 1){
             System.out.println("The number of rows and columns must be > zero");
             return;
@@ -59,20 +58,35 @@ public class Map implements Serializable{
         }
     }
 
-    public double getTotalColumns() {
+    public int getTotalColumns() {
         return totalColumns;
     }
 
-    public void setTotalColumns(double totalColumns) {
+    public void setTotalColumns(int totalColumns) {
         this.totalColumns = totalColumns;
     }
 
-    public double getTotalRows() {
+    public int getTotalRows() {
         return totalRows;
     }
 
-    public void setTotalRows(double totalRows) {
+    public void setTotalRows(int totalRows) {
         this.totalRows = totalRows;
     }
 
+    public int getNumScenes() {
+        return numScenes;
+    }
+
+    public void setNumScenes(int numScenes) {
+        this.numScenes = numScenes;
+    }
+
+    public Scene[] getScenes() {
+        return scenes;
+    }
+
+    public void setScenes(Scene[] scenes) {
+        this.scenes = scenes;
+    }
 }
