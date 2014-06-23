@@ -38,7 +38,8 @@ public class LocationMenuView extends View{
                 System.out.println("\n*** You have chosen to move to new location***");
                 break;
             case "C": //Construction Site
-                System.out.println("\n*** You have moved to the Construction Site ***");
+                Construction construction = new Construction();
+                construction.display();
                 break;
             case "A": //Airport
                 System.out.println("\n*** You have moved to the Airport ***");
