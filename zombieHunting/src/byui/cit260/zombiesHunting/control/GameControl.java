@@ -190,19 +190,20 @@ public class GameControl {
 
     private static Map[] createMap() {
 
-       Map map = new Map(20,10);
+       //Map map = new Map(Constants.STANDARD_ROWS,Constants.STANDARD_COLUMNS);
        Map[] maps = new Map[Constants.NUM_SCENES];
+       
        
        InventoryItem[] itemList = createInventoryList();
        Scene[] scenes = new Scene[Constants.NUM_SCENES];
-       createScenes(maps, itemList, scenes); //create scenes in game
+      
        
        //set the sizes for each map object
        GameControl.setMapSizes(maps);
-
+       createScenes(maps, itemList, scenes); //create scenes in game
        //assign Scenes to Location
        //This function needs editing to utilize the maps array
-       GameControl.assignScenesToLocations(map, scenes);
+       //GameControl.assignScenesToLocations(map, scenes);
        //System.out.println("*** Calling createMap stub function ***");
        //maps[0].displayMap();
        return maps;
@@ -248,6 +249,7 @@ public class GameControl {
         
     //Scene[] scenes = new Scene[Constants.NUM_SCENES];
     
+    //Map ConstructionSite1 = new Map(Constants.STANDARD_ROWS,Constants.STANDARD_COLUMNS);
     Scene ConstructionSite1 = new Scene(true, "Construction Site #1");
     InventoryItem[] roomItemList = new InventoryItem[3];
     //create list of items in the room
@@ -260,14 +262,24 @@ public class GameControl {
     //get Locations from maps[Constants.CONSTRUCTION_SITE1]
     //Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
     
-    /*
+    
+    Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
+    Scene wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+    
+    
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-       Scene temp;
+       Scene temp = new Scene();
        temp.setBlocked(true);
-       temp.setDescription("X");
+       temp.setDescription("x");
+    if (y != 6){ 
        locations [y][5].setScene(temp);
+       }
     }
-    */
+    
+    maps[0].setLocations(locations);
+    maps[0].displayMap();
+    
     
  
     Scene ConstructionSite2 = new Scene(true, "Construction Site #2");
@@ -380,7 +392,7 @@ public class GameControl {
         //for now this sets every room in the game to a set size. The code
         //will need to be adjusted if we want rooms of variable lengths.
         for (int i = 0; i < Constants.TOTAL_ROOMS; i++){
-            Map temp = new Map(Constants.STANDARD_COLUMNS, Constants.STANDARD_ROWS);
+            Map temp = new Map(Constants.STANDARD_ROWS, Constants.STANDARD_COLUMNS);
             temp.setTotalColumns(Constants.STANDARD_COLUMNS);
             temp.setTotalRows(Constants.STANDARD_ROWS);
             

@@ -29,11 +29,21 @@ public class Map implements Serializable{
         //display top border
         System.out.println("_________________________________________");
         
-        for (int row = 0; row < totalRows; row++ ){
-            for (int column = 0; column < totalColumns; column++){
+        for (int row = 0; row < totalRows - 1; row++ ){
+            for (int column = 0; column < totalColumns - 1; column++){
                 System.out.print("|"); //row divider
-                Scene square = locations[row][column].getScene();
-                System.out.print(square.getDescription());               
+                Scene temp = locations[row][column].getScene();
+                
+                if (temp == null){
+                   Scene square = new Scene();
+                   locations[row][column].setScene(square);
+                   System.out.print(square.getDescription());
+                }
+                else{
+                    System.out.print(temp.getDescription());
+                }
+         
+                               
             }
             System.out.println("|");
         }
@@ -74,6 +84,7 @@ public class Map implements Serializable{
                locations[row][column] = location;
            }
         }
+        
     }
 
     public int getTotalColumns() {
