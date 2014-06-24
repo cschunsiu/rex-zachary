@@ -18,7 +18,15 @@ public class Location implements Serializable{
     private int row;
     private int column;
     private Scene scene;
+   
+    public Location() {
+    }
     
+    public Location(int x, int y){
+        row = x;
+        column = y;
+    }
+
     public int getRow() {
         return row;
     }
@@ -35,8 +43,6 @@ public class Location implements Serializable{
         this.column = column;
     }
 
-    public Location() {
-    }
 
     public String getRequiredItems() {
         return requiredItems;

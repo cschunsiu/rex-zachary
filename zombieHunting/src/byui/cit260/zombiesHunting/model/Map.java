@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 public class Map implements Serializable{
     
-    //private double totalZombies;
+    //private int totalZombies;
     private int totalColumns;
     private int totalRows;
     private int numScenes = 0;
@@ -25,6 +25,24 @@ public class Map implements Serializable{
         return locations;
     }
 
+    public void displayMap(){
+        //display top border
+        System.out.println("_________________________________________");
+        
+        for (int row = 0; row < totalRows; row++ ){
+            for (int column = 0; column < totalColumns; column++){
+                System.out.print("|"); //row divider
+                Scene square = locations[row][column].getScene();
+                System.out.print(square.getDescription());               
+            }
+            System.out.println("|");
+        }
+        
+        //print bottom border
+        System.out.println("-----------------------------------------");
+    }
+    
+    
     public void setLocations(Location[][] locations) {
         this.locations = locations;
     }

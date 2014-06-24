@@ -16,10 +16,11 @@ public class Scene {
     private boolean blocked; //can player pass through?
     private InventoryItem item;
     //private InventoryItem[] items; 
-    private String description;
+    private String description; //text to represent the scene.
     
    
     public Scene() {
+        description = " ";
     }
     
     //create overloaded constructor

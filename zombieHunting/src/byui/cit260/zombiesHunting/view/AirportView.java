@@ -14,6 +14,7 @@ public class AirportView extends View{
     
     public AirportView(){
         super("\n"
+        + "\n                Airport                    "
         + "\n-------------------------------------------"
         + "\n Move                                      |"
         + "\n-------------------------------------------"

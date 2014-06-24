@@ -82,7 +82,7 @@ public class GameControl {
         Zombie[] zombieList = GameControl.createZombieList();
         WeaponItem[] weapons = GameControl.createWeaponList();
         
-        GameControl.createMap();
+        rooms = GameControl.createMap();
         
         game.setInventory(inventoryList);
         game.setZombies(zombieList);
@@ -188,7 +188,7 @@ public class GameControl {
        System.out.println("*** Calling createActorList stub function ***");
     }
 
-    private static Map createMap() {
+    private static Map[] createMap() {
 
        Map map = new Map(20,10);
        Map[] maps = new Map[Constants.NUM_SCENES];
@@ -204,7 +204,8 @@ public class GameControl {
        //This function needs editing to utilize the maps array
        GameControl.assignScenesToLocations(map, scenes);
        //System.out.println("*** Calling createMap stub function ***");
-       return map;
+       //maps[0].displayMap();
+       return maps;
        //return rooms;
     }
 
@@ -255,6 +256,19 @@ public class GameControl {
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
     //ConstructionSite1.setItems(roomItemList);
     scenes[Constants.CONSTRUCTION_SITE1] = ConstructionSite1;
+    
+    //get Locations from maps[Constants.CONSTRUCTION_SITE1]
+    //Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
+    
+    /*
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp;
+       temp.setBlocked(true);
+       temp.setDescription("X");
+       locations [y][5].setScene(temp);
+    }
+    */
+    
  
     Scene ConstructionSite2 = new Scene(true, "Construction Site #2");
     roomItemList = new InventoryItem[3];

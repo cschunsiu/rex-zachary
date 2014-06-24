@@ -42,7 +42,8 @@ public class LocationMenuView extends View{
                 construction.display();
                 break;
             case "A": //Airport
-                System.out.println("\n*** You have moved to the Airport ***");
+                AirportView airport = new AirportView();
+                airport.display();
                 break;
             case "U": //SuperMarket
                 System.out.println("\n*** You have moved to the SuperMarket ***");
