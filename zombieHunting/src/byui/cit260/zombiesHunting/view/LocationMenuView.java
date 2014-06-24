@@ -38,7 +38,7 @@ public class LocationMenuView extends View{
                 System.out.println("\n*** You have chosen to move to new location***");
                 break;
             case "C": //Construction Site
-                Construction construction = new Construction();
+                ConstructionView construction = new ConstructionView();
                 construction.display();
                 break;
             case "A": //Airport
@@ -46,16 +46,20 @@ public class LocationMenuView extends View{
                 airport.display();
                 break;
             case "U": //SuperMarket
-                System.out.println("\n*** You have moved to the SuperMarket ***");
+                SupermarketView supermarket = new SupermarketView();
+                supermarket.display();
                 break;
             case "S": //School
-                System.out.println("\n*** You have moved to the School ***");
+                SchoolView school = new SchoolView();
+                school.display();
                 break;
             case "M": //Mall
-                System.out.println("\n*** You have moved to the Mall ***");
+                MallView mall = new MallView();
+                mall.display();
                 break;
             case "L": //Laboratory
-                System.out.println("\n*** You have moved to the Laboratory ***");
+                LaboratoryView lab = new LaboratoryView();
+                lab.display();
                 break;
             case "E": //Stay Here
                 return;
