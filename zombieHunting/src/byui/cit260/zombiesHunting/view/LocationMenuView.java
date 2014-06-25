@@ -39,6 +39,8 @@ public class LocationMenuView extends View{
     
     @Override
     public void doAction(String choice){
+        Game game = ZombieHunting.getCurrentGame();
+        Map[]map = game.getGameMaps();
         
         Game game = ZombieHunting.getCurrentGame();
         Map[] map = game.getGameMaps();
@@ -54,22 +56,27 @@ public class LocationMenuView extends View{
                 break;
             case "A": //Airport
                 AirportView airport = new AirportView();
+                map[Constants.AIRPORT1].displayMap();
                 airport.display();
                 break;
             case "U": //SuperMarket
                 SupermarketView supermarket = new SupermarketView();
+                map[Constants.SUPER_MARKET1].displayMap();
                 supermarket.display();
                 break;
             case "S": //School
                 SchoolView school = new SchoolView();
+                map[Constants.SCHOOL1].displayMap();
                 school.display();
                 break;
             case "M": //Mall
                 MallView mall = new MallView();
+                map[Constants.MALL1].displayMap();
                 mall.display();
                 break;
             case "L": //Laboratory
                 LaboratoryView lab = new LaboratoryView();
+                map[Constants.LABORATORY].displayMap();
                 lab.display();
                 break;
             case "E": //Stay Here
