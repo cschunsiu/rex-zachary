@@ -78,7 +78,7 @@ public class GameControl {
         
         InventoryItem[] inventoryList = GameControl.createInventoryList();
         
-        GameControl.createActorList();
+        //GameControl.createActorList();
         Zombie[] zombieList = GameControl.createZombieList();
         WeaponItem[] weapons = GameControl.createWeaponList();
         
@@ -90,7 +90,7 @@ public class GameControl {
         game.setGameMaps(rooms);
         
         //move player to starting position
-        MapControl.moveActorsToStartingLocation(0,0);
+        MapControl.moveActorsToLocation(0,0,Constants.CONSTRUCTION_SITE1);
     }
 
     public static InventoryItem[] createInventoryList() {
@@ -276,7 +276,7 @@ public class GameControl {
        }
     }
     
-    maps[0].setLocations(locations);
+    maps[Constants.CONSTRUCTION_SITE1].setLocations(locations);
     maps[0].displayMap();
     
     Scene ConstructionSite2 = new Scene(true, "Construction Site #2");

@@ -6,13 +6,20 @@
 
 package byui.cit260.zombiesHunting.view;
 
+import byui.cit260.zombiesHunting.model.Constants;
+import byui.cit260.zombiesHunting.model.Game;
+import byui.cit260.zombiesHunting.model.Map;
 import java.util.Scanner;
+import zombiehunting.ZombieHunting;
 
 /**
  *
  * @author Computer
  */
 public class LocationMenuView extends View{
+    
+    private static final Game game = ZombieHunting.getCurrentGame();
+    private static final Map[] MAP = game.getGameMaps();
     
     public LocationMenuView(){
         super("\n"
@@ -33,12 +40,16 @@ public class LocationMenuView extends View{
     @Override
     public void doAction(String choice){
         
+        Game game = ZombieHunting.getCurrentGame();
+        Map[] map = game.getGameMaps();
+        
         switch (choice) {
             case "N": //Next Location
                 System.out.println("\n*** You have chosen to move to new location***");
                 break;
             case "C": //Construction Site
                 ConstructionView construction = new ConstructionView();
+                map[Constants.CONSTRUCTION_SITE1].displayMap();
                 construction.display();
                 break;
             case "A": //Airport

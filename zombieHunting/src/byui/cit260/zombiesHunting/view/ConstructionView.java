@@ -6,11 +6,16 @@
 
 package byui.cit260.zombiesHunting.view;
 
+import byui.cit260.zombiesHunting.model.Game;
+import zombiehunting.ZombieHunting;
+
 /**
  *
  * @author ChunShing
  */
 public class ConstructionView extends View{
+    
+
     
     public ConstructionView(){
         super("\n"

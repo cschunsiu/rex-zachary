@@ -17,6 +17,9 @@ public class Player implements Serializable{
     //class instance variables
     private String name;
     private double health;
+    private int columnPosition;
+    private int rowPosition;
+    private int room;
 
     public Player() {
     }
@@ -37,36 +40,29 @@ public class Player implements Serializable{
         this.health = health;
     }
 
-    @Override
-    public String toString() {
-        return "Player{" + "name=" + name + ", health=" + health + '}';
+    public int getColumnPosition() {
+        return columnPosition;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.name);
-        hash = 23 * hash + (int) (Double.doubleToLongBits(this.health) ^ (Double.doubleToLongBits(this.health) >>> 32));
-        return hash;
+    public void setColumnPosition(int columnPosition) {
+        this.columnPosition = columnPosition;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Player other = (Player) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.health) != Double.doubleToLongBits(other.health)) {
-            return false;
-        }
-        return true;
+    public int getRowPosition() {
+        return rowPosition;
     }
-    
-    
+
+    public void setRowPosition(int rowPosition) {
+        this.rowPosition = rowPosition;
+    }
+
+    public int getRoom() {
+        return room;
+    }
+
+    public void setRoom(int room) {
+        this.room = room;
+    }
+
+
 }
