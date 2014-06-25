@@ -41,10 +41,7 @@ public class LocationMenuView extends View{
     public void doAction(String choice){
         Game game = ZombieHunting.getCurrentGame();
         Map[]map = game.getGameMaps();
-        
-        Game game = ZombieHunting.getCurrentGame();
-        Map[] map = game.getGameMaps();
-        
+
         switch (choice) {
             case "N": //Next Location
                 System.out.println("\n*** You have chosen to move to new location***");

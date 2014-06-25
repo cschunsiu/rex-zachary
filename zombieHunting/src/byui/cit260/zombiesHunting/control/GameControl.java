@@ -271,7 +271,6 @@ public class GameControl {
        }
     }
     
-    //Construciton Site#2
     maps[Constants.CONSTRUCTION_SITE1].setLocations(locations);
     maps[0].displayMap();
     
