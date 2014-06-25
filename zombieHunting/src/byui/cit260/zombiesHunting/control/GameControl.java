@@ -87,6 +87,7 @@ public class GameControl {
         game.setInventory(inventoryList);
         game.setZombies(zombieList);
         game.setInventoryWeapons(weapons);
+        game.setGameMaps(rooms);
         
         //move player to starting position
         MapControl.moveActorsToStartingLocation(0,0);
@@ -261,13 +262,11 @@ public class GameControl {
     
     //get Locations from maps[Constants.CONSTRUCTION_SITE1]
     //Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
-    
-    
+       
     Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
     Scene wall = new Scene(true, "x");
     locations[0][0].setScene(wall);
-    
-    
+       
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
        Scene temp = new Scene();
        temp.setBlocked(true);
@@ -280,8 +279,6 @@ public class GameControl {
     maps[0].setLocations(locations);
     maps[0].displayMap();
     
-    
- 
     Scene ConstructionSite2 = new Scene(true, "Construction Site #2");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
