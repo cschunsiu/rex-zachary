@@ -7,7 +7,7 @@
 package byui.cit260.zombiesHunting.control;
 
 import byui.cit260.zombiesHunting.model.Constants;
-import byui.cit260.zombiesHunting.model.Game;
+import byui.cit260.zombiesHunting.model.Game;   
 import byui.cit260.zombiesHunting.model.HealthItem;
 import byui.cit260.zombiesHunting.model.InventoryItem;
 import byui.cit260.zombiesHunting.model.Location;
@@ -247,21 +247,16 @@ public class GameControl {
 
     //List of inventory to be found in each scene
     private static Scene[] createScenes(Map[] maps, InventoryItem[] itemList, Scene[] scenes) {
-        
-    //Scene[] scenes = new Scene[Constants.NUM_SCENES];
     
-    //Map ConstructionSite1 = new Map(Constants.STANDARD_ROWS,Constants.STANDARD_COLUMNS);
+    //cONSTRUCTION site#1   
     Scene ConstructionSite1 = new Scene(true, "Construction Site #1");
     InventoryItem[] roomItemList = new InventoryItem[3];
     //create list of items in the room
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
-    //ConstructionSite1.setItems(roomItemList);
+
     scenes[Constants.CONSTRUCTION_SITE1] = ConstructionSite1;
-    
-    //get Locations from maps[Constants.CONSTRUCTION_SITE1]
-    //Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
        
     Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
     Scene wall = new Scene(true, "x");
@@ -276,79 +271,233 @@ public class GameControl {
        }
     }
     
-    maps[0].setLocations(locations);
-    maps[0].displayMap();
-    
+    //Construciton Site#2
     Scene ConstructionSite2 = new Scene(true, "Construction Site #2");
     roomItemList = new InventoryItem[3];
+    //create list of items in the room
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+
     scenes[Constants.CONSTRUCTION_SITE2] = ConstructionSite2;
-  
+       
+    locations = maps[Constants.CONSTRUCTION_SITE2].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
+    
+    //Airport#1
     Scene Airport1 = new Scene(true, "Airport #1");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+
     scenes[Constants.AIRPORT1] = Airport1;
+       
+    locations = maps[Constants.AIRPORT1].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
     
+    //Airport#2
     Scene Airport2 = new Scene(true, "Airport #2");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+
     scenes[Constants.AIRPORT2] = Airport2;
+       
+    locations = maps[Constants.AIRPORT2].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
     
-    Scene SuperMarket1 = new Scene(true, "Super Market #1");
+    //Supermartket#1
+    Scene Supermarket1 = new Scene(true, "Supermarket #1");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
-    scenes[Constants.SUPER_MARKET1] = SuperMarket1;
+
+    scenes[Constants.SUPER_MARKET1] = Supermarket1;
+       
+    locations = maps[Constants.SUPER_MARKET1].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
     
-    Scene SuperMarket2 = new Scene(true, "Super Market #2");
+    //Supermarket 2
+    
+    Scene Supermarket2 = new Scene(true, "Supermarket #2");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
-    scenes[Constants.AIRPORT2] = SuperMarket2;
+
+    scenes[Constants.SUPER_MARKET2] = Supermarket2;
+       
+    locations = maps[Constants.SUPER_MARKET2].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
+    
+    //School #1
     
     Scene School1 = new Scene(true, "School #1");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
-    scenes[Constants.SCHOOL1] = School1;
+
+    scenes[Constants.SCHOOL2] = School1;
+       
+    locations = maps[Constants.SCHOOL1].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
     
+    //School #2
     Scene School2 = new Scene(true, "School #2");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+
     scenes[Constants.SCHOOL2] = School2;
+       
+    locations = maps[Constants.SCHOOL2].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
+    
+    //Mall #1
     
     Scene Mall1 = new Scene(true, "Mall #1");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+
     scenes[Constants.MALL1] = Mall1;
+       
+    locations = maps[Constants.MALL1].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
     
+    //Mall #2
     Scene Mall2 = new Scene(true, "Mall #2");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+
     scenes[Constants.MALL2] = Mall2;
+       
+    locations = maps[Constants.MALL2].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
     
+    //Laboratory 
     Scene Laboratory = new Scene(true, "Laboratory");
     roomItemList = new InventoryItem[3];
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
+
     scenes[Constants.LABORATORY] = Laboratory;
+       
+    locations = maps[Constants.LABORATORY].getLocations();
+    wall = new Scene(true, "x");
+    locations[0][0].setScene(wall);
+       
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
     
+    maps[0].setLocations(locations);
+    maps[0].displayMap();
+ 
     return scenes;
     }
 

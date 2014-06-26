@@ -6,7 +6,11 @@
 
 package byui.cit260.zombiesHunting.view;
 
+import byui.cit260.zombiesHunting.model.Constants;
+import byui.cit260.zombiesHunting.model.Game;
+import byui.cit260.zombiesHunting.model.Map;
 import java.util.Scanner;
+import zombiehunting.ZombieHunting;
 
 /**
  *
@@ -32,6 +36,8 @@ public class LocationMenuView extends View{
     
     @Override
     public void doAction(String choice){
+        Game game = ZombieHunting.getCurrentGame();
+        Map[]map = game.getGameMaps();
         
         switch (choice) {
             case "N": //Next Location
@@ -39,26 +45,32 @@ public class LocationMenuView extends View{
                 break;
             case "C": //Construction Site
                 ConstructionView construction = new ConstructionView();
+                map[Constants.CONSTRUCTION_SITE1].displayMap();
                 construction.display();
                 break;
             case "A": //Airport
                 AirportView airport = new AirportView();
+                map[Constants.AIRPORT1].displayMap();
                 airport.display();
                 break;
             case "U": //SuperMarket
                 SupermarketView supermarket = new SupermarketView();
+                map[Constants.SUPER_MARKET1].displayMap();
                 supermarket.display();
                 break;
             case "S": //School
                 SchoolView school = new SchoolView();
+                map[Constants.SCHOOL1].displayMap();
                 school.display();
                 break;
             case "M": //Mall
                 MallView mall = new MallView();
+                map[Constants.MALL1].displayMap();
                 mall.display();
                 break;
             case "L": //Laboratory
                 LaboratoryView lab = new LaboratoryView();
+                map[Constants.LABORATORY].displayMap();
                 lab.display();
                 break;
             case "E": //Stay Here
