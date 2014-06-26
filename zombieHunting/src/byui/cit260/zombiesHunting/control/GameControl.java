@@ -272,7 +272,7 @@ public class GameControl {
     }
     
     maps[Constants.CONSTRUCTION_SITE1].setLocations(locations);
-    maps[0].displayMap();
+    //maps[0].displayMap();
     
     Scene ConstructionSite2 = new Scene(true, "Construction Site #2");
     roomItemList = new InventoryItem[3];
@@ -330,7 +330,7 @@ public class GameControl {
     locations = maps[Constants.AIRPORT2].getLocations();
     wall = new Scene(true, "x");
     locations[0][0].setScene(wall);
-       
+          
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
        Scene temp = new Scene();
        temp.setBlocked(true);

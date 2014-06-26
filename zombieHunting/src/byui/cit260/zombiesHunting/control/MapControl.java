@@ -19,7 +19,7 @@ import zombiehunting.ZombieHunting;
  */
 class MapControl {
             
-    static void moveActorsToLocation(int column, int row, int room) {
+    static void moveActorsToLocation(int row, int column, int room) {
         Game game = ZombieHunting.getCurrentGame();
         Player player = game.getPlayer();
         
@@ -29,7 +29,7 @@ class MapControl {
 
         //place the user at location
         Scene user = new Scene(false, "P");
-        locations[column][row].setScene(user);
+        locations[row][column].setScene(user);
         
         //save the players position
         player.setColumnPosition(column);
@@ -37,9 +37,7 @@ class MapControl {
         player.setRoom(room);
         
         //save player info
-        game.setPlayer(player);
         
-        map[room].setLocations(locations);
     }
     
 }
