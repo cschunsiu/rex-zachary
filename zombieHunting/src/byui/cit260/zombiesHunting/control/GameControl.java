@@ -261,11 +261,15 @@ public class GameControl {
     Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
     Scene wall = new Scene(true, "x");
     locations[0][0].setScene(wall);
+    Scene zombie = new Scene(true, "z");
+    locations[11][10].setScene(zombie);
+    
+    
        
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
        Scene temp = new Scene();
        temp.setBlocked(true);
-       temp.setDescription("x");
+       temp.setDescription("z");
     if (y != 6){ 
        locations [y][5].setScene(temp);
        }
