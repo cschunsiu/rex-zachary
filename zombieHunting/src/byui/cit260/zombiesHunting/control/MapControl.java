@@ -6,14 +6,38 @@
 
 package byui.cit260.zombiesHunting.control;
 
+import byui.cit260.zombiesHunting.model.Game;
+import byui.cit260.zombiesHunting.model.Location;
+import byui.cit260.zombiesHunting.model.Map;
+import byui.cit260.zombiesHunting.model.Player;
+import byui.cit260.zombiesHunting.model.Scene;
+import zombiehunting.ZombieHunting;
+
 /**
  *
  * @author Computer
  */
 class MapControl {
+            
+    static void moveActorsToLocation(int row, int column, int room) {
+        Game game = ZombieHunting.getCurrentGame();
+        Player player = game.getPlayer();
+        
+        Map[] map = game.getGameMaps();
+        
+        Location[][] locations = map[room].getLocations();
 
-    static void moveActorsToStartingLocation(int i, int i0) {
-        System.out.println("*** stub function moveActorsToStartingLocation called ***");
+        //place the user at location
+        Scene user = new Scene(false, "P");
+        locations[row][column].setScene(user);
+        
+        //save the players position
+        player.setColumnPosition(column);
+        player.setRowPosition(row);
+        player.setRoom(room);
+        
+        //save player info
+        
     }
     
 }

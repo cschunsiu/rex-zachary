@@ -6,11 +6,15 @@
 
 package byui.cit260.zombiesHunting.view;
 
+import byui.cit260.zombiesHunting.control.PlayerControl;
+
 /**
  *
  * @author Computer
  */
 public class AirportView extends View{
+
+
     
     public AirportView(){
         super("\n"
@@ -27,14 +31,12 @@ public class AirportView extends View{
         + "\n-------------------------------------------");
      }
     
-    
-    
     @Override
     public void doAction(String choice){
         
         switch (choice){
             case "W": 
-                System.out.println("Move Up");
+                PlayerControl.movePlayer("U");
                 break;
             case "S": 
                 System.out.println("Move Down");
