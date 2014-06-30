@@ -248,12 +248,12 @@ public class GameControl {
     roomItemList[0] = itemList[Constants.RIFLE];
     roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
     roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
-
-       
+      
     Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
     Scene wall = new Scene(true, "x");
     locations[0][0].setScene(wall);
-       
+    
+    //create walls
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
        Scene temp = new Scene();
        temp.setBlocked(true);
@@ -265,6 +265,9 @@ public class GameControl {
     
     Scene zombie = new Scene(true, "Z");
     locations[6][10].setScene(zombie);
+    
+    Scene exit = new Scene(false, "E");
+    locations[15][15].setScene(exit);
     
     maps[Constants.CONSTRUCTION_SITE1].setLocations(locations);
     //maps[0].displayMap();
