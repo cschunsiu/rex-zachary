@@ -268,9 +268,7 @@ public class GameControl {
     locations[y][18].setScene(zombie);
     }
     
-    Scene zombie = new Scene(true, "Z");
-    locations[6][10].setScene(zombie);
-    
+
     Scene exit = new Scene(false, "E");
     locations[15][15].setScene(exit);
     

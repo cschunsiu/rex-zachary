@@ -12,6 +12,7 @@ import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.Player;
 import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.WeaponItem;
+import byui.cit260.zombiesHunting.model.Zombie;
 import java.util.Scanner;
 import zombiehunting.ZombieHunting;
 
@@ -59,8 +60,16 @@ public class PlayerControl {
             Location[][] oldLocations = map[player.getRoom()].getLocations();
             Scene temp = oldLocations[row][column].getScene();
             Boolean blocked = temp.isBlocked();
+            String nextScene = temp.getDescription();
             //boundary checking
-            if (column >= 0 && 
+            if (nextScene == "z"){
+                PlayerControl.attackZombie();
+                MapControl.moveActorsToLocation(row, column, player.getRoom());
+            }
+            else if (nextScene == "E"){
+                MapControl.moveActorsToLocation(row, column, player.getRoom() + 1);
+            }
+            else if (column >= 0 && 
                 row >= 0 && 
                 column <= maxRow && 
                 column <= maxColumn &&
@@ -122,5 +131,26 @@ public class PlayerControl {
         }    
         double accuracy = hittingAmmo/ammo;
         return accuracy;
+    }
+
+    public static double calcAccuracy(int ammo, int hittingAmmo){
+    
+        if (ammo < hittingAmmo){
+            return 1;
+        }    
+        double accuracy = hittingAmmo/ammo;
+        return accuracy;
+    }
+    
+    private static void attackZombie() {
+        Zombie enemy = new Zombie(10);
+        Game game = ZombieHunting.getCurrentGame();
+        int playerAttack = 30;
+        int zombieHealth = 100;
+        //
+        while (zombieHealth > 0){
+            zombieHealth = zombieHealth - playerAttack;
+        }
+
     }
 }

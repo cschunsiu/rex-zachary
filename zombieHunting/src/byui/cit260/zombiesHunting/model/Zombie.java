@@ -17,7 +17,16 @@ public class Zombie implements Serializable {
     private String zombieType;
     private String description;
     private int number;
-
+    private int attackPt;
+    private int speed;
+    
+    public Zombie() {
+    }
+    
+    public Zombie(int attack){
+        attackPt = attack;
+    }
+         
     public String getDescription() {
         return description;
     }
@@ -33,12 +42,7 @@ public class Zombie implements Serializable {
     public void setNumber(int number) {
         this.number = number;
     }
-    private int attackPt;
-    private int speed;
 
-    public Zombie() {
-    }
-     
     public String getZombieType() {
         return zombieType;
     }
@@ -62,42 +66,5 @@ public class Zombie implements Serializable {
     public void setSpeed(int speed) {
         this.speed = speed;
     }
-
-    @Override
-    public String toString() {
-        return "Zombie{" + "zombieType=" + zombieType + ", attackPt=" + attackPt + ", speed=" + speed + '}';
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.zombieType);
-        hash = 97 * hash + this.attackPt;
-        hash = 97 * hash + this.speed;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Zombie other = (Zombie) obj;
-        if (!Objects.equals(this.zombieType, other.zombieType)) {
-            return false;
-        }
-        if (this.attackPt != other.attackPt) {
-            return false;
-        }
-        if (this.speed != other.speed) {
-            return false;
-        }
-        return true;
-    }
-
-
-    
+ 
 }

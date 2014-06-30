@@ -17,6 +17,7 @@ public class Player implements Serializable{
     //class instance variables
     private String name;
     private double health;
+    private int attack;
     private int columnPosition;
     private int rowPosition;
     private int room;
@@ -28,6 +29,15 @@ public class Player implements Serializable{
         return name;
     }
 
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    
     public void setName(String name) {
         this.name = name;
     }
