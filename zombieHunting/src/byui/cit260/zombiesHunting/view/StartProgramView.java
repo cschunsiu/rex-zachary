@@ -48,6 +48,8 @@ public class StartProgramView {
                         + "\n* distributed to the rest of the world.       *");
         
         System.out.println("*                                             *"
+                        + "\n*You begin your adventure at the construction *"
+                        + "\n*site where you have established a base.      *"
                         + "\n*                Good luck                    *"
                         + "\n*                                             *");
         
