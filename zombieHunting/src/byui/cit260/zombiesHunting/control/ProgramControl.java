@@ -16,7 +16,7 @@ import zombiehunting.ZombieHunting;
 public class ProgramControl {
 
     public static Player createPlayer(String playersName) {
-        System.out.println("\n**** CreatePlayer function called ****");
+        //System.out.println("\n**** CreatePlayer function called ****");
         Player player = new Player();
         player.setName(playersName);
         

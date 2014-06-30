@@ -83,14 +83,7 @@ public class PlayerControl {
             
         }//end while
                 
-        //update map info
-           //erase old player scene
-        
-        
-           //update new player scene
-        //function saves players new location to player
-        
-        //save updated map info
+
         map[player.getRoom()].displayMap();
     }
 

@@ -6,6 +6,8 @@
 
 package byui.cit260.zombiesHunting.view;
 
+import byui.cit260.zombiesHunting.control.PlayerControl;
+
 /**
  *
  * @author ChunShing
@@ -31,16 +33,16 @@ public class SchoolView extends View{
         
         switch (choice){
             case "W": 
-                System.out.println("Move Up");
+                PlayerControl.movePlayer("W");
                 break;
             case "S": 
-                System.out.println("Move Down");
+                PlayerControl.movePlayer("S");
                 break;
             case "A": 
-                System.out.println("Move Left");
+                PlayerControl.movePlayer("A");
                 break;
             case "D": 
-                System.out.println("Move Right");
+                PlayerControl.movePlayer("D");
                 break;
             case "G": 
                 System.out.println("Pick up item");
