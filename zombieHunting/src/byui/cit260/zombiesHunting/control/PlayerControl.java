@@ -55,15 +55,20 @@ public class PlayerControl {
                     break;
             }//end switch
             
+            //get the scene description for the next tile.
+            Location[][] oldLocations = map[player.getRoom()].getLocations();
+            Scene temp = oldLocations[row][column].getScene();
+            String newLocation = temp.getDescription();
             //boundary checking
             if (column >= 0 && 
                 row >= 0 && 
                 column <= maxRow && 
-                column <= maxColumn){
-                
+                column <= maxColumn &&
+                newLocation != "x"){
+            
                inBounds = true;
+                
                
-               Location[][] oldLocations = map[player.getRoom()].getLocations();
                // get the player's current location
                int currentRow = player.getRowPosition();
                int currentColumn = player.getColumnPosition();
