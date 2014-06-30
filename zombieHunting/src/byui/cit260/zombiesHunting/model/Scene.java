@@ -20,6 +20,7 @@ public class Scene {
     
    
     public Scene() {
+        blocked = false;
         description = " ";
     }
     

@@ -58,13 +58,13 @@ public class PlayerControl {
             //get the scene description for the next tile.
             Location[][] oldLocations = map[player.getRoom()].getLocations();
             Scene temp = oldLocations[row][column].getScene();
-            String newLocation = temp.getDescription();
+            Boolean blocked = temp.isBlocked();
             //boundary checking
             if (column >= 0 && 
                 row >= 0 && 
                 column <= maxRow && 
                 column <= maxColumn &&
-                newLocation != "x"){
+                !blocked){
             
                inBounds = true;
                 
