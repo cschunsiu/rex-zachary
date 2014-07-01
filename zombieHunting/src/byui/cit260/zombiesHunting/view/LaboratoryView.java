@@ -54,4 +54,10 @@ public class LaboratoryView extends View{
                 break;            
         }
     } 
+
+    public void displayEndGame() {
+        System.out.println("CONGRATULATIONS!");
+        System.out.println("You have found the cure! You have helped secure " 
+                         + "the future of humanity.");
+    }
 }

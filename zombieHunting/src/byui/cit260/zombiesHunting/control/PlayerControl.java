@@ -13,6 +13,7 @@ import byui.cit260.zombiesHunting.model.Player;
 import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.WeaponItem;
 import byui.cit260.zombiesHunting.model.Zombie;
+import byui.cit260.zombiesHunting.view.LaboratoryView;
 import java.util.Scanner;
 import zombiehunting.ZombieHunting;
 
@@ -77,7 +78,7 @@ public class PlayerControl {
                 Scene reset = new Scene();
                 oldLocations[currentRow][currentColumn].setScene(reset);
             }
-            else if (nextScene == "E"){
+            else if (nextScene == "E"){ //exit
                 int currentRow = player.getRowPosition();
                 int currentColumn = player.getColumnPosition();
             
@@ -86,6 +87,11 @@ public class PlayerControl {
                 
                 Scene reset = new Scene();
                 oldLocations[currentRow][currentColumn].setScene(reset);
+            }
+            else if(nextScene == "C"){
+                LaboratoryView laboratory = new LaboratoryView();
+                laboratory.displayEndGame(); 
+                inBounds = true;
             }
             else if (column >= 0 && 
                 row >= 0 && 
