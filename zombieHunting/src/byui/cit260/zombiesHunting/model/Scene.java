@@ -17,7 +17,7 @@ public class Scene {
     private InventoryItem item;
     //private InventoryItem[] items; 
     private String description; //text to represent the scene.
-    
+
    
     public Scene() {
         description = " ";

@@ -261,18 +261,19 @@ public class GameControl {
     Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
     Scene wall = new Scene(true, "x");
     locations[0][0].setScene(wall);
-    Scene zombie = new Scene(true, "z");
-    locations[11][10].setScene(zombie);
-    
-    
-       
+ 
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
        Scene temp = new Scene();
        temp.setBlocked(true);
-       temp.setDescription("z");
+       temp.setDescription("x");
     if (y != 6){ 
        locations [y][5].setScene(temp);
        }
+    }
+   
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
     }
     
     maps[Constants.CONSTRUCTION_SITE1].setLocations(locations);
@@ -299,6 +300,10 @@ public class GameControl {
        locations [y][5].setScene(temp);
        }
     }
+      for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
+    }
     
     //Airport#1
     Scene Airport1 = new Scene(true, "Airport #1");
@@ -321,7 +326,11 @@ public class GameControl {
        locations [y][5].setScene(temp);
        }
     }
-    
+      for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
+    }
+      
     //Airport#2
     Scene Airport2 = new Scene(true, "Airport #2");
     roomItemList = new InventoryItem[3];
@@ -343,7 +352,11 @@ public class GameControl {
        locations [y][5].setScene(temp);
        }
     }
-    
+      for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
+    }
+      
     //Supermartket#1
     Scene Supermarket1 = new Scene(true, "Supermarket #1");
     roomItemList = new InventoryItem[3];
@@ -365,7 +378,11 @@ public class GameControl {
        locations [y][5].setScene(temp);
        }
     }
-    
+      for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
+    }
+      
     //Supermarket 2
     
     Scene Supermarket2 = new Scene(true, "Supermarket #2");
@@ -388,7 +405,11 @@ public class GameControl {
        locations [y][5].setScene(temp);
        }
     }
-    
+      for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
+    }
+      
     //School #1
     
     Scene School1 = new Scene(true, "School #1");
@@ -410,6 +431,10 @@ public class GameControl {
     if (y != 6){ 
        locations [y][5].setScene(temp);
        }
+    }  
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
     }
     
     //School #2
@@ -433,7 +458,11 @@ public class GameControl {
        locations [y][5].setScene(temp);
        }
     }
-    
+      for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
+    }
+      
     //Mall #1
     
     Scene Mall1 = new Scene(true, "Mall #1");
@@ -456,7 +485,11 @@ public class GameControl {
        locations [y][5].setScene(temp);
        }
     }
-    
+      for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
+    }
+      
     //Mall #2
     Scene Mall2 = new Scene(true, "Mall #2");
     roomItemList = new InventoryItem[3];
@@ -478,7 +511,11 @@ public class GameControl {
        locations [y][5].setScene(temp);
        }
     }
-    
+      for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
+    }
+      
     //Laboratory 
     Scene Laboratory = new Scene(true, "Laboratory");
     roomItemList = new InventoryItem[3];
@@ -500,10 +537,14 @@ public class GameControl {
        locations [y][5].setScene(temp);
        }
     }
-    
-    maps[0].setLocations(locations);
-    maps[0].displayMap();
- 
+   for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (true, "z");
+    locations[y][18].setScene(zombie);
+    }
+   
+   Scene cure = new Scene (true, "c");
+   locations[13][15].setScene(cure);
+   
     return scenes;
     }
 
