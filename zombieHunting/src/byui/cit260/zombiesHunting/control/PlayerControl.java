@@ -55,15 +55,20 @@ public class PlayerControl {
                     break;
             }//end switch
             
+            //get the scene description for the next tile.
+            Location[][] oldLocations = map[player.getRoom()].getLocations();
+            Scene temp = oldLocations[row][column].getScene();
+            Boolean blocked = temp.isBlocked();
             //boundary checking
             if (column >= 0 && 
                 row >= 0 && 
                 column <= maxRow && 
-                column <= maxColumn){
-                
+                column <= maxColumn &&
+                !blocked){
+            
                inBounds = true;
+                
                
-               Location[][] oldLocations = map[player.getRoom()].getLocations();
                // get the player's current location
                int currentRow = player.getRowPosition();
                int currentColumn = player.getColumnPosition();
@@ -83,14 +88,7 @@ public class PlayerControl {
             
         }//end while
                 
-        //update map info
-           //erase old player scene
-        
-        
-           //update new player scene
-        //function saves players new location to player
-        
-        //save updated map info
+
         map[player.getRoom()].displayMap();
     }
 

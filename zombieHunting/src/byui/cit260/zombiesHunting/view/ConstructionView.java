@@ -46,7 +46,7 @@ public class ConstructionView extends View{
                 PlayerControl.movePlayer("A");
                 break;
             case "D": 
-                PlayerControl.movePlayer("W");
+                PlayerControl.movePlayer("D");
                 break;
             case "G": 
                 System.out.println("Pick up item");

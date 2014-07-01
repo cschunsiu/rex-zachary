@@ -36,16 +36,16 @@ public class AirportView extends View{
         
         switch (choice){
             case "W": 
-                PlayerControl.movePlayer("U");
+                PlayerControl.movePlayer("W");
                 break;
             case "S": 
-                System.out.println("Move Down");
+                PlayerControl.movePlayer("S");
                 break;
             case "A": 
-                System.out.println("Move Left");
+                PlayerControl.movePlayer("A");
                 break;
             case "D": 
-                System.out.println("Move Right");
+                PlayerControl.movePlayer("D");
                 break;
             case "P": 
                 System.out.println("Pick up item");
