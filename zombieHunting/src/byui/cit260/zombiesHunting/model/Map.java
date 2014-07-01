@@ -29,8 +29,8 @@ public class Map implements Serializable{
         //display top border
         System.out.println("_________________________________________");
         
-        for (int row = 0; row < totalRows - 1; row++ ){
-            for (int column = 0; column < totalColumns - 1; column++){
+        for (int row = 0; row < totalRows; row++ ){
+            for (int column = 0; column < totalColumns; column++){
                 System.out.print("|"); //row divider
                 Scene temp = locations[row][column].getScene();
                 

@@ -27,8 +27,11 @@ public class PlayerControl {
         Player player = game.getPlayer();
         Map[] map = game.getGameMaps();
         
-        int maxRow = map[player.getRoom()].getTotalRows() - 1;
-        int maxColumn = map[player.getRoom()].getTotalColumns() - 1;
+        //int maxRow = map[player.getRoom()].getTotalRows() - 1;
+        //int maxColumn = map[player.getRoom()].getTotalColumns() - 1;
+        
+        int maxRow = 18;
+        int maxColumn = 23;
         
         boolean inBounds = false;
         
@@ -57,17 +60,32 @@ public class PlayerControl {
             }//end switch
             
             //get the scene description for the next tile.
+
             Location[][] oldLocations = map[player.getRoom()].getLocations();
             Scene temp = oldLocations[row][column].getScene();
             Boolean blocked = temp.isBlocked();
             String nextScene = temp.getDescription();
             //boundary checking
             if (nextScene == "z"){
+                int currentRow = player.getRowPosition();
+                int currentColumn = player.getColumnPosition();
+                
                 PlayerControl.attackZombie();
                 MapControl.moveActorsToLocation(row, column, player.getRoom());
+                inBounds = true;
+                
+                Scene reset = new Scene();
+                oldLocations[currentRow][currentColumn].setScene(reset);
             }
             else if (nextScene == "E"){
-                MapControl.moveActorsToLocation(row, column, player.getRoom() + 1);
+                int currentRow = player.getRowPosition();
+                int currentColumn = player.getColumnPosition();
+            
+                MapControl.moveActorsToLocation(0, 0, player.getRoom() + 1);
+                inBounds = true;
+                
+                Scene reset = new Scene();
+                oldLocations[currentRow][currentColumn].setScene(reset);
             }
             else if (column >= 0 && 
                 row >= 0 && 
@@ -76,8 +94,7 @@ public class PlayerControl {
                 !blocked){
             
                inBounds = true;
-                
-               
+                        
                // get the player's current location
                int currentRow = player.getRowPosition();
                int currentColumn = player.getColumnPosition();
