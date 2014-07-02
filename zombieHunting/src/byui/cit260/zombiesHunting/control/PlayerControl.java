@@ -61,11 +61,16 @@ public class PlayerControl {
             }//end switch
             
             //get the scene description for the next tile.
-
             Location[][] oldLocations = map[player.getRoom()].getLocations();
-            Scene temp = oldLocations[row][column].getScene();
-            Boolean blocked = temp.isBlocked();
-            String nextScene = temp.getDescription();
+            Scene temp;
+            String nextScene = null;
+            Boolean blocked = true;
+            if (row >= 0 && column >= 0){
+                temp = oldLocations[row][column].getScene();
+                blocked = temp.isBlocked();
+                nextScene = temp.getDescription();
+            }
+            
             //boundary checking
             if (nextScene == "z"){
                 int currentRow = player.getRowPosition();

@@ -15,9 +15,7 @@ import zombiehunting.ZombieHunting;
  * @author ChunShing
  */
 public class ConstructionView extends View{
-    
-
-    
+      
     public ConstructionView(){
         super("\n"
         + "\n-------------------------------------------"

@@ -238,17 +238,13 @@ public class GameControl {
         locations[5][0].setScene(scenes[Constants.LABORATORY]);
 
     }
-
+    
+    
     //List of inventory to be found in each scene
     private static Scene[] createScenes(Map[] maps, InventoryItem[] itemList, Scene[] scenes) {
-    
+     InventoryItem[] roomItemList = new InventoryItem[3];
     //cONSTRUCTION site#1   
-    InventoryItem[] roomItemList = new InventoryItem[3];
-    //create list of items in the room
-    roomItemList[0] = itemList[Constants.RIFLE];
-    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
-    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
-      
+     
     Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
     Scene wall = new Scene(true, "x");
     locations[0][0].setScene(wall);
@@ -275,11 +271,6 @@ public class GameControl {
     
     /*******************************************************************/
     Scene ConstructionSite2 = new Scene(true, "Construction Site #2");
-    roomItemList = new InventoryItem[3];
-    //create list of items in the room
-    roomItemList[0] = itemList[Constants.RIFLE];
-    roomItemList[1] = itemList[Constants.FIRST_AID_KIT];
-    roomItemList[2] = itemList[Constants.ASSAULT_RIFLE];
 
     scenes[Constants.CONSTRUCTION_SITE2] = ConstructionSite2;
        
@@ -381,6 +372,19 @@ public class GameControl {
     locations[y][18].setScene(zombie);
     }
     
+    for (int x = 6; x < Constants.STANDARD_COLUMNS; x++){
+    if (x != 10){
+        locations[7][x].setScene(wall);
+        }
+    }
+    
+    for (int y = 1; y < 7; y++){
+        locations [y][9].setScene(wall);
+    }
+    
+    for (int x = 10; x < Constants.STANDARD_COLUMNS - 4; x++){
+        locations [1][x].setScene(wall);
+    }
     locations[10][10].setScene(exit);
     
     maps[Constants.AIRPORT2].setLocations(locations);

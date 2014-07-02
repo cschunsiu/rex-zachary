@@ -17,9 +17,9 @@ import zombiehunting.ZombieHunting;
  *
  * @author Computer
  */
-class MapControl {
+public class MapControl {
             
-    static void moveActorsToLocation(int row, int column, int room) {
+    public static void moveActorsToLocation(int row, int column, int room) {
         Game game = ZombieHunting.getCurrentGame();
         Player player = game.getPlayer();
         
