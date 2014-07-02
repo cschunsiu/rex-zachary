@@ -6,6 +6,7 @@
 
 package byui.cit260.zombiesHunting.control;
 
+import byui.cit260.zombiesHunting.Exceptions.MapControlException;
 import byui.cit260.zombiesHunting.model.Constants;
 import byui.cit260.zombiesHunting.model.Game;   
 import byui.cit260.zombiesHunting.model.HealthItem;
@@ -90,7 +91,12 @@ public class GameControl {
         game.setGameMaps(rooms);
         
         //move player to starting position
-        MapControl.moveActorsToLocation(0,0,Constants.CONSTRUCTION_SITE1);
+        try{
+           MapControl.moveActorsToLocation(0,0,Constants.CONSTRUCTION_SITE1);
+        }
+        catch (MapControlException ex){
+                   System.out.println(ex.getMessage());
+               }
     }
 
     public static InventoryItem[] createInventoryList() {

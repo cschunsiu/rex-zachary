@@ -6,6 +6,7 @@
 
 package byui.cit260.zombiesHunting.control;
 
+import byui.cit260.zombiesHunting.Exceptions.MapControlException;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.Location;
 import byui.cit260.zombiesHunting.model.Map;
@@ -65,6 +66,7 @@ public class PlayerControl {
             Scene temp;
             String nextScene = null;
             Boolean blocked = true;
+            
             if (row >= 0 && column >= 0){
                 temp = oldLocations[row][column].getScene();
                 blocked = temp.isBlocked();
@@ -77,7 +79,13 @@ public class PlayerControl {
                 int currentColumn = player.getColumnPosition();
                 
                 PlayerControl.attackZombie();
+                
+                try{
                 MapControl.moveActorsToLocation(row, column, player.getRoom());
+                }
+                catch (MapControlException ex){
+                   System.out.println(ex.getMessage());
+               }
                 inBounds = true;
                 
                 Scene reset = new Scene();
@@ -87,7 +95,12 @@ public class PlayerControl {
                 int currentRow = player.getRowPosition();
                 int currentColumn = player.getColumnPosition();
             
+                try{
                 MapControl.moveActorsToLocation(0, 0, player.getRoom() + 1);
+                }
+                catch (MapControlException ex){
+                   System.out.println(ex.getMessage());
+                }
                 inBounds = true;
                 
                 Scene reset = new Scene();
@@ -109,18 +122,21 @@ public class PlayerControl {
                // get the player's current location
                int currentRow = player.getRowPosition();
                int currentColumn = player.getColumnPosition();
-               MapControl.moveActorsToLocation(row, column, player.getRoom());
-               
+               try{
+                  MapControl.moveActorsToLocation(row, column, player.getRoom());
+               }
+               catch (MapControlException ex){
+                   System.out.println(ex.getMessage());
+               }
                Scene reset = new Scene();
                oldLocations[currentRow][currentColumn].setScene(reset);
                               
             }
             else{
-                System.out.println("ERROR: boundary in the way. Choose a"
-                                 + " different direction to travel.");
+                //System.out.println("ERROR: boundary in the way. Choose a"
+                //                 + " different direction to travel.");
                 //reprompt for new input
-                direction = PlayerControl.getInput();
-                
+                direction = PlayerControl.getInput();               
             }
             
         }//end while
