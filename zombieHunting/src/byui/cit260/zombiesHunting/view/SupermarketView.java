@@ -16,6 +16,7 @@ public class SupermarketView extends View {
     
     public SupermarketView(){
         super("\n"
+        + "\n              Super Market                 "
         + "\n-------------------------------------------"
         + "\n Move                                      |"
         + "\n-------------------------------------------"

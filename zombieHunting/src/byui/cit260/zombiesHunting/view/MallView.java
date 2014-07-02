@@ -16,6 +16,7 @@ public class MallView extends View{
     
     public MallView(){
         super("\n"
+        + "\n                 Mall                      "
         + "\n-------------------------------------------"
         + "\n Move                                      |"
         + "\n-------------------------------------------"

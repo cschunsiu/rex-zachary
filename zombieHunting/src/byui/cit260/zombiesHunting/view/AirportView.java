@@ -33,7 +33,7 @@ public class AirportView extends View{
     
     @Override
     public void doAction(String choice){
-        
+         
         switch (choice){
             case "W": 
                 PlayerControl.movePlayer("W");
@@ -56,5 +56,9 @@ public class AirportView extends View{
                 System.out.println("\n*** Invalid selection *** Try again");
                 break;            
         }
+    }
+
+    private void displayTitle() {
+        System.out.println("\tAirport");
     }
 }

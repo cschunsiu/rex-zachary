@@ -16,6 +16,7 @@ public class LaboratoryView extends View{
     
     public LaboratoryView(){
         super("\n"
+        + "\n               Laboratory                  "
         + "\n-------------------------------------------"
         + "\n Move                                      |"
         + "\n-------------------------------------------"

@@ -41,9 +41,7 @@ public class Map implements Serializable{
                 }
                 else{
                     System.out.print(temp.getDescription());
-                }
-         
-                               
+                }                             
             }
             System.out.println("|");
         }

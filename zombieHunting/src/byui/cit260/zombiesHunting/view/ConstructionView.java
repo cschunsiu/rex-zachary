@@ -18,6 +18,7 @@ public class ConstructionView extends View{
       
     public ConstructionView(){
         super("\n"
+        + "\n            Construction Yard              "
         + "\n-------------------------------------------"
         + "\n Move                                      |"
         + "\n-------------------------------------------"
@@ -29,6 +30,8 @@ public class ConstructionView extends View{
         + "\nE - Exit"
         + "\n-------------------------------------------");
      }
+    
+
     
     @Override
     public void doAction(String choice){

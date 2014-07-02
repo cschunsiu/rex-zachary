@@ -34,10 +34,5 @@ public class InventoryItem implements Serializable{
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public String getQuantityInStock() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     
 }

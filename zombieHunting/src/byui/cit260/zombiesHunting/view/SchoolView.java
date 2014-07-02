@@ -16,6 +16,7 @@ public class SchoolView extends View{
     
     public SchoolView(){
         super("\n"
+        + "\n                School                     "
         + "\n-------------------------------------------"
         + "\n Move                                      |"
         + "\n-------------------------------------------"
