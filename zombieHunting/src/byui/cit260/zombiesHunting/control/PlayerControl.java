@@ -14,6 +14,7 @@ import byui.cit260.zombiesHunting.model.Player;
 import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.WeaponItem;
 import byui.cit260.zombiesHunting.model.Zombie;
+import byui.cit260.zombiesHunting.view.AttackMenuView;
 import byui.cit260.zombiesHunting.view.LaboratoryView;
 import java.util.Scanner;
 import zombiehunting.ZombieHunting;
@@ -194,6 +195,12 @@ public class PlayerControl {
     private static void attackZombie() {
         Zombie enemy = new Zombie(10);
         Game game = ZombieHunting.getCurrentGame();
+        WeaponItem[] weapon = game.getInventoryWeapons();
+         
+        AttackMenuView attack = new AttackMenuView();
+        int weaponChoice = attack.getWeapon();
+        attack.display();
+        
         int playerAttack = 30;
         int zombieHealth = 100;
         //
