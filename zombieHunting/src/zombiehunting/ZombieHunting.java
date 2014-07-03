@@ -49,7 +49,16 @@ public class ZombieHunting {
  
 
         //Testing for the view layer
-        StartProgramView startProgramView = new StartProgramView();
-        startProgramView.startProgram();
+        try {
+           StartProgramView startProgramView = new StartProgramView();
+           startProgramView.startProgram();
+        }
+        catch (Throwable e){
+            System.out.println("An abnormal error occured."
+                             + "Try restarting the program."
+                             + "Call for help if error persists");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

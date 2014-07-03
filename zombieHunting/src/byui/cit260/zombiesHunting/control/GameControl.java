@@ -26,7 +26,7 @@ public class GameControl {
     
     private static Game game;
     private static InventoryItem[] inventoryList;
-    private static Zombie[] ZombieList;
+    private static Zombie[] zombieList;
     private static WeaponItem[] weapons;
     private static Map[] rooms; //Contains the map for each room
 
@@ -39,13 +39,13 @@ public class GameControl {
     }
 
     public static Zombie[] getZombieList() {
-        return ZombieList;
+        return zombieList;
     }
 
-    public static void setZombieList(Zombie[] ZombieList) {
-        GameControl.ZombieList = ZombieList;
+    public static void setZombieList(Zombie[] zombieList) {
+        GameControl.zombieList = zombieList;
     }
- 
+
     public static InventoryItem[] getInventoryList() {
         return inventoryList;
     }
@@ -76,14 +76,18 @@ public class GameControl {
         
         //save player in game
         GameControl.game.setPlayer(ZombieHunting.getPlayer());
+        //Zombie[] zombieList;
         
+        try{
         InventoryItem[] inventoryList = GameControl.createInventoryList();
-        
-        //GameControl.createActorList();
-        Zombie[] zombieList = GameControl.createZombieList();
+        zombieList = GameControl.createZombieList();
         WeaponItem[] weapons = GameControl.createWeaponList();
-        
         rooms = GameControl.createMap();
+        }
+        catch(ArrayStoreException rayErr){
+            rayErr.getMessage();
+            rayErr.printStackTrace();
+        }
         
         game.setInventory(inventoryList);
         game.setZombies(zombieList);
@@ -151,26 +155,26 @@ public class GameControl {
     public static Zombie[] createZombieList() {
         
        //There are 3 different Zombie.
-       ZombieList = new Zombie[Constants.NUM_ZOMBIE]; 
+       zombieList = new Zombie[Constants.NUM_ZOMBIE]; 
        
        Zombie zombie = new Zombie();
        zombie.setDescription("Zombieeeeee");
        zombie.setNumber(Constants.NUMZOMBIE);
-       ZombieList[Constants.ZOMBIE]= zombie;
+       zombieList[Constants.ZOMBIE]= zombie;
 
        Zombie boomer = new Zombie();
        boomer.setDescription("BOOmerrrrr");
        boomer.setNumber(Constants.NUMBOOMER);
-       ZombieList[Constants.BOOMER]= boomer;
+       zombieList[Constants.BOOMER]= boomer;
        
        Zombie tiny = new Zombie();
        tiny.setDescription("Tinyyyyyyyyyyyy");
        tiny.setNumber(Constants.NUMTINY);
-       ZombieList[Constants.TINY]= tiny;
+       zombieList[Constants.TINY]= tiny;
        
-       SortedZombie(ZombieList);
+       SortedZombie(zombieList);
        
-       return ZombieList;
+       return zombieList;
     }
     
     private static void SortedZombie(Zombie ZombieList[]){

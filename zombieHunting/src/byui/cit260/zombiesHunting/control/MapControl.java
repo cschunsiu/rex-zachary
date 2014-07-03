@@ -42,8 +42,6 @@ public class MapControl {
         player.setRowPosition(row);
         player.setRoom(room);
         
-        //save player info
-        
     }
     
 }

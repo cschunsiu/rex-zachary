@@ -70,15 +70,15 @@ public class Constants {
     
     public static int RIFLE_CLIP = 10;
     public static int RIFLE_DAMAGE = 20;
-    public static int STANDARD_RIFLE_AMMO = 50;
+    public static int STANDARD_RIFLE_AMMO = 500;
     
     public static int ROCKET_LAUNCHER_CLIP = 1;
     public static int ROCKET_LAUNCHER_DAMAGE = 100;
-    public static int STANDARD_ROCKET_LAUNCHER_AMMO = 0;
+    public static int STANDARD_ROCKET_LAUNCHER_AMMO = 10;
     
     public static int ASSAULT_RIFLE_CLIP = 50;
     public static int ASSAULT_RIFLE_DAMAGE = 25;
-    public static int STANDARD_ASSAULT_RIFLE_AMMO = 4;
+    public static int STANDARD_ASSAULT_RIFLE_AMMO = 500;
 
 
 

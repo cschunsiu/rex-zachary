@@ -70,7 +70,13 @@ public class LocationMenuView extends View{
                    System.out.println(ex.getMessage());
                }
                 ConstructionView construction = new ConstructionView();
-                map[Constants.CONSTRUCTION_SITE1].displayMap();
+                try{
+                   map[Constants.CONSTRUCTION_SITE1].displayMap();
+                }
+                catch(ArrayIndexOutOfBoundsException mapErr){
+                    mapErr.getMessage();
+                    mapErr.printStackTrace();
+                }
                 construction.display();
                 break;
             case "A": //Airport
@@ -81,7 +87,13 @@ public class LocationMenuView extends View{
                    System.out.println(ex.getMessage());
                 }
                 AirportView airport = new AirportView();
-                map[Constants.AIRPORT1].displayMap();
+                try{
+                   map[Constants.AIRPORT1].displayMap();
+                }
+                catch(ArrayIndexOutOfBoundsException mapErr){
+                    mapErr.getMessage();
+                    mapErr.printStackTrace();
+                }
                 airport.display();
                 break;
             case "U": //SuperMarket
@@ -92,7 +104,13 @@ public class LocationMenuView extends View{
                    System.out.println(ex.getMessage());
                 }
                 SupermarketView supermarket = new SupermarketView();
-                map[Constants.SUPER_MARKET1].displayMap();
+                try{
+                   map[Constants.SUPER_MARKET1].displayMap();
+                }
+                catch(ArrayIndexOutOfBoundsException mapErr){
+                    mapErr.getMessage();
+                    mapErr.printStackTrace();
+                }
                 supermarket.display();
                 break;
             case "S": //School
@@ -103,7 +121,13 @@ public class LocationMenuView extends View{
                    System.out.println(ex.getMessage());
                 }
                 SchoolView school = new SchoolView();
+                try{
                 map[Constants.SCHOOL1].displayMap();
+                }
+                catch(ArrayIndexOutOfBoundsException mapErr){
+                    mapErr.getMessage();
+                    mapErr.printStackTrace();
+                }
                 school.display();
                 break;
             case "M": //Mall
@@ -114,7 +138,13 @@ public class LocationMenuView extends View{
                    System.out.println(ex.getMessage());
                 }
                 MallView mall = new MallView();
-                map[Constants.MALL1].displayMap();
+                try{
+                   map[Constants.MALL1].displayMap();
+                }
+                catch(ArrayIndexOutOfBoundsException mapErr){
+                    mapErr.getMessage();
+                    mapErr.printStackTrace();
+                }
                 mall.display();
                 break;
             case "L": //Laboratory
@@ -125,7 +155,13 @@ public class LocationMenuView extends View{
                    System.out.println(ex.getMessage());
                 }
                 LaboratoryView lab = new LaboratoryView();
+                try {
                 map[Constants.LABORATORY].displayMap();
+                }
+                catch(ArrayIndexOutOfBoundsException mapErr){
+                    mapErr.getMessage();
+                    mapErr.printStackTrace();
+                }
                 lab.display();
                 break;
             case "E": //Stay Here

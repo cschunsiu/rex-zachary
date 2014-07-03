@@ -141,8 +141,13 @@ public class PlayerControl {
             
         }//end while
                 
-
-        map[player.getRoom()].displayMap();
+        try{
+           map[player.getRoom()].displayMap();
+        }
+        catch(ArrayIndexOutOfBoundsException mapErr){
+            mapErr.getMessage();
+            mapErr.printStackTrace();
+        }
     }
 
     private static String getInput() {
@@ -195,6 +200,5 @@ public class PlayerControl {
         while (zombieHealth > 0){
             zombieHealth = zombieHealth - playerAttack;
         }
-
     }
 }

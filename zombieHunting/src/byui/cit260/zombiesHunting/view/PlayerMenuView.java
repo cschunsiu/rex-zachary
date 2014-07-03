@@ -7,6 +7,7 @@
 package byui.cit260.zombiesHunting.view;
 
 import byui.cit260.zombiesHunting.control.GameControl;
+import byui.cit260.zombiesHunting.model.Constants;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.InventoryItem;
 import byui.cit260.zombiesHunting.model.WeaponItem;
@@ -167,6 +168,7 @@ public class PlayerMenuView {
         WeaponItem[] weapon = game.getInventoryWeapons();
         WeaponItem lowestAmmo = weapon[0];
         WeaponItem highestAmmo = weapon[0];
+        String ammoStockpile = null;
  
         for (WeaponItem weapons : weapon){
             if (weapons.getAmmo() == 0)
@@ -193,6 +195,7 @@ public class PlayerMenuView {
                 highestAmmo = weapons;
             }
             
+            ammoStockpile += weapons.getDescription() + "-" + weapons.getAmmo() + "  ";
         }//end of for loop
         
         if (lowestAmmo.getAmmo() != highestAmmo.getAmmo()){
@@ -201,6 +204,9 @@ public class PlayerMenuView {
                            " has the lowest ammo with only " + lowestAmmo.getAmmo() +
                            ". ");
         }
+        
+        System.out.println("\n\tAmmo Stockpile: ");
+        System.out.println(ammoStockpile);
     }
 
 }

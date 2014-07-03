@@ -28,8 +28,13 @@ public abstract class View implements ViewInterface{
             System.out.println(MENU); //display main menu
             
             selection = this.getInput(); //users selection
-            
-            this.doAction(selection);
+            try{
+               this.doAction(selection);
+            }
+            catch(ArrayIndexOutOfBoundsException rayErr){
+                rayErr.getMessage();
+                rayErr.printStackTrace();
+            }
             
         }while (!selection.equals("E"));
            
