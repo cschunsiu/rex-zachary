@@ -49,8 +49,6 @@ public class AttackMenuView {
         }while (selection != 'Q');
     }
         
-    }
-    
     public String getInput() {
         boolean validInput = false;
         String input = null;
@@ -109,5 +107,9 @@ public class AttackMenuView {
         
         return weaponPos;
     }//end getInput function
+
+    private void doAction(char selection) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
