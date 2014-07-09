@@ -10,20 +10,20 @@ package byui.cit260.zombiesHunting.Exceptions;
  *
  * @author Computer
  */
-public class GameControlExceptions extends Exception{
+public class GameControlException extends Exception{
 
-    public GameControlExceptions() {
+    public GameControlException() {
     }
         
-    public GameControlExceptions(String message){
+    public GameControlException(String message){
         super(message);
     }
     
-    public GameControlExceptions(Throwable cause) {
+    public GameControlException(Throwable cause) {
         super(cause);
     }
     
-    public GameControlExceptions(String message, Throwable cause) {
+    public GameControlException(String message, Throwable cause) {
         super(message, cause);
     }
 }

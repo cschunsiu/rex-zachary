@@ -6,8 +6,9 @@
 
 package byui.cit260.zombiesHunting.control;
 
+import byui.cit260.zombiesHunting.Exceptions.GameControlException;
 import byui.cit260.zombiesHunting.Exceptions.MapControlException;
-import byui.cit260.zombiesHunting.model.Constants;
+import byui.cit260.zombiesHunting.model.Constants;   
 import byui.cit260.zombiesHunting.model.Game;   
 import byui.cit260.zombiesHunting.model.HealthItem;
 import byui.cit260.zombiesHunting.model.InventoryItem;
@@ -66,7 +67,7 @@ public class GameControl {
         GameControl.rooms = rooms;
     }
     
-    public static void startNewGame(){
+    public static void startNewGame() throws GameControlException{
         
         //create a new game
         GameControl.game = new Game();
