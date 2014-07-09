@@ -6,6 +6,7 @@
 
 package byui.cit260.zombiesHunting.view;
 
+import byui.cit260.zombiesHunting.Exceptions.GameControlException;
 import byui.cit260.zombiesHunting.control.GameControl;
 import byui.cit260.zombiesHunting.control.ProgramControl;
 import java.util.Scanner;
@@ -35,7 +36,12 @@ public class MainMenuView extends View{
         
         switch (choice) {
             case "G": //display the game menu
-                GameControl.startNewGame();
+                try {
+                   GameControl.startNewGame();
+                }
+                catch(GameControlException ex){
+                   System.out.println(ex.getMessage());    
+                }
                 PlayerMenuView playerMenu = new PlayerMenuView();
                 playerMenu.displayMenu();
                 break;
