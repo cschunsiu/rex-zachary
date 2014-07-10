@@ -6,13 +6,14 @@
 
 package zombiehunting;
 
+import byui.cit260.zombiesHunting.JFrame.StartProgramViewFrame;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.HealthItem;
 import byui.cit260.zombiesHunting.model.Location;
 import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.Player;
-import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.RoomType;
+import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.WeaponItem;
 import byui.cit260.zombiesHunting.model.Zombie;
 import byui.cit260.zombiesHunting.view.StartProgramView;
@@ -50,8 +51,12 @@ public class ZombieHunting {
 
         //Testing for the view layer
         try {
-           StartProgramView startProgramView = new StartProgramView();
-           startProgramView.startProgram();
+           //StartProgramView startProgramView = new StartProgramView();
+           //startProgramView.startProgram();
+            
+           StartProgramViewFrame startProgramView = new StartProgramViewFrame();
+           startProgramView.setVisible(true);
+            
         }
         catch (Throwable e){
             System.out.println("An abnormal error occured."
