@@ -6,6 +6,10 @@
 
 package byui.cit260.zombiesHunting.JFrame;
 
+import byui.cit260.zombiesHunting.control.ProgramControl;
+import byui.cit260.zombiesHunting.model.Player;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Computer
@@ -36,7 +40,7 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         jpStartButton = new javax.swing.JButton();
         jpQuitButton = new javax.swing.JButton();
-        jpPlayerNameText = new javax.swing.JTextField();
+        jtfPlayersName = new javax.swing.JTextField();
         jpPromptLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -126,7 +130,7 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpPromptLabel)
-                    .addComponent(jpPlayerNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfPlayersName, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(275, 275, 275))
         );
         layout.setVerticalGroup(
@@ -143,7 +147,7 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jpPromptLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jpPlayerNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfPlayersName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jpStartButton)
@@ -156,6 +160,18 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
 
     private void jpStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpStartButtonActionPerformed
         // TODO add your handling code here:
+        String playersName = this.jtfPlayersName.getText().trim(); 
+        
+        if (playersName.length()<1){
+            JOptionPane.showMessageDialog(this, 
+                    "This player`s name must be greater than one character",
+                    "Invalid player`s name", 
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Player player = ProgramControl.createPlayer(playersName);
+        
         MainMenuViewFrame mainMenuFrame = new MainMenuViewFrame();
         mainMenuFrame.setVisible(true);
         this.dispose();
@@ -207,10 +223,10 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jpPlayerNameText;
     private javax.swing.JLabel jpPromptLabel;
     private javax.swing.JButton jpQuitButton;
     private javax.swing.JButton jpStartButton;
     private javax.swing.JLabel jpZombieImage;
+    private javax.swing.JTextField jtfPlayersName;
     // End of variables declaration//GEN-END:variables
 }
