@@ -173,6 +173,7 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
         Player player = ProgramControl.createPlayer(playersName);
         
         MainMenuViewFrame mainMenuFrame = new MainMenuViewFrame();
+        mainMenuFrame.getJtfPlayersName().setText(playersName);
         mainMenuFrame.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jpStartButtonActionPerformed
