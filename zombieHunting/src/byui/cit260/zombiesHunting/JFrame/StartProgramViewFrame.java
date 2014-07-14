@@ -33,11 +33,11 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jpTitle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jpZombieImage = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        jpGreeting = new javax.swing.JTextArea();
         jpStartButton = new javax.swing.JButton();
         jpQuitButton = new javax.swing.JButton();
         jtfPlayersName = new javax.swing.JTextField();
@@ -49,10 +49,10 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Viner Hand ITC", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Zombies Hunting");
+        jpTitle.setFont(new java.awt.Font("Viner Hand ITC", 0, 24)); // NOI18N
+        jpTitle.setForeground(new java.awt.Color(255, 0, 0));
+        jpTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jpTitle.setText("Zombies Hunting");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -69,7 +69,7 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -77,7 +77,7 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -86,13 +86,13 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
         jpZombieImage.setBackground(new java.awt.Color(0, 0, 0));
         jpZombieImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/byui/cit260/zombiesHunting/Images/z1.jpg"))); // NOI18N
 
-        jTextArea2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextArea2.setColumns(20);
-        jTextArea2.setFont(new java.awt.Font("Papyrus", 0, 14)); // NOI18N
-        jTextArea2.setForeground(new java.awt.Color(255, 0, 0));
-        jTextArea2.setRows(5);
-        jTextArea2.setText("It is the year 2050 and the world has become*\n* a zombie wasteland. Rumors have spread that *\n* a team of scientists have created a cure    *\n* that would cure the world of the zombie     *\n* plague. As a member of a team of survivors, *\n* it is up to you to retrieve the cure and    *\n* return it to the camp so that it may be     *\n* distributed to the rest of the world.       *\n*                                             *\n*You begin your adventure at the construction *\n*site where you have established a base.      *\n*                Good luck                   ");
-        jScrollPane2.setViewportView(jTextArea2);
+        jpGreeting.setBackground(new java.awt.Color(204, 204, 204));
+        jpGreeting.setColumns(20);
+        jpGreeting.setFont(new java.awt.Font("Papyrus", 0, 14)); // NOI18N
+        jpGreeting.setForeground(new java.awt.Color(255, 0, 0));
+        jpGreeting.setRows(5);
+        jpGreeting.setText("It is the year 2050 and the world has become*\n* a zombie wasteland. Rumors have spread that *\n* a team of scientists have created a cure    *\n* that would cure the world of the zombie     *\n* plague. As a member of a team of survivors, *\n* it is up to you to retrieve the cure and    *\n* return it to the camp so that it may be     *\n* distributed to the rest of the world.       *\n*                                             *\n*You begin your adventure at the construction *\n*site where you have established a base.      *\n*                Good luck                   ");
+        jScrollPane2.setViewportView(jpGreeting);
 
         jpStartButton.setText("Start");
         jpStartButton.addActionListener(new java.awt.event.ActionListener() {
@@ -194,14 +194,14 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jpGreeting;
     private javax.swing.JLabel jpPromptLabel;
     private javax.swing.JButton jpQuitButton;
     private javax.swing.JButton jpStartButton;
+    private javax.swing.JLabel jpTitle;
     private javax.swing.JLabel jpZombieImage;
     private javax.swing.JTextField jtfPlayersName;
     // End of variables declaration//GEN-END:variables

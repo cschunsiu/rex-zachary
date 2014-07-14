@@ -6,6 +6,8 @@
 
 package byui.cit260.zombiesHunting.JFrame;
 
+import byui.cit260.zombiesHunting.control.ProgramControl;
+import byui.cit260.zombiesHunting.model.Player;
 import javax.swing.JLabel;
 
 /**
@@ -66,6 +68,11 @@ public class MainMenuViewFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(153, 204, 255));
 
         jbStartGame.setText("Start Game");
+        jbStartGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbStartGameActionPerformed(evt);
+            }
+        });
         jbStartGame.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jbStartGameKeyPressed(evt);
@@ -189,6 +196,14 @@ public class MainMenuViewFrame extends javax.swing.JFrame {
         helpMenu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jbHelpActionPerformed
+
+    private void jbStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbStartGameActionPerformed
+        // TODO add your handling code here:
+        
+        MapFrame map = new MapFrame();
+        map.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jbStartGameActionPerformed
 
   
 
