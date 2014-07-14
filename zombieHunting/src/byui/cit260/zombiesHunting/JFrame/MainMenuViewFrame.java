@@ -6,6 +6,8 @@
 
 package byui.cit260.zombiesHunting.JFrame;
 
+import byui.cit260.zombiesHunting.Exceptions.GameControlException;
+import byui.cit260.zombiesHunting.control.GameControl;
 import byui.cit260.zombiesHunting.control.ProgramControl;
 import byui.cit260.zombiesHunting.model.Player;
 import javax.swing.JLabel;
@@ -198,7 +200,14 @@ public class MainMenuViewFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jbHelpActionPerformed
 
     private void jbStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbStartGameActionPerformed
-        // TODO add your handling code here:
+       
+        //create game object.
+        try {
+        GameControl.startNewGame();
+        }
+        catch(GameControlException ex){
+            System.out.println(ex.getMessage());
+        }
         
         MapFrame map = new MapFrame();
         map.setVisible(true);
