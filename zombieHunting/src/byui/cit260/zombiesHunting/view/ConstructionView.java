@@ -37,7 +37,7 @@ public class ConstructionView extends View{
     public void doAction(String choice){
         
         switch (choice){
-            case "W": 
+            case "W":
                 PlayerControl.movePlayer("W");
                 break;
             case "S": 

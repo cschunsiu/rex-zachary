@@ -36,6 +36,7 @@ public class PlayerControl {
         int maxRow = 18;
         int maxColumn = 23;
         
+        
         boolean inBounds = false;
         
         while(!inBounds)
@@ -61,6 +62,7 @@ public class PlayerControl {
                     System.out.println("W:up S:down A:left D:right");
                     break;
             }//end switch
+       
             
             //get the scene description for the next tile.
             Location[][] oldLocations = map[player.getRoom()].getLocations();
@@ -141,7 +143,9 @@ public class PlayerControl {
             }
             
         }//end while
-                
+        
+        //unblock this code if not using the GUI interface
+        /*
         try{
            map[player.getRoom()].displayMap();
         }
@@ -149,6 +153,7 @@ public class PlayerControl {
             mapErr.getMessage();
             mapErr.printStackTrace();
         }
+                */
     }
 
     private static String getInput() {

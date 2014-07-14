@@ -6,8 +6,15 @@
 
 package byui.cit260.zombiesHunting.JFrame;
 
+import byui.cit260.zombiesHunting.control.PlayerControl;
+import byui.cit260.zombiesHunting.model.Game;
+import byui.cit260.zombiesHunting.model.Location;
+import byui.cit260.zombiesHunting.model.Map;
+import byui.cit260.zombiesHunting.model.Player;
+import byui.cit260.zombiesHunting.model.Scene;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
+import zombiehunting.ZombieHunting;
 
 /**
  *
@@ -15,6 +22,26 @@ import javax.swing.table.TableColumnModel;
  */
 public class MapFrame extends javax.swing.JFrame {
 
+    private static Game game;
+    private static Map[] rooms;
+
+    public static Game getGame() {
+        return game;
+    }
+
+    public static void setGame(Game game) {
+        MapFrame.game = game;
+    }
+
+    public static Map[] getRooms() {
+        return rooms;
+    }
+
+    public static void setRooms(Map[] rooms) {
+        MapFrame.rooms = rooms;
+    }
+    
+    
     /**
      * Creates new form MapFrame
      */
@@ -22,16 +49,42 @@ public class MapFrame extends javax.swing.JFrame {
         initComponents();
         //can add your own code
         
+        Game game = ZombieHunting.getCurrentGame();
+        Map rooms[] = game.getGameMaps();
+        Location locations[][] = rooms[0].getLocations();
         //populates the table
         int rowCount = this.jTable1.getRowCount();
         int columnCount = this.jTable1.getColumnCount();
         
+        int totalRows = rooms[0].getTotalRows();
+        int totalColumns = rooms[0].getTotalColumns();
+        
+        for (int row = 0; row < totalRows; row++ ){
+            for (int column = 0; column < totalColumns; column++){
+                //System.out.print("|"); //row divider
+                Scene temp = locations[row][column].getScene();
+                
+                if (temp == null){
+                   Scene square = new Scene();
+                   locations[row][column].setScene(square);
+                   this.jTable1.getModel().setValueAt(square.getDescription(), row, column);
+                   //System.out.print(square.getDescription());
+                }
+                else{
+                    this.jTable1.getModel().setValueAt(temp.getDescription(), row, column);
+                    //System.out.print(temp.getDescription());
+                }                             
+            }
+            //System.out.println("|");
+        }
+        /*
         for (int i = 0; i < rowCount; i++) {
            for (int j = 0; j < columnCount; j++){
               //use below statement this to change values on the table
               this.jTable1.getModel().setValueAt("??", i, j);
             }
         }
+        */
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
@@ -78,10 +131,25 @@ public class MapFrame extends javax.swing.JFrame {
         });
 
         jpRightButton.setText("Right");
+        jpRightButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpRightButtonActionPerformed(evt);
+            }
+        });
 
         jpLeftButton.setText("Left");
+        jpLeftButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpLeftButtonActionPerformed(evt);
+            }
+        });
 
         jpDownButton.setText("Down");
+        jpDownButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpDownButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -240,11 +308,87 @@ public class MapFrame extends javax.swing.JFrame {
 
     private void jpUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpUpButtonActionPerformed
         // TODO add your handling code here:
+        Game game = ZombieHunting.getCurrentGame();
+        Player player = game.getPlayer();
+        
+        //old positioning data
+        int oldRow = player.getRowPosition();
+        int oldColumn = player.getColumnPosition();
+        
+        //move the player
+        PlayerControl.movePlayer("W");
+        
+        //new positioning data
+        int newRow = player.getRowPosition();
+        int newColumn = player.getColumnPosition();
+        
+        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
+        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
     }//GEN-LAST:event_jpUpButtonActionPerformed
 
     private void jpInventoryViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpInventoryViewActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jpInventoryViewActionPerformed
+
+    private void jpDownButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpDownButtonActionPerformed
+        // TODO add your handling code here:
+        Game game = ZombieHunting.getCurrentGame();
+        Player player = game.getPlayer();
+        
+        //old positioning data
+        int oldRow = player.getRowPosition();
+        int oldColumn = player.getColumnPosition();
+        
+        //move the player
+        PlayerControl.movePlayer("S");
+        
+        //new positioning data
+        int newRow = player.getRowPosition();
+        int newColumn = player.getColumnPosition();
+        
+        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
+        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
+    }//GEN-LAST:event_jpDownButtonActionPerformed
+
+    private void jpLeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpLeftButtonActionPerformed
+        // TODO add your handling code here:
+        Game game = ZombieHunting.getCurrentGame();
+        Player player = game.getPlayer();
+        
+        //old positioning data
+        int oldRow = player.getRowPosition();
+        int oldColumn = player.getColumnPosition();
+        
+        //move the player
+        PlayerControl.movePlayer("A");
+        
+        //new positioning data
+        int newRow = player.getRowPosition();
+        int newColumn = player.getColumnPosition();
+        
+        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
+        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
+    }//GEN-LAST:event_jpLeftButtonActionPerformed
+
+    private void jpRightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpRightButtonActionPerformed
+        // TODO add your handling code here:
+        Game game = ZombieHunting.getCurrentGame();
+        Player player = game.getPlayer();
+        
+        //old positioning data
+        int oldRow = player.getRowPosition();
+        int oldColumn = player.getColumnPosition();
+        
+        //move the player
+        PlayerControl.movePlayer("D");
+        
+        //new positioning data
+        int newRow = player.getRowPosition();
+        int newColumn = player.getColumnPosition();
+        
+        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
+        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
+    }//GEN-LAST:event_jpRightButtonActionPerformed
 
    
 
