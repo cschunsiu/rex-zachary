@@ -109,6 +109,7 @@
             <Property name="text" type="java.lang.String" value="Start Game"/>
           </Properties>
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbStartGameActionPerformed"/>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jbStartGameKeyPressed"/>
           </Events>
         </Component>
