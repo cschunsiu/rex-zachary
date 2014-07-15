@@ -659,5 +659,7 @@ public class MapFrame extends javax.swing.JFrame {
         
         System.out.println("\n\tAmmo Stockpile: ");
         System.out.println(ammoStockpile);
+        
+        return notification;
     }
 }
