@@ -14,6 +14,7 @@ import byui.cit260.zombiesHunting.model.Location;
 import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.Player;
 import byui.cit260.zombiesHunting.model.Scene;
+import byui.cit260.zombiesHunting.model.WeaponItem;
 import byui.cit260.zombiesHunting.view.LaboratoryView;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
@@ -419,7 +420,23 @@ public class MapFrame extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
        char keyPressed = evt.getKeyChar();
        if (keyPressed == 'a' || keyPressed == 'A') {
-           this.movePlayer("A");
+           //this.movePlayer("A");
+                   Game game = ZombieHunting.getCurrentGame();
+        Player player = game.getPlayer();
+        
+        //old positioning data
+        int oldRow = player.getRowPosition();
+        int oldColumn = player.getColumnPosition();
+        
+        //move the player
+        this.movePlayer("A");
+        
+        //new positioning data
+        int newRow = player.getRowPosition();
+        int newColumn = player.getColumnPosition();
+        
+        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
+        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
        }
        else if (keyPressed == 'w' || keyPressed == 'W') {
            movePlayer("W");
@@ -589,5 +606,58 @@ public class MapFrame extends javax.swing.JFrame {
             }
             //System.out.println("|");
         }
+    }
+    
+    private String checkWeapons() {
+        Game game = ZombieHunting.getCurrentGame();
+        WeaponItem[] weapon = game.getInventoryWeapons();
+        WeaponItem lowestAmmo = weapon[0];
+        WeaponItem highestAmmo = weapon[0];
+        String ammoStockpile = null;
+        String notification = null;
+ 
+        for (WeaponItem weapons : weapon){
+            if (weapons.getAmmo() == 0)
+            {
+                //System.out.println("WARNING: The " + weapons.getDescription() +
+                                   //" Is out of ammo.");
+                notification += "WARNING: The " + weapons.getDescription() + " Is out of ammo.";
+            }
+            else if (weapons.getAmmo() < 10)
+            {
+                //System.out.println("WARNING: The " + weapons.getDescription() +
+                                   //" Is running low on ammo." +
+                                   //" Only " + weapons.getAmmo() + " bullets left.");
+                notification += "WARNING: The " + weapons.getDescription() +
+                                   " Is running low on ammo." +
+                                   " Only " + weapons.getAmmo() + " bullets left.";
+            }
+            else
+            {
+                //System.out.println("The " + weapons.getDescription() + 
+                                   //" is looking good on ammo and is ready to go");
+                notification += "The " + weapons.getDescription() + 
+                                " is looking good on ammo and is ready to go";
+            }
+            
+            if (lowestAmmo.getAmmo() > weapons.getAmmo()){
+                lowestAmmo = weapons;
+            }
+            else if (highestAmmo.getAmmo() < weapons.getAmmo()){
+                highestAmmo = weapons;
+            }
+            
+            ammoStockpile += weapons.getDescription() + "-" + weapons.getAmmo() + "  ";
+        }//end of for loop
+        
+        if (lowestAmmo.getAmmo() != highestAmmo.getAmmo()){
+            
+        System.out.println("The " + lowestAmmo.getDescription() +
+                           " has the lowest ammo with only " + lowestAmmo.getAmmo() +
+                           ". ");
+        }
+        
+        System.out.println("\n\tAmmo Stockpile: ");
+        System.out.println(ammoStockpile);
     }
 }

@@ -412,24 +412,10 @@ public class GameControl {
        
     locations = maps[Constants.SUPER_MARKET1].getLocations();
     wall = new Scene(true, "x");
-    locations[0][0].setScene(wall);
+    //locations[0][0].setScene(wall);
        
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-       Scene temp = new Scene();
-       temp.setBlocked(true);
-       temp.setDescription("x");
-    if (y != 6){ 
-       locations [y][5].setScene(temp);
-       }
-    }
-    
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-        Scene zombie = new Scene (false, "z");
-    locations[y][18].setScene(zombie);
-    }
-    
-    locations[10][10].setScene(exit);
-    
+    GameControl.createSuperMarketScene(locations);
+  
     maps[Constants.SUPER_MARKET1].setLocations(locations);
     
     /******************************************************************/
@@ -444,23 +430,8 @@ public class GameControl {
        
     locations = maps[Constants.SUPER_MARKET2].getLocations();
     wall = new Scene(true, "x");
-    locations[0][0].setScene(wall);
-       
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-       Scene temp = new Scene();
-       temp.setBlocked(true);
-       temp.setDescription("x");
-    if (y != 6){ 
-       locations [y][5].setScene(temp);
-       }
-    }
     
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-        Scene zombie = new Scene (false, "z");
-    locations[y][18].setScene(zombie);
-    }
-    
-    locations[10][10].setScene(exit);
+    GameControl.createSuperMarketScene(locations);
     
     maps[Constants.SUPER_MARKET2].setLocations(locations);
     
@@ -476,23 +447,8 @@ public class GameControl {
        
     locations = maps[Constants.SCHOOL1].getLocations();
     wall = new Scene(true, "x");
-    locations[0][0].setScene(wall);
-       
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-       Scene temp = new Scene();
-       temp.setBlocked(true);
-       temp.setDescription("x");
-    if (y != 6){ 
-       locations [y][5].setScene(temp);
-       }
-    }  
     
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-        Scene zombie = new Scene (true, "z");
-    locations[y][18].setScene(zombie);
-    }
-    
-    locations[10][10].setScene(exit);
+    GameControl.createSchoolScene(locations);
     
     maps[Constants.SCHOOL1].setLocations(locations);
     
@@ -507,24 +463,8 @@ public class GameControl {
     scenes[Constants.SCHOOL2] = School2;
        
     locations = maps[Constants.SCHOOL2].getLocations();
-    wall = new Scene(true, "x");
-    locations[0][0].setScene(wall);
-       
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-       Scene temp = new Scene();
-       temp.setBlocked(true);
-       temp.setDescription("x");
-    if (y != 6){ 
-       locations [y][5].setScene(temp);
-       }
-    }
     
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-        Scene zombie = new Scene (false, "z");
-    locations[y][18].setScene(zombie);
-    }
-    
-    locations[10][10].setScene(exit);
+    GameControl.createSchoolScene(locations);
     
     maps[Constants.SCHOOL2].setLocations(locations);
     
@@ -539,24 +479,7 @@ public class GameControl {
     scenes[Constants.MALL1] = Mall1;
        
     locations = maps[Constants.MALL1].getLocations();
-    wall = new Scene(true, "x");
-    locations[0][0].setScene(wall);
-       
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-       Scene temp = new Scene();
-       temp.setBlocked(true);
-       temp.setDescription("x");
-    if (y != 6){ 
-       locations [y][5].setScene(temp);
-       }
-    }
-    
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-        Scene zombie = new Scene (false, "z");
-    locations[y][18].setScene(zombie);
-    }
-    
-    locations[10][10].setScene(exit);
+    GameControl.createMallScene(locations);
     
     maps[Constants.MALL1].setLocations(locations);
     
@@ -571,25 +494,8 @@ public class GameControl {
     scenes[Constants.MALL2] = Mall2;
        
     locations = maps[Constants.MALL2].getLocations();
-    wall = new Scene(true, "x");
-    locations[0][0].setScene(wall);
-       
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-       Scene temp = new Scene();
-       temp.setBlocked(true);
-       temp.setDescription("x");
-    if (y != 6){ 
-       locations [y][5].setScene(temp);
-       }
-    }
-    
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-        Scene zombie = new Scene (false, "z");
-    locations[y][18].setScene(zombie);
-    }
-    
-    locations[10][10].setScene(exit);
-    
+
+    GameControl.createMallScene(locations);
     maps[Constants.MALL2].setLocations(locations);
     
     /********************************************************************/
@@ -603,28 +509,8 @@ public class GameControl {
     scenes[Constants.LABORATORY] = Laboratory;
        
     locations = maps[Constants.LABORATORY].getLocations();
-    wall = new Scene(true, "x");
-    locations[0][0].setScene(wall);
-       
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-       Scene temp = new Scene();
-       temp.setBlocked(true);
-       temp.setDescription("x");
-    if (y != 6){ 
-       locations [y][5].setScene(temp);
-       }
-    }
-    
-    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-        Scene zombie = new Scene (false, "z");
-    locations[y][18].setScene(zombie);
-    }
-    
-    Scene cure = new Scene(false, "C");
-    locations[8][8].setScene(cure);
-    
+    GameControl.createLabScene(locations);
     maps[Constants.LABORATORY].setLocations(locations);
-    //maps[0].displayMap();
  
     return scenes;
     }
@@ -673,4 +559,144 @@ public class GameControl {
             rooms[i] = temp;
         }
     }
+
+    private static void createSuperMarketScene(Location[][] locations) {
+    
+    Scene wall = new Scene(true, "x");
+    Scene exit = new Scene(false, "E");
+        
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+       Scene temp = new Scene();
+       temp.setBlocked(true);
+       temp.setDescription("x");
+    if (y != 6){ 
+       locations [y][5].setScene(temp);
+       }
+    }
+    
+    for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+        Scene zombie = new Scene (false, "z");
+    locations[y][18].setScene(zombie);
+    }
+    
+    for (int x = 6; x < Constants.STANDARD_COLUMNS; x++){
+    if (x != 10){
+        locations[7][x].setScene(wall);
+        }
+    }
+    
+    for (int y = 1; y < 7; y++){
+        locations [y][9].setScene(wall);
+    }
+    
+    for (int x = 10; x < Constants.STANDARD_COLUMNS - 4; x++){
+        locations [1][x].setScene(wall);
+    }
+    locations[10][10].setScene(exit);
+    }
+
+    private static void createSchoolScene(Location[][] locations) {
+        Scene wall = new Scene(true, "x");
+        Scene exit = new Scene(false, "E");
+        
+        for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+          Scene temp = new Scene();
+          temp.setBlocked(true);
+          temp.setDescription("x");
+        if (y != 6){ 
+          locations [y][5].setScene(temp);
+          }
+       } 
+    
+        for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+          Scene zombie = new Scene (false, "z");
+          locations[y][18].setScene(zombie);
+        }
+    
+        for (int x = 6; x < Constants.STANDARD_COLUMNS; x++){
+           if (x != 10){
+              locations[7][x].setScene(wall);
+           }
+        }
+    
+        for (int y = 1; y < 7; y++){
+            locations [y][9].setScene(wall);
+        }
+    
+        for (int x = 10; x < Constants.STANDARD_COLUMNS - 4; x++){
+            locations [1][x].setScene(wall);
+        }
+        locations[10][10].setScene(exit);
+    }
+    
+    private static void createMallScene(Location[][] locations) {
+        Scene wall = new Scene(true, "x");
+        Scene exit = new Scene(false, "E");
+        
+        for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+          Scene temp = new Scene();
+          temp.setBlocked(true);
+          temp.setDescription("x");
+        if (y != 6){ 
+          locations [y][5].setScene(temp);
+          }
+       } 
+    
+        for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+          Scene zombie = new Scene (false, "z");
+          locations[y][18].setScene(zombie);
+        }
+    
+        for (int x = 6; x < Constants.STANDARD_COLUMNS; x++){
+           if (x != 10){
+              locations[7][x].setScene(wall);
+           }
+        }
+    
+        for (int y = 1; y < 7; y++){
+            locations [y][9].setScene(wall);
+        }
+    
+        for (int x = 10; x < Constants.STANDARD_COLUMNS - 4; x++){
+            locations [1][x].setScene(wall);
+        }
+        locations[10][10].setScene(exit);
+    }
+    
+    private static void createLabScene(Location[][] locations) {
+        Scene wall = new Scene(true, "x");
+        Scene exit = new Scene(false, "E");
+        
+        for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+          Scene temp = new Scene();
+          temp.setBlocked(true);
+          temp.setDescription("x");
+        if (y != 6){ 
+          locations [y][5].setScene(temp);
+          }
+       } 
+    
+        for (int y = 0; y < Constants.STANDARD_ROWS; y++){
+          Scene zombie = new Scene (false, "z");
+          locations[y][18].setScene(zombie);
+        }
+    
+        for (int x = 6; x < Constants.STANDARD_COLUMNS; x++){
+           if (x != 10){
+              locations[7][x].setScene(wall);
+           }
+        }
+    
+        for (int y = 1; y < 7; y++){
+            locations [y][9].setScene(wall);
+        }
+    
+        for (int x = 10; x < Constants.STANDARD_COLUMNS - 4; x++){
+            locations [1][x].setScene(wall);
+        }
+        
+        Scene cure = new Scene(false, "C");
+        locations[8][8].setScene(cure);
+    }
+    
 }

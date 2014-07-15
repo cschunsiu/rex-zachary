@@ -169,23 +169,30 @@ public class PlayerMenuView {
         WeaponItem lowestAmmo = weapon[0];
         WeaponItem highestAmmo = weapon[0];
         String ammoStockpile = null;
+        String notification = null;
  
         for (WeaponItem weapons : weapon){
             if (weapons.getAmmo() == 0)
             {
-                System.out.println("WARNING: The " + weapons.getDescription() +
-                                   " Is out of ammo.");
+                //System.out.println("WARNING: The " + weapons.getDescription() +
+                                   //" Is out of ammo.");
+                notification += "WARNING: The " + weapons.getDescription() + " Is out of ammo.";
             }
             else if (weapons.getAmmo() < 10)
             {
-                System.out.println("WARNING: The " + weapons.getDescription() +
+                //System.out.println("WARNING: The " + weapons.getDescription() +
+                                   //" Is running low on ammo." +
+                                   //" Only " + weapons.getAmmo() + " bullets left.");
+                notification += "WARNING: The " + weapons.getDescription() +
                                    " Is running low on ammo." +
-                                   " Only " + weapons.getAmmo() + " bullets left.");
+                                   " Only " + weapons.getAmmo() + " bullets left.";
             }
             else
             {
-                System.out.println("The " + weapons.getDescription() + 
-                                   " is looking good on ammo and is ready to go");
+                //System.out.println("The " + weapons.getDescription() + 
+                                   //" is looking good on ammo and is ready to go");
+                notification += "The " + weapons.getDescription() + 
+                                " is looking good on ammo and is ready to go";
             }
             
             if (lowestAmmo.getAmmo() > weapons.getAmmo()){
