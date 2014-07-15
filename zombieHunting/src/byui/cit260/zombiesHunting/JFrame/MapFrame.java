@@ -101,6 +101,9 @@ public class MapFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jpTextField = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -148,6 +151,11 @@ public class MapFrame extends javax.swing.JFrame {
         jLabel2.setText("Options");
 
         jpCheckWeaponsButton.setText("check weapons");
+        jpCheckWeaponsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpCheckWeaponsButtonActionPerformed(evt);
+            }
+        });
 
         jpInventoryView.setText("View inventory");
         jpInventoryView.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +259,7 @@ public class MapFrame extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -298,6 +306,25 @@ public class MapFrame extends javax.swing.JFrame {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jpTextField.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jpTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -308,21 +335,25 @@ public class MapFrame extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -449,6 +480,11 @@ public class MapFrame extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_formKeyPressed
 
+    private void jpCheckWeaponsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpCheckWeaponsButtonActionPerformed
+        String notification = checkWeapons();
+        jTextArea1.setText(notification);
+    }//GEN-LAST:event_jpCheckWeaponsButtonActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -461,14 +497,17 @@ public class MapFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jpCheckWeaponsButton;
     private javax.swing.JButton jpDownButton;
     private javax.swing.JButton jpInventoryView;
     private javax.swing.JLabel jpKeyLabel;
     private javax.swing.JButton jpLeftButton;
     private javax.swing.JButton jpRightButton;
+    private javax.swing.JScrollPane jpTextField;
     private javax.swing.JButton jpUpButton;
     // End of variables declaration//GEN-END:variables
 
@@ -589,18 +628,15 @@ public class MapFrame extends javax.swing.JFrame {
         
         for (int row = 0; row < totalRows; row++ ){
             for (int column = 0; column < totalColumns; column++){
-                //System.out.print("|"); //row divider
                 Scene temp = locations[row][column].getScene();
                 
                 if (temp == null){
                    Scene square = new Scene();
                    locations[row][column].setScene(square);
                    this.jTable1.getModel().setValueAt(square.getDescription(), row, column);
-                   //System.out.print(square.getDescription());
                 }
                 else{
                     this.jTable1.getModel().setValueAt(temp.getDescription(), row, column);
-                    //System.out.print(temp.getDescription());
                 }                             
             }
             //System.out.println("|");
@@ -612,29 +648,22 @@ public class MapFrame extends javax.swing.JFrame {
         WeaponItem[] weapon = game.getInventoryWeapons();
         WeaponItem lowestAmmo = weapon[0];
         WeaponItem highestAmmo = weapon[0];
-        String ammoStockpile = null;
-        String notification = null;
+        String ammoStockpile = "";
+        String notification = "";
  
         for (WeaponItem weapons : weapon){
             if (weapons.getAmmo() == 0)
             {
-                //System.out.println("WARNING: The " + weapons.getDescription() +
-                                   //" Is out of ammo.");
                 notification += "WARNING: The " + weapons.getDescription() + " Is out of ammo.";
             }
             else if (weapons.getAmmo() < 10)
             {
-                //System.out.println("WARNING: The " + weapons.getDescription() +
-                                   //" Is running low on ammo." +
-                                   //" Only " + weapons.getAmmo() + " bullets left.");
                 notification += "WARNING: The " + weapons.getDescription() +
                                    " Is running low on ammo." +
                                    " Only " + weapons.getAmmo() + " bullets left.";
             }
             else
             {
-                //System.out.println("The " + weapons.getDescription() + 
-                                   //" is looking good on ammo and is ready to go");
                 notification += "The " + weapons.getDescription() + 
                                 " is looking good on ammo and is ready to go";
             }
@@ -646,18 +675,17 @@ public class MapFrame extends javax.swing.JFrame {
                 highestAmmo = weapons;
             }
             
-            ammoStockpile += weapons.getDescription() + "-" + weapons.getAmmo() + "  ";
+            ammoStockpile += "\n\tAmmo Stockpile: " + weapons.getDescription() + "-" + weapons.getAmmo() + "  ";
         }//end of for loop
         
         if (lowestAmmo.getAmmo() != highestAmmo.getAmmo()){
             
-        System.out.println("The " + lowestAmmo.getDescription() +
+         notification +=   "\nThe " + lowestAmmo.getDescription() +
                            " has the lowest ammo with only " + lowestAmmo.getAmmo() +
-                           ". ");
+                           ". ";
         }
         
-        System.out.println("\n\tAmmo Stockpile: ");
-        System.out.println(ammoStockpile);
+        notification += ammoStockpile;
         
         return notification;
     }
