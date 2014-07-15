@@ -58,8 +58,8 @@ public class PlayerControl {
                     column = column + 1;
                     break;
                 default:
-                    System.out.println("Invalid movement direction");
-                    System.out.println("W:up S:down A:left D:right");
+                    //System.out.println("Invalid movement direction");
+                    //System.out.println("W:up S:down A:left D:right");
                     break;
             }//end switch
        
@@ -197,15 +197,17 @@ public class PlayerControl {
         return accuracy;
     }
     
-    private static void attackZombie() {
+    public static void attackZombie() {
         Zombie enemy = new Zombie(10);
         Game game = ZombieHunting.getCurrentGame();
         WeaponItem[] weapon = game.getInventoryWeapons();
-         
+        
+        //Needs fixing to work with GUI interface
+        /*
         AttackMenuView attack = new AttackMenuView();
         int weaponChoice = attack.getWeapon();
         attack.display();
-        
+        */
         int playerAttack = 30;
         int zombieHealth = 100;
         //

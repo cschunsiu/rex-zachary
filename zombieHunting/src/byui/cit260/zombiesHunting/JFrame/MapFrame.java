@@ -6,12 +6,15 @@
 
 package byui.cit260.zombiesHunting.JFrame;
 
+import byui.cit260.zombiesHunting.Exceptions.MapControlException;
+import byui.cit260.zombiesHunting.control.MapControl;
 import byui.cit260.zombiesHunting.control.PlayerControl;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.Location;
 import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.Player;
 import byui.cit260.zombiesHunting.model.Scene;
+import byui.cit260.zombiesHunting.view.LaboratoryView;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import zombiehunting.ZombieHunting;
@@ -52,39 +55,12 @@ public class MapFrame extends javax.swing.JFrame {
         Game game = ZombieHunting.getCurrentGame();
         Map rooms[] = game.getGameMaps();
         Location locations[][] = rooms[0].getLocations();
+        
+        this.renderMap();
         //populates the table
+        
         int rowCount = this.jTable1.getRowCount();
         int columnCount = this.jTable1.getColumnCount();
-        
-        int totalRows = rooms[0].getTotalRows();
-        int totalColumns = rooms[0].getTotalColumns();
-        
-        for (int row = 0; row < totalRows; row++ ){
-            for (int column = 0; column < totalColumns; column++){
-                //System.out.print("|"); //row divider
-                Scene temp = locations[row][column].getScene();
-                
-                if (temp == null){
-                   Scene square = new Scene();
-                   locations[row][column].setScene(square);
-                   this.jTable1.getModel().setValueAt(square.getDescription(), row, column);
-                   //System.out.print(square.getDescription());
-                }
-                else{
-                    this.jTable1.getModel().setValueAt(temp.getDescription(), row, column);
-                    //System.out.print(temp.getDescription());
-                }                             
-            }
-            //System.out.println("|");
-        }
-        /*
-        for (int i = 0; i < rowCount; i++) {
-           for (int j = 0; j < columnCount; j++){
-              //use below statement this to change values on the table
-              this.jTable1.getModel().setValueAt("??", i, j);
-            }
-        }
-        */
         
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
@@ -316,7 +292,7 @@ public class MapFrame extends javax.swing.JFrame {
         int oldColumn = player.getColumnPosition();
         
         //move the player
-        PlayerControl.movePlayer("W");
+        this.movePlayer("W");
         
         //new positioning data
         int newRow = player.getRowPosition();
@@ -340,7 +316,7 @@ public class MapFrame extends javax.swing.JFrame {
         int oldColumn = player.getColumnPosition();
         
         //move the player
-        PlayerControl.movePlayer("S");
+        this.movePlayer("S");
         
         //new positioning data
         int newRow = player.getRowPosition();
@@ -360,7 +336,7 @@ public class MapFrame extends javax.swing.JFrame {
         int oldColumn = player.getColumnPosition();
         
         //move the player
-        PlayerControl.movePlayer("A");
+        this.movePlayer("A");
         
         //new positioning data
         int newRow = player.getRowPosition();
@@ -380,7 +356,7 @@ public class MapFrame extends javax.swing.JFrame {
         int oldColumn = player.getColumnPosition();
         
         //move the player
-        PlayerControl.movePlayer("D");
+        this.movePlayer("D");
         
         //new positioning data
         int newRow = player.getRowPosition();
@@ -406,4 +382,140 @@ public class MapFrame extends javax.swing.JFrame {
     private javax.swing.JButton jpRightButton;
     private javax.swing.JButton jpUpButton;
     // End of variables declaration//GEN-END:variables
+
+    private void movePlayer(String direction) {
+        Game game = ZombieHunting.getCurrentGame();
+        Player player = game.getPlayer();
+        Map[] map = game.getGameMaps();
+        
+        int row = player.getRowPosition();
+        int column = player.getColumnPosition();
+            
+        switch(direction){
+            case "W": //up
+                row = row - 1;
+                break;
+            case "S": //down
+                row = row + 1;
+                break;
+            case "A": //left
+                column = column - 1;
+                break;
+            case "D": //right
+                column = column + 1;
+                break;
+        }
+        
+        Location[][] oldLocations = map[player.getRoom()].getLocations();
+        Scene temp;
+        String nextScene = null;
+        Boolean blocked = true;
+        //int maxRow = 18;
+        //int maxColumn = 23;
+        
+        int maxRow = 20;
+        int maxColumn = 20;
+        
+        if (row >= 0 && 
+            column >= 0 &&
+            row <= maxRow &&
+            column <= maxColumn){
+            
+               temp = oldLocations[row][column].getScene();
+               blocked = temp.isBlocked();
+               nextScene = temp.getDescription();
+        }
+        
+        //boundary checking
+            if (nextScene == "z"){
+                int currentRow = player.getRowPosition();
+                int currentColumn = player.getColumnPosition();
+                
+                PlayerControl.attackZombie();
+                
+                try{
+                MapControl.moveActorsToLocation(row, column, player.getRoom());
+                }
+                catch (MapControlException ex){
+                   System.out.println(ex.getMessage());
+               }
+                
+                Scene reset = new Scene();
+                oldLocations[currentRow][currentColumn].setScene(reset);
+            }
+            else if (nextScene == "E"){ //exit
+                int currentRow = player.getRowPosition();
+                int currentColumn = player.getColumnPosition();
+            
+                try{
+                   MapControl.moveActorsToLocation(0, 0, player.getRoom() + 1);
+                   this.renderMap();
+                }
+                catch (MapControlException ex){
+                   System.out.println(ex.getMessage());
+                }
+                //inBounds = true;
+                
+                Scene reset = new Scene();
+                oldLocations[currentRow][currentColumn].setScene(reset);
+            }
+            else if(nextScene == "C"){
+                LaboratoryView laboratory = new LaboratoryView();
+                laboratory.displayEndGame(); 
+                //inBounds = true;
+            }
+            else if (column >= 0 && 
+                row >= 0 && 
+                column <= maxRow && 
+                column <= maxColumn &&
+                !blocked){
+            
+               //inBounds = true;
+                        
+               // get the player's current location
+               int currentRow = player.getRowPosition();
+               int currentColumn = player.getColumnPosition();
+               try{
+                  MapControl.moveActorsToLocation(row, column, player.getRoom());
+               }
+               catch (MapControlException ex){
+                   System.out.println(ex.getMessage());
+               }
+               Scene reset = new Scene();
+               oldLocations[currentRow][currentColumn].setScene(reset);                            
+            }
+            
+    }
+
+    private void renderMap() {
+        Game game = ZombieHunting.getCurrentGame();
+        Map rooms[] = game.getGameMaps();
+        Player player = game.getPlayer();
+        Location locations[][] = rooms[player.getRoom()].getLocations();
+        
+        int rowCount = this.jTable1.getRowCount();
+        int columnCount = this.jTable1.getColumnCount();
+        
+        int totalRows = rooms[player.getRoom()].getTotalRows();
+        int totalColumns = rooms[player.getRoom()].getTotalColumns();
+        
+        for (int row = 0; row < totalRows; row++ ){
+            for (int column = 0; column < totalColumns; column++){
+                //System.out.print("|"); //row divider
+                Scene temp = locations[row][column].getScene();
+                
+                if (temp == null){
+                   Scene square = new Scene();
+                   locations[row][column].setScene(square);
+                   this.jTable1.getModel().setValueAt(square.getDescription(), row, column);
+                   //System.out.print(square.getDescription());
+                }
+                else{
+                    this.jTable1.getModel().setValueAt(temp.getDescription(), row, column);
+                    //System.out.print(temp.getDescription());
+                }                             
+            }
+            //System.out.println("|");
+        }
+    }
 }
