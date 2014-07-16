@@ -532,9 +532,8 @@ public class MapFrame extends javax.swing.JFrame {
                 oldLocations[currentRow][currentColumn].setScene(reset);
             }
             else if(nextScene == "C"){
-                LaboratoryView laboratory = new LaboratoryView();
-                laboratory.displayEndGame(); 
-                //inBounds = true;
+                VictoryViewFrame victoryViewFrame = new VictoryViewFrame();; 
+                victoryViewFrame.setVisible(true);
             }
             else if (column >= 0 && 
                 row >= 0 && 
