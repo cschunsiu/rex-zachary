@@ -418,10 +418,18 @@ public class MapFrame extends javax.swing.JFrame {
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
        char keyPressed = evt.getKeyChar();
-       if (keyPressed = 'a' || keypressed = 'A') {
-           // move player to the left
+       if (keyPressed == 'a' || keyPressed == 'A') {
+           this.movePlayer("A");
        }
-       else if
+       else if (keyPressed == 'w' || keyPressed == 'W') {
+           movePlayer("W");
+       }
+       else if (keyPressed == 's' || keyPressed == 'S') {
+           movePlayer("S");
+       }
+       else if (keyPressed == 'd' || keyPressed == 'D') {
+       movePlayer("D");
+       }
     }//GEN-LAST:event_formKeyPressed
 
    
