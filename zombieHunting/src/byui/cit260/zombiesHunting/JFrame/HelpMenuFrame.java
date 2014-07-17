@@ -55,6 +55,11 @@ public class HelpMenuFrame extends javax.swing.JFrame {
         );
 
         jpHelpButton.setText("Back");
+        jpHelpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jpHelpButtonActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -102,6 +107,10 @@ public class HelpMenuFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jpHelpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpHelpButtonActionPerformed
+    this.dispose();      
+    }//GEN-LAST:event_jpHelpButtonActionPerformed
 
   
     // Variables declaration - do not modify//GEN-BEGIN:variables

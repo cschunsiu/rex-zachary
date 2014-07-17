@@ -196,7 +196,6 @@ public class MainMenuViewFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         HelpMenuFrame helpMenu = new HelpMenuFrame();
         helpMenu.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_jbHelpActionPerformed
 
     private void jbStartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbStartGameActionPerformed
