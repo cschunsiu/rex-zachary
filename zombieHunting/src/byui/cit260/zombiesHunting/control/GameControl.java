@@ -433,6 +433,10 @@ public class GameControl {
     
     GameControl.createSuperMarketScene(locations);
     
+    for (int x = 1; x < 5; x++){  
+       locations[5][x].setScene(wall);
+    }
+    
     maps[Constants.SUPER_MARKET2].setLocations(locations);
     
 /*************************************************************************/    
@@ -592,9 +596,17 @@ public class GameControl {
     for (int x = 10; x < Constants.STANDARD_COLUMNS - 4; x++){
         locations [1][x].setScene(wall);
     }
+    
+    for (int x = 0; x < 5; x++){
+       if (x != 4){
+       locations[3][x].setScene(wall);
+       }
+    }
+    
     locations[10][10].setScene(exit);
     }
 
+    /********************************************************/
     private static void createSchoolScene(Location[][] locations) {
         Scene wall = new Scene(true, "x");
         Scene exit = new Scene(false, "E");
@@ -626,6 +638,17 @@ public class GameControl {
         for (int x = 10; x < Constants.STANDARD_COLUMNS - 4; x++){
             locations [1][x].setScene(wall);
         }
+        
+        for (int x = 0; x < 5; x++){
+            if (x != 4){
+               locations[3][x].setScene(wall);
+            }
+        }
+        
+        for (int x = 1; x < 5; x++){  
+           locations[5][x].setScene(wall);
+        }
+        
         locations[10][10].setScene(exit);
     }
     
@@ -640,7 +663,7 @@ public class GameControl {
         if (y != 6){ 
           locations [y][5].setScene(temp);
           }
-       } 
+        } 
     
         for (int y = 0; y < Constants.STANDARD_ROWS; y++){
           Scene zombie = new Scene (false, "z");
@@ -660,6 +683,17 @@ public class GameControl {
         for (int x = 10; x < Constants.STANDARD_COLUMNS - 4; x++){
             locations [1][x].setScene(wall);
         }
+        
+        for (int x = 0; x < 5; x++){
+            if (x != 4){
+               locations[3][x].setScene(wall);
+            }
+        }
+        
+        for (int x = 1; x < 5; x++){  
+           locations[5][x].setScene(wall);
+        }
+        
         locations[10][10].setScene(exit);
     }
     
@@ -695,6 +729,16 @@ public class GameControl {
             locations [1][x].setScene(wall);
         }
         
+        
+        for (int x = 0; x < 5; x++){
+            if (x != 4){
+               locations[3][x].setScene(wall);
+            }
+        }
+        
+        for (int x = 1; x < 5; x++){  
+           locations[5][x].setScene(wall);
+        }
         Scene cure = new Scene(false, "C");
         locations[8][8].setScene(cure);
     }
