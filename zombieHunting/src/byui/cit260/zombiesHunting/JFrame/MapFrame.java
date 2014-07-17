@@ -10,6 +10,7 @@ import byui.cit260.zombiesHunting.Exceptions.MapControlException;
 import byui.cit260.zombiesHunting.control.MapControl;
 import byui.cit260.zombiesHunting.control.PlayerControl;
 import byui.cit260.zombiesHunting.model.Game;
+import byui.cit260.zombiesHunting.model.InventoryItem;
 import byui.cit260.zombiesHunting.model.Location;
 import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.Player;
@@ -385,7 +386,23 @@ public class MapFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jpUpButtonActionPerformed
 
     private void jpInventoryViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpInventoryViewActionPerformed
-        // TODO add your handling code here:
+
+        Game game = ZombieHunting.getCurrentGame();
+        InventoryItem[] inventory = game.getInventory();
+        //Display Title
+        String display = "\nList of Inventory Items\n";
+        
+        //Display description
+        display += "Description" + "\t" + "In Stock";
+                           
+        //for each inventory Item
+        for (InventoryItem InventoryItem : inventory){
+            display += "\n" + InventoryItem.getDescription() 
+                            + "\t   " + InventoryItem.getQuantity();
+        }
+        
+        jTextArea1.setText(display);
+        
     }//GEN-LAST:event_jpInventoryViewActionPerformed
 
     private void jpDownButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpDownButtonActionPerformed
