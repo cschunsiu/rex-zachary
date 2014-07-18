@@ -80,10 +80,10 @@ public class GameControl {
         //Zombie[] zombieList;
         
         try{
-        InventoryItem[] inventoryList = GameControl.createInventoryList();
-        zombieList = GameControl.createZombieList();
-        WeaponItem[] weapons = GameControl.createWeaponList();
-        rooms = GameControl.createMap();
+           InventoryItem[] inventoryList = GameControl.createInventoryList();
+           zombieList = GameControl.createZombieList();
+           WeaponItem[] weapons = GameControl.createWeaponList();
+           rooms = GameControl.createMap();
         }
         catch(ArrayStoreException rayErr){
             rayErr.getMessage();
@@ -160,17 +160,17 @@ public class GameControl {
        
        Zombie zombie = new Zombie();
        zombie.setDescription("Zombieeeeee");
-       zombie.setNumber(Constants.NUMZOMBIE);
+       //zombie.setNumber(Constants.NUMZOMBIE);
        zombieList[Constants.ZOMBIE]= zombie;
 
        Zombie boomer = new Zombie();
        boomer.setDescription("BOOmerrrrr");
-       boomer.setNumber(Constants.NUMBOOMER);
+       //boomer.setNumber(Constants.NUMBOOMER);
        zombieList[Constants.BOOMER]= boomer;
        
        Zombie tiny = new Zombie();
        tiny.setDescription("Tinyyyyyyyyyyyy");
-       tiny.setNumber(Constants.NUMTINY);
+       //tiny.setNumber(Constants.NUMTINY);
        zombieList[Constants.TINY]= tiny;
        
        SortedZombie(zombieList);
@@ -258,6 +258,7 @@ public class GameControl {
      
     Location[][] locations = maps[Constants.CONSTRUCTION_SITE1].getLocations();
     Scene wall = new Scene(true, "x");
+    Scene zombie = new Scene (false, "z");
     locations[0][0].setScene(wall);
     
     //create walls
@@ -270,11 +271,14 @@ public class GameControl {
        }
     }
    
+    locations[11][2].setScene(zombie);
+    
+    /*
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
         Scene zombie = new Scene (false, "z");
     locations[y][18].setScene(zombie);
     }
-    
+    */
     Scene exit = new Scene(false, "E");
     locations[10][10].setScene(exit);
     
@@ -299,7 +303,7 @@ public class GameControl {
     }
     
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-       Scene zombie = new Scene (true, "z");
+       //Scene zombie = new Scene (true, "z");
        locations[y][18].setScene(zombie);
     }
       
@@ -337,8 +341,8 @@ public class GameControl {
     }
     
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-        Scene zombie = new Scene (false, "z");
-    locations[y][18].setScene(zombie);
+        //Scene zombie = new Scene (false, "z");
+       locations[y][18].setScene(zombie);
     }
     
     for (int x = 6; x < Constants.STANDARD_COLUMNS; x++){
@@ -366,7 +370,6 @@ public class GameControl {
     scenes[Constants.AIRPORT2] = Airport2;
        
     locations = maps[Constants.AIRPORT2].getLocations();
-    wall = new Scene(true, "x");
     locations[0][0].setScene(wall);
           
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
@@ -379,8 +382,8 @@ public class GameControl {
     }
     
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
-        Scene zombie = new Scene (false, "z");
-    locations[y][18].setScene(zombie);
+        //Scene zombie = new Scene (false, "z");
+       locations[y][18].setScene(zombie);
     }
     
     for (int x = 6; x < Constants.STANDARD_COLUMNS; x++){

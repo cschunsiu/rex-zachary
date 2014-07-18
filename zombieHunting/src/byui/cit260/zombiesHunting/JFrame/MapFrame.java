@@ -253,10 +253,7 @@ public class MapFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,7 +466,7 @@ public class MapFrame extends javax.swing.JFrame {
        char keyPressed = evt.getKeyChar();
        if (keyPressed == 'a' || keyPressed == 'A') {
            //this.movePlayer("A");
-                   Game game = ZombieHunting.getCurrentGame();
+        Game game = ZombieHunting.getCurrentGame();
         Player player = game.getPlayer();
         
         //old positioning data
@@ -493,7 +490,7 @@ public class MapFrame extends javax.swing.JFrame {
            movePlayer("S");
        }
        else if (keyPressed == 'd' || keyPressed == 'D') {
-       movePlayer("D");
+           movePlayer("D");
        }
     }//GEN-LAST:event_formKeyPressed
 
@@ -656,7 +653,7 @@ public class MapFrame extends javax.swing.JFrame {
                     this.jTable1.getModel().setValueAt(temp.getDescription(), row, column);
                 }                             
             }
-            //System.out.println("|");
+          
         }
     }
     
