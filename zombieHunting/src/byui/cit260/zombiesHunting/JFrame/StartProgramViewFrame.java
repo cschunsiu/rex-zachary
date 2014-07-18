@@ -167,7 +167,7 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jpStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpStartButtonActionPerformed
-        // TODO add your handling code here:
+
         String playersName = this.jtfPlayersName.getText().trim(); 
         
         if (playersName.length()<1){
@@ -187,7 +187,7 @@ public class StartProgramViewFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jpStartButtonActionPerformed
 
     private void jpQuitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpQuitButtonActionPerformed
-        // TODO add your handling code here:
+
         this.dispose();
     }//GEN-LAST:event_jpQuitButtonActionPerformed
 

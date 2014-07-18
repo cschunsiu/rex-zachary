@@ -17,6 +17,10 @@ import byui.cit260.zombiesHunting.model.Player;
 import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.WeaponItem;
 import byui.cit260.zombiesHunting.view.LaboratoryView;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import zombiehunting.ZombieHunting;
@@ -639,6 +643,7 @@ public class MapFrame extends javax.swing.JFrame {
         
         int totalRows = rooms[player.getRoom()].getTotalRows();
         int totalColumns = rooms[player.getRoom()].getTotalColumns();
+
         
         for (int row = 0; row < totalRows; row++ ){
             for (int column = 0; column < totalColumns; column++){
@@ -647,6 +652,15 @@ public class MapFrame extends javax.swing.JFrame {
                 if (temp == null){
                    Scene square = new Scene();
                    locations[row][column].setScene(square);
+                   /*
+                   BufferedImage image = temp.getImage();
+                   if(Image != null){
+                      int rowHeight = this.jTable1.getRowHeight();
+                      int columnWidth = this.jTable1.getColumn(column).getWidth();
+                      //BufferedImage iconImage = GameMeunuFrame.resize(image,columnWidth,rowHeight);
+                      value = new ImageIcon(iconImage);
+                           }
+                           */
                    this.jTable1.getModel().setValueAt(square.getDescription(), row, column);
                 }
                 else{
@@ -655,6 +669,15 @@ public class MapFrame extends javax.swing.JFrame {
             }
           
         }
+
+    }
+    private static BufferedImage getImage(Scene scene, String location) throws IOException{
+        URL url = scene.getClass().getResource(location);
+        BufferedImage image= null;
+        
+        image = ImageIO.read(url);
+        
+        return image;
     }
     
     private String checkWeapons() {
