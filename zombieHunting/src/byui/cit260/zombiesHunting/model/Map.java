@@ -20,9 +20,18 @@ public class Map implements Serializable{
     private int numScenes = 0;
     private Scene[] scenes;
     private Location[][] locations; //one for every square on the map.
+    private Zombie zombies[];
 
     public Location[][] getLocations() {
         return locations;
+    }
+
+    public Zombie[] getZombies() {
+        return zombies;
+    }
+
+    public void setZombies(Zombie[] zombies) {
+        this.zombies = zombies;
     }
 
     public void displayMap(){

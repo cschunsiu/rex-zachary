@@ -10,6 +10,7 @@ import byui.cit260.zombiesHunting.Exceptions.MapControlException;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.Location;
 import byui.cit260.zombiesHunting.model.Map;
+import byui.cit260.zombiesHunting.model.Player;
 import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.Zombie;
 import byui.cit260.zombiesHunting.view.LaboratoryView;
@@ -59,16 +60,17 @@ public class ZombieControl {
     
     /*********************************************************************
     * Zombies will be assigned a script to determine their pattern of 
-    * movement. 
+    * movement. The zombie object should be retrieved from the map itself.
     **********************************************************************/
     public void moveZombie(Zombie zombie){
         Game game = ZombieHunting.getCurrentGame();
         Map[] map = game.getGameMaps();
+        Location[][] locations = map[zombie.getRoomPosition()].getLocations();
         
         int currentRow = zombie.getRowPosition();
         int currentColumn = zombie.getColumnPosition();
-        int maxRow = 18;
-        int maxColumn = 23;
+        int maxRow = 15;
+        int maxColumn = 20;
         
         String direction = " ";
         String script = zombie.getScript();
@@ -126,14 +128,17 @@ public class ZombieControl {
         }
 
         //use updated location to get the nextScene's info
-        if (row >= 0 && column >= 0){
+        if (row >= 0 && 
+            column >= 0 &&
+            row < maxRow && 
+            column < maxColumn){
             temp = oldLocations[row][column].getScene();
             blocked = temp.isBlocked();
             nextScene = temp.getDescription();
         }
         boolean inBounds = false;
         
-        while(!inBounds){
+        //while(!inBounds){
             //boundary checking
             if (nextScene == "z" || 
                 nextScene == "E" || 
@@ -151,9 +156,19 @@ public class ZombieControl {
                 inBounds = true;
              
             }
+            /*
+            else if (nextScene == "P"){
+                Player player = game.getPlayer();
+                double health = player.getHealth();
+                health = health - 10;
+                player.setHealth(health);
+                    
+            }
+                    */
             else if (column >= 0 && 
-                row >= 0 && 
-                column <= maxRow && 
+                row >= 0 &&
+                nextScene != "P" &&
+                row <= maxRow && 
                 column <= maxColumn &&
                 !blocked){
             
@@ -165,12 +180,22 @@ public class ZombieControl {
                //reset old scene
                Scene reset = new Scene();
                oldLocations[currentRow][currentColumn].setScene(reset);
-                              
+               
+               //set new scene
+
+               Scene move = new Scene(false, "z");
+               oldLocations[row][column].setScene(move);
+               
+               //inBounds = true;
             }
             else{
-
+                if (zombie.getCycle() == 0) {
+                    zombie.setCycle(1);
+                } else if (zombie.getCycle() == 1) {
+                    zombie.setCycle(0);
+                }
             }
-        }//end while loop
+        //}//end while loop
             
     }
 }

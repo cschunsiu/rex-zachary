@@ -9,6 +9,7 @@ package byui.cit260.zombiesHunting.JFrame;
 import byui.cit260.zombiesHunting.Exceptions.MapControlException;
 import byui.cit260.zombiesHunting.control.MapControl;
 import byui.cit260.zombiesHunting.control.PlayerControl;
+import byui.cit260.zombiesHunting.control.ZombieControl;
 import byui.cit260.zombiesHunting.model.Game;
 import byui.cit260.zombiesHunting.model.InventoryItem;
 import byui.cit260.zombiesHunting.model.Location;
@@ -16,11 +17,15 @@ import byui.cit260.zombiesHunting.model.Map;
 import byui.cit260.zombiesHunting.model.Player;
 import byui.cit260.zombiesHunting.model.Scene;
 import byui.cit260.zombiesHunting.model.WeaponItem;
+import byui.cit260.zombiesHunting.model.Zombie;
 import byui.cit260.zombiesHunting.view.LaboratoryView;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import zombiehunting.ZombieHunting;
@@ -536,6 +541,8 @@ public class MapFrame extends javax.swing.JFrame {
         
         int row = player.getRowPosition();
         int column = player.getColumnPosition();
+        
+        this.moveZombie(map[player.getRoom()]);
             
         switch(direction){
             case "W": //up
@@ -577,7 +584,7 @@ public class MapFrame extends javax.swing.JFrame {
                 int currentRow = player.getRowPosition();
                 int currentColumn = player.getColumnPosition();
                 
-                PlayerControl.attackZombie();
+                //PlayerControl.attackZombie();
                 
                 try{
                 MapControl.moveActorsToLocation(row, column, player.getRoom());
@@ -630,6 +637,7 @@ public class MapFrame extends javax.swing.JFrame {
                oldLocations[currentRow][currentColumn].setScene(reset);                            
             }
             
+                   
     }
 
     private void renderMap() {
@@ -648,19 +656,22 @@ public class MapFrame extends javax.swing.JFrame {
         for (int row = 0; row < totalRows; row++ ){
             for (int column = 0; column < totalColumns; column++){
                 Scene temp = locations[row][column].getScene();
+                Object value = null;
                 
                 if (temp == null){
                    Scene square = new Scene();
                    locations[row][column].setScene(square);
+                   
+                   //BufferedImage image = temp.getImage();
+                   //BufferedImage image = getImage(temp, );
                    /*
-                   BufferedImage image = temp.getImage();
-                   if(Image != null){
+                   if(image != null){
                       int rowHeight = this.jTable1.getRowHeight();
                       int columnWidth = this.jTable1.getColumn(column).getWidth();
                       //BufferedImage iconImage = GameMeunuFrame.resize(image,columnWidth,rowHeight);
                       value = new ImageIcon(iconImage);
-                           }
-                           */
+                    }
+                    */     
                    this.jTable1.getModel().setValueAt(square.getDescription(), row, column);
                 }
                 else{
@@ -678,6 +689,30 @@ public class MapFrame extends javax.swing.JFrame {
         image = ImageIO.read(url);
         
         return image;
+    }
+    
+    public static BufferedImage resize(BufferedImage image, int width, int height) {
+        if (image == null)
+            return null;
+        
+        double imageWidth = image.getWidth();
+        double imageHeight = image.getHeight();
+        
+        double ratio = imageHeight / imageWidth;
+        
+        if (imageWidth > imageHeight) {
+            height = (int) (width * ratio);
+        }
+        else {
+            width = (int) (height / ratio);
+        }
+
+        BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
+        Graphics2D g2d = (Graphics2D) bufferedImage.createGraphics();
+        g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
+        g2d.drawImage(image, 0, 0, width, height, null);
+        g2d.dispose();
+        return bufferedImage;
     }
     
     private String checkWeapons() {
@@ -726,4 +761,25 @@ public class MapFrame extends javax.swing.JFrame {
         
         return notification;
     }
+
+    private void moveZombie(Map map) {
+        Zombie[] zombies = map.getZombies();
+        
+        if (zombies != null){
+            ZombieControl zombieMove = new ZombieControl();
+            for (Zombie zombie : zombies){
+               int oldRow = zombie.getRowPosition();
+               int oldColumn = zombie.getColumnPosition();
+               
+               zombieMove.moveZombie(zombie);
+               
+               int newRow = zombie.getRowPosition();
+               int newColumn = zombie.getColumnPosition();
+               
+               this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
+               this.jTable1.getModel().setValueAt("z", newRow, newColumn);
+            }
+        }
+    }
+
 }

@@ -273,6 +273,10 @@ public class GameControl {
    
     locations[11][2].setScene(zombie);
     
+    Zombie[] activeZombie = new Zombie [1];
+    activeZombie[0] = new Zombie(11,2,Constants.CONSTRUCTION_SITE1,"A");
+    maps[Constants.CONSTRUCTION_SITE1].setZombies(activeZombie);
+    
     /*
     for (int y = 0; y < Constants.STANDARD_ROWS; y++){
         Scene zombie = new Scene (false, "z");
