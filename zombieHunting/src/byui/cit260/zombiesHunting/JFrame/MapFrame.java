@@ -1108,6 +1108,9 @@ public class MapFrame extends javax.swing.JFrame {
 
     private void moveZombie(Map map) {
         Zombie[] zombies = map.getZombies();
+        Game game = ZombieHunting.getCurrentGame();
+        Map rooms[] = game.getGameMaps();
+        Location locations[][] = rooms[zombies[0].getRoomPosition()].getLocations();
         
         if (zombies != null){
             ZombieControl zombieMove = new ZombieControl();
@@ -1120,6 +1123,14 @@ public class MapFrame extends javax.swing.JFrame {
                int newRow = zombie.getRowPosition();
                int newColumn = zombie.getColumnPosition();
                
+               Scene reset = new Scene();
+               locations[oldRow][oldColumn].setScene(reset);
+        
+               Object value1 = getIcon(reset.getDescription());
+               this.jTable1.getModel().setValueAt(value1,oldRow,oldColumn);
+               Scene scene = locations[newRow][newColumn].getScene();
+               Object value = getIcon(scene.getDescription());
+               this.jTable1.getModel().setValueAt(value,newRow,newColumn);
                //this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
                //this.jTable1.getModel().setValueAt("z", newRow, newColumn);
             }
