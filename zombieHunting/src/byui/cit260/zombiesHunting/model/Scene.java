@@ -6,6 +6,7 @@
 
 package byui.cit260.zombiesHunting.model;
 
+import java.awt.image.BufferedImage;
 import java.util.Objects;
 
 /**
@@ -17,6 +18,7 @@ public class Scene {
     private InventoryItem item;
     //private InventoryItem[] items; 
     private String description; //text to represent the scene.
+    BufferedImage image;
 
    
     public Scene() {
@@ -28,6 +30,14 @@ public class Scene {
     public Scene(boolean blocked, String description) {
         this.blocked = blocked;
         this.description = description;
+    }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
     }
 
     public boolean isBlocked() {

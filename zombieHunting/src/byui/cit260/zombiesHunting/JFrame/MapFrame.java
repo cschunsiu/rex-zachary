@@ -6,7 +6,9 @@
 
 package byui.cit260.zombiesHunting.JFrame;
 
+import byui.cit260.zombiesHunting.Exceptions.GameControlException;
 import byui.cit260.zombiesHunting.Exceptions.MapControlException;
+import byui.cit260.zombiesHunting.control.GameControl;
 import byui.cit260.zombiesHunting.control.MapControl;
 import byui.cit260.zombiesHunting.control.PlayerControl;
 import byui.cit260.zombiesHunting.control.ZombieControl;
@@ -24,9 +26,11 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Vector;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import zombiehunting.ZombieHunting;
 
@@ -36,6 +40,7 @@ import zombiehunting.ZombieHunting;
  */
 public class MapFrame extends javax.swing.JFrame {
 
+    
     private static Game game;
     private static Map[] rooms;
 
@@ -61,29 +66,214 @@ public class MapFrame extends javax.swing.JFrame {
      */
     public MapFrame() {
         initComponents();
+        MapTableModel mapTableModel = new MapTableModel();
+        this.jTable1.setModel(mapTableModel);
         //can add your own code
+        
+        GameControl gameData = new GameControl();
+        try {
+           gameData.startNewGame();
+        }
+        catch (GameControlException err){
+            err.getMessage();
+            //err.stackTrace();
+        }
         
         Game game = ZombieHunting.getCurrentGame();
         Map rooms[] = game.getGameMaps();
         Location locations[][] = rooms[0].getLocations();
         
-        this.renderMap();
-        //populates the table
-        
+   
         int rowCount = this.jTable1.getRowCount();
         int columnCount = this.jTable1.getColumnCount();
-        
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
-        this.jTable1.setDefaultRenderer(String.class, centerRenderer);
-        
-        TableColumnModel columnTableModel = this.jTable1.getColumnModel();
-           for (int j = 0; j < columnCount; j++){
-              columnTableModel.getColumn(j).setCellRenderer(centerRenderer);
-           }
-        
+                
+        //Object[][] data = new Object [16][20];
+        Object[][] data = getTableData(locations);
+        //Object [] columns = new Object [20];
+        Object[] columns = getColumnData(20);
+        mapTableModel.setDataVector(data, columns);
+        this.renderMap();
+        //populates the table
+              
     }
 
+    private Object[][] getTableData(Location[][] locations) {
+
+        Object[][] data = new Object[locations.length][locations[0].length];
+
+        for (int i = 0; i < locations.length; i++) {
+            Location[] row = locations[i];
+            for (int j = 0; j < row.length; j++) {
+                Location location = locations[i][j];
+                Scene scene = location.getScene();
+                Object value;
+                
+                if (scene == null){
+                    Scene temp = new Scene();
+                    locations[i][j].setScene(temp);
+                    scene = temp;
+                }
+                
+                value = getIcon(scene.getDescription());
+                /*
+                if (scene == null) {
+                    value = "??";
+                } else if (this.getIcon(scene.getDescription()) != null) {
+                    
+                    value = getIcon(scene.getDescription());
+                }else {
+                    value = scene.getMapSymbol();
+                }
+                */
+
+                data[i][j] = value;
+
+            }
+        }
+        return data;
+    }
+        
+
+    private Object[] getColumnData(int columnCount) {
+        Object[] columnHeaderData = new Object[columnCount];
+        for (int i = 0; i < columnHeaderData.length; i++) {
+            Object object = columnHeaderData[i];
+        }
+        return columnHeaderData;
+    }
+
+    private Object getIcon(String description) {
+        
+        Object value = null;
+        Scene temp = new Scene();
+        Game game = ZombieHunting.getCurrentGame();
+        
+        if (description == null || description == " "){ //Floor
+                    
+            BufferedImage image = null;
+                   
+            try {
+                image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Floor Tile.png");
+            }
+            catch (IOException err){
+                err.getMessage();
+                err.printStackTrace();
+            }
+                   
+            if (image != null){
+                //int rowHeight = this.jTable1.getRowHeight();
+                //int columnWidth = this.jTable1.getColumnModel().getColumn(column).getWidth();
+                //resize(image, columnWidth, rowHeight);       
+                value = new ImageIcon(image);
+            }
+                   
+        }       
+        else if (description == "P"){ //PLAYER
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/actor_square-hero FLOOR.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+
+                       value = new ImageIcon(image);
+                   }
+                }
+        else if (description == "x"){ //wall
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Wall2.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+                       
+                       value = new ImageIcon(image);
+                   }
+                   
+                }
+        else if (description == "E"){ //exit
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Stair.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+                       
+                       value = new ImageIcon(image);
+                   }
+                   
+                }
+        else if (description == "C"){ //cure
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Potion.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+                       
+                       value = new ImageIcon(image);
+                   }                  
+                }
+        else if (description == "z"){ //zombie
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Actor_square-zombie FLOOR.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+                       
+                       value = new ImageIcon(image);
+                   }
+                   
+                }
+        return value;
+    }
+ private class MapTableModel extends DefaultTableModel {
+
+        public Class getColumnClass(int columnIndex) {
+            Vector rows = this.getDataVector();
+            int rowCount = this.getRowCount();
+            for (int rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+
+                Vector row = (Vector) rows.elementAt(rowIndex);
+                if (row.elementAt(columnIndex) != null) {
+                    return getValueAt(rowIndex, columnIndex).getClass();
+                }
+            }
+            return ImageIcon.class;
+        }
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -374,8 +564,10 @@ public class MapFrame extends javax.swing.JFrame {
     private void jpUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpUpButtonActionPerformed
         // TODO add your handling code here:
         Game game = ZombieHunting.getCurrentGame();
-        Player player = game.getPlayer();
+        Map rooms[] = game.getGameMaps();
         
+        Player player = game.getPlayer();
+        Location locations[][] = rooms[player.getRoom()].getLocations();
         //old positioning data
         int oldRow = player.getRowPosition();
         int oldColumn = player.getColumnPosition();
@@ -387,8 +579,14 @@ public class MapFrame extends javax.swing.JFrame {
         int newRow = player.getRowPosition();
         int newColumn = player.getColumnPosition();
         
-        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
-        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
+        Scene reset = new Scene();
+        locations[oldRow][oldColumn].setScene(reset);
+        
+        Object value1 = getIcon(reset.getDescription());
+        this.jTable1.getModel().setValueAt(value1,oldRow,oldColumn);
+        Scene scene = locations[newRow][newColumn].getScene();
+        Object value = getIcon(scene.getDescription());
+        this.jTable1.getModel().setValueAt(value,newRow,newColumn);
     }//GEN-LAST:event_jpUpButtonActionPerformed
 
     private void jpInventoryViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpInventoryViewActionPerformed
@@ -415,7 +613,8 @@ public class MapFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         Game game = ZombieHunting.getCurrentGame();
         Player player = game.getPlayer();
-        
+        Map rooms[] = game.getGameMaps();
+        Location locations[][] = rooms[player.getRoom()].getLocations();
         //old positioning data
         int oldRow = player.getRowPosition();
         int oldColumn = player.getColumnPosition();
@@ -427,15 +626,22 @@ public class MapFrame extends javax.swing.JFrame {
         int newRow = player.getRowPosition();
         int newColumn = player.getColumnPosition();
         
-        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
-        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
+        Scene reset = new Scene();
+        locations[oldRow][oldColumn].setScene(reset);
+        
+        Object value1 = getIcon(reset.getDescription());
+        this.jTable1.getModel().setValueAt(value1,oldRow,oldColumn);
+        Scene scene = locations[newRow][newColumn].getScene();
+        Object value = getIcon(scene.getDescription());
+        this.jTable1.getModel().setValueAt(value,newRow,newColumn);
     }//GEN-LAST:event_jpDownButtonActionPerformed
 
     private void jpLeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpLeftButtonActionPerformed
         // TODO add your handling code here:
         Game game = ZombieHunting.getCurrentGame();
         Player player = game.getPlayer();
-        
+        Map rooms[] = game.getGameMaps();
+        Location locations[][] = rooms[player.getRoom()].getLocations();
         //old positioning data
         int oldRow = player.getRowPosition();
         int oldColumn = player.getColumnPosition();
@@ -447,8 +653,14 @@ public class MapFrame extends javax.swing.JFrame {
         int newRow = player.getRowPosition();
         int newColumn = player.getColumnPosition();
         
-        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
-        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
+        Scene reset = new Scene();
+        locations[oldRow][oldColumn].setScene(reset);
+        
+        Object value1 = getIcon(reset.getDescription());
+        this.jTable1.getModel().setValueAt(value1,oldRow,oldColumn);
+        Scene scene = locations[newRow][newColumn].getScene();
+        Object value = getIcon(scene.getDescription());
+        this.jTable1.getModel().setValueAt(value,newRow,newColumn);
     }//GEN-LAST:event_jpLeftButtonActionPerformed
 
     private void jpRightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpRightButtonActionPerformed
@@ -459,7 +671,8 @@ public class MapFrame extends javax.swing.JFrame {
         //old positioning data
         int oldRow = player.getRowPosition();
         int oldColumn = player.getColumnPosition();
-        
+        Map rooms[] = game.getGameMaps();
+        Location locations[][] = rooms[player.getRoom()].getLocations();
         //move the player
         this.movePlayer("D");
         
@@ -467,8 +680,14 @@ public class MapFrame extends javax.swing.JFrame {
         int newRow = player.getRowPosition();
         int newColumn = player.getColumnPosition();
         
-        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
-        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
+        Scene reset = new Scene();
+        locations[oldRow][oldColumn].setScene(reset);
+        
+        Object value1 = getIcon(reset.getDescription());
+        this.jTable1.getModel().setValueAt(value1,oldRow,oldColumn);
+        Scene scene = locations[newRow][newColumn].getScene();
+        Object value = getIcon(scene.getDescription());
+        this.jTable1.getModel().setValueAt(value,newRow,newColumn);
     }//GEN-LAST:event_jpRightButtonActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -489,8 +708,9 @@ public class MapFrame extends javax.swing.JFrame {
         int newRow = player.getRowPosition();
         int newColumn = player.getColumnPosition();
         
-        this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
-        this.jTable1.getModel().setValueAt("P", newRow, newColumn);
+        //this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
+        //this.jTable1.getModel().setValueAt("P", newRow, newColumn);
+        this.renderMap();
        }
        else if (keyPressed == 'w' || keyPressed == 'W') {
            movePlayer("W");
@@ -636,8 +856,7 @@ public class MapFrame extends javax.swing.JFrame {
                Scene reset = new Scene();
                oldLocations[currentRow][currentColumn].setScene(reset);                            
             }
-            
-                   
+                           
     }
 
     private void renderMap() {
@@ -658,29 +877,154 @@ public class MapFrame extends javax.swing.JFrame {
                 Scene temp = locations[row][column].getScene();
                 Object value = null;
                 
-                if (temp == null){
+                if (temp == null || temp.getDescription() == " "){//set to floor scene
                    Scene square = new Scene();
                    locations[row][column].setScene(square);
+                   temp = locations[row][column].getScene();
                    
-                   //BufferedImage image = temp.getImage();
-                   //BufferedImage image = getImage(temp, );
-                   /*
+                   BufferedImage image = null;
+                   
+                   
+                   try {
+                   image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Floor Tile.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
                    if(image != null){
+                      //int rowHeight = this.jTable1.
                       int rowHeight = this.jTable1.getRowHeight();
-                      int columnWidth = this.jTable1.getColumn(column).getWidth();
+                      //int columnWidth = this.jTable1.getColumn(value).getWidth();
+                      int columnWidth = this.jTable1.getColumnModel().getColumn(column).getWidth();
+                      
+                      resize(image, columnWidth, rowHeight);
                       //BufferedImage iconImage = GameMeunuFrame.resize(image,columnWidth,rowHeight);
-                      value = new ImageIcon(iconImage);
+                      value = new ImageIcon(image);
                     }
-                    */     
-                   this.jTable1.getModel().setValueAt(square.getDescription(), row, column);
+                   
+                   //value.setImageIcon(image);
+                   this.jTable1.getModel().setValueAt(value,row,column);
+                   //this.jTable1.getModel().setValueAt(square.getDescription(), row, column);
                 }
+                /*
                 else{
                     this.jTable1.getModel().setValueAt(temp.getDescription(), row, column);
-                }                             
-            }
-          
+                }
+                */
+                
+                else if (temp.getDescription() == "P"){ //PLAYER
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/actor_square-hero FLOOR.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+                       int rowHeight = this.jTable1.getRowHeight();
+                       int columnWidth = this.jTable1.getColumnModel().getColumn(column).getWidth();
+                       
+                       image = resize(image, columnWidth, rowHeight);
+                       
+                       value = new ImageIcon(image);
+                   }
+                   this.jTable1.getModel().setValueAt(value, row, column);
+                }
+                else if (temp.getDescription() == "x"){ //WALL
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Wall2.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+                       int rowHeight = this.jTable1.getRowHeight();
+                       int columnWidth = this.jTable1.getColumnModel().getColumn(column).getWidth();
+                       
+                       resize(image, columnWidth, rowHeight);
+                       
+                       value = new ImageIcon(image);
+                   }
+                    this.jTable1.getModel().setValueAt(value, row, column);
+                }
+                else if (temp.getDescription() == "z"){ //ZOMBIE
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Actor_square-zombie FLOOR.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+                       int rowHeight = this.jTable1.getRowHeight();
+                       int columnWidth = this.jTable1.getColumnModel().getColumn(column).getWidth();
+                       
+                       resize(image, columnWidth, rowHeight);
+                       
+                       value = new ImageIcon(image);
+                   }
+                    this.jTable1.getModel().setValueAt(value, row, column);
+                }  
+                else if (temp.getDescription() == "E"){
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Stair.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+                       int rowHeight = this.jTable1.getRowHeight();
+                       int columnWidth = this.jTable1.getColumnModel().getColumn(column).getWidth();
+                       
+                       resize(image, columnWidth, rowHeight);
+                       
+                       value = new ImageIcon(image);
+                   }
+                    this.jTable1.getModel().setValueAt(value, row, column);
+                }
+                else if (temp.getDescription() == "C"){
+                    
+                   BufferedImage image = null;
+                   
+                   try {
+                      image = getImage(temp, "/byui/cit260/zombiesHunting/Images/Potion.png");
+                   }
+                   catch (IOException err){
+                       err.getMessage();
+                       err.printStackTrace();
+                   }
+                   
+                   if (image != null){
+                       int rowHeight = this.jTable1.getRowHeight();
+                       int columnWidth = this.jTable1.getColumnModel().getColumn(column).getWidth();
+                       
+                       resize(image, columnWidth, rowHeight);
+                       
+                       value = new ImageIcon(image);
+                   }
+                    this.jTable1.getModel().setValueAt(value, row, column);
+                }                      
+            }        
         }
-
     }
     private static BufferedImage getImage(Scene scene, String location) throws IOException{
         URL url = scene.getClass().getResource(location);
@@ -776,8 +1120,8 @@ public class MapFrame extends javax.swing.JFrame {
                int newRow = zombie.getRowPosition();
                int newColumn = zombie.getColumnPosition();
                
-               this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
-               this.jTable1.getModel().setValueAt("z", newRow, newColumn);
+               //this.jTable1.getModel().setValueAt(" ", oldRow, oldColumn);
+               //this.jTable1.getModel().setValueAt("z", newRow, newColumn);
             }
         }
     }

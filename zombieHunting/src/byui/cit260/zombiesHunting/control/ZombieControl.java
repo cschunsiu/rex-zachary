@@ -168,6 +168,7 @@ public class ZombieControl {
             else if (column >= 0 && 
                 row >= 0 &&
                 nextScene != "P" &&
+                nextScene != "x" &&
                 row <= maxRow && 
                 column <= maxColumn &&
                 !blocked){
