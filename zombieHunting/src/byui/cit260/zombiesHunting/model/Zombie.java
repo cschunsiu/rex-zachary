@@ -21,6 +21,7 @@ public class Zombie implements Serializable {
     private int rowPosition;
     private int roomPosition;
     /*****************************
+     * Cycle parameters:
      * 0 - forward movement
      * 1 - backward movement
      *****************************/
